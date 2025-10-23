@@ -687,8 +687,15 @@ main {
     .hamburger { 
         display: inline-flex;  /* Show hamburger on mobile */
     }
+    /* Keep 3 columns for quick links on mobile as requested */
     .quick-links { 
-        grid-template-columns: repeat(2, minmax(0, 1fr));  /* 2 columns on mobile */
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px; /* slightly tighter spacing */
+    }
+    .quick-link {
+        min-height: 46px;
+        padding: 8px;
+        font-size: 13px;
     }
     .grid.cols-2, .grid.cols-3 { 
         grid-template-columns: 1fr;  /* Single column on mobile */
@@ -700,14 +707,15 @@ main {
 
 /* Small mobile: Single column for quick links */
 @media (max-width: 480px) { 
+    /* Maintain the same 3-column layout on very small screens */
     .quick-links { 
-        grid-template-columns: 1fr; 
-        gap: 8px;
+        grid-template-columns: repeat(3, minmax(0, 1fr)); 
+        gap: 6px;
     }
     .quick-link {
-        min-height: 50px;
-        padding: 10px;
-        font-size: 14px;
+        min-height: 42px;
+        padding: 6px;
+        font-size: 12px;
     }
 }
 

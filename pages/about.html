@@ -8,136 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/about.css">
     <link rel="icon" href="../logo/perahin-logo.png">
     <meta name="theme-color" content="#FF6F00">
-    <style>
-        .about-hero {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, rgba(255, 111, 0, 0.05), rgba(255, 143, 64, 0.05));
-            border-radius: 16px;
-            margin-bottom: 24px;
-        }
-        .about-hero h1 {
-            font-size: 32px;
-            margin: 0 0 12px;
-            color: var(--text);
-        }
-        .about-hero p {
-            font-size: 18px;
-            color: var(--muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .developer-section {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            padding: 24px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-        }
-        .developer-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--accent-600));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            color: white;
-            flex-shrink: 0;
-        }
-        .developer-info h2 {
-            margin: 0 0 8px;
-            font-size: 24px;
-            color: var(--text);
-        }
-        .developer-info .role {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .social-links {
-            display: flex;
-            gap: 12px;
-            margin-top: 16px;
-        }
-        .social-link {
-            padding: 8px 16px;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            text-decoration: none;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-        .social-link:hover {
-            background: var(--surface);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
-            margin-top: 24px;
-        }
-        .feature-card {
-            padding: 20px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: transform 0.2s ease;
-        }
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
-        }
-        .feature-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-        .feature-card h3 {
-            margin: 0 0 8px;
-            font-size: 18px;
-            color: var(--text);
-        }
-        .feature-card p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 14px;
-        }
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 16px;
-        }
-        .tech-badge {
-            padding: 6px 12px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 13px;
-            color: var(--text);
-            font-weight: 500;
-        }
-        @media (max-width: 768px) {
-            .developer-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            .social-links {
-                justify-content: center;
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="background-wrapper"></div>
@@ -152,6 +25,8 @@
             <a href="courses.html" class="nav-link">Courses</a>
             <a href="notices.html" class="nav-link">Notices</a>
             <a href="events.html" class="nav-link">Events</a>
+            <a href="messages.html" class="nav-link">Messages</a>
+            <a href="resources.html" class="nav-link">Resources</a>
             <a href="playlist.html" class="nav-link">PlayList</a>
             <a href="cgpa-calculator.html" class="nav-link">CGPA</a>
             <a href="about.html" class="nav-link active">About</a>
@@ -166,11 +41,11 @@
             <p>Meet the person behind Perahin UIU</p>
         </div>
 
-        <!-- Developer Section -->
+        <!-- Profile Card (original layout) -->
         <div class="card">
             <div class="developer-section">
                 <div class="developer-avatar">
-                    SA
+                    <img src="../logo/dp-about.png" alt="Sabbir Ahmed" loading="lazy">
                 </div>
                 <div class="developer-info">
                     <h2>Sabbir Ahmed</h2>

@@ -429,22 +429,25 @@
     setupRemoveHandler(DOM.currentTable);
     setupRemoveHandler(DOM.retakeTable);
 
-    // Reset all button
+    // Reset all button (immediate reset, no confirmation)
     DOM.resetAll?.addEventListener('click', () => {
-        if (!confirm('Reset all data?')) return;
-        
         // Reset tables
-        DOM.currentTable.querySelector('tbody').innerHTML = '';
-        DOM.currentTable.querySelector('tbody').appendChild(createCourseRow());
-        DOM.retakeTable.querySelector('tbody').innerHTML = '';
-        
+        const currentTbody = DOM.currentTable.querySelector('tbody');
+        const retakeTbody = DOM.retakeTable.querySelector('tbody');
+        currentTbody.innerHTML = '';
+        currentTbody.appendChild(createCourseRow());
+        retakeTbody.innerHTML = '';
+
         // Reset inputs and displays
         DOM.trimesterGpa.textContent = '0.00';
         DOM.overallCgpa.textContent = '0.00';
         DOM.totalCredits.textContent = '0';
         if (DOM.previousCgpa) DOM.previousCgpa.value = '';
         if (DOM.previousCredits) DOM.previousCredits.value = '';
-        
+
+        // Clear any validation styles on selects in the new row
+        currentTbody.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+
         // Clear summary
         displayResults(null);
     });
