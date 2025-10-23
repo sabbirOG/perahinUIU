@@ -1,41 +1,54 @@
-<<<<<<< HEAD
 # Perahin UIU
 
-Modern, responsive, frontend-only web application for UIU students.
+A modern web platform designed to serve the **United International University (UIU)** student community. This project provides essential academic tools and resources all in one place.
 
-## Structure
+## ✨ Features
 
-perahin-uiu/
+- **📊 CGPA Calculator** - Accurate GPA calculation following UIU grading standards, with support for retake courses and trimester tracking
+- **📚 Course Materials** - Organized access to course resources, lecture notes, and study materials
+- **🎬 Video Playlists** - Curated YouTube playlists for various courses to supplement learning
+- **🧮 Calculator** - Floating calculator widget with BODMAS support for quick calculations
+- **📅 Events & Notices** - Stay updated with campus events and important announcements
+- **🎓 Course Browser** - Browse courses by trimester with search and filter options
+- **🌙 Dark Mode** - Eye-friendly theme toggle for comfortable viewing
 
-- index.html – Dashboard
-- courses.html – Courses & classes
-- notices.html – Notices
-- events.html – Events & activities
-- messages.html – Message board
-- resources.html – Resource library
-- cgpa-calculator.html – CGPA calculator
-- assets/ – images, icons, fonts
-- css/ – styles (main + page-specific)
-- js/ – scripts (main + page-specific)
+## 🚀 Quick Start
 
-## Development
+Visit the live site: **[perahin-uiu.github.io](https://sabbirog.github.io/perahin-uiu/)**
 
-- Open index.html directly in a browser, or serve via XAMPP at `http://localhost/perahin-uiu/`.
-- Edit `css/main.css` for global theme; page overrides in `css/<page>.css`.
-- Edit `js/main.js` for global behaviors; page logic in `js/<page>.js`.
+```
 
-## Branding
+## 🛠️ Tech Stack
 
-- Primary: White (#FFFFFF)
-- Accent: Orange (#FF6F00)
-- Grays: #F5F5F5 (light), #333333 (text)
+- **HTML5** - Semantic markup
+- **CSS3** - Modern styling with CSS variables
+- **JavaScript** - Vanilla JS for interactivity
+- **GitHub Pages** - Free hosting
 
-## Credits
+```
 
-Developed by Sabbir Ahmed (`https://github.com/sabbirOG`) for the UIU student community.
+## 🤝 Contributing
 
+This project is built specifically for the UIU student community. While the project is freely available for students to use, the source code is not open source and contributions are currently managed by the developer.
 
-=======
-# perahin-uiu
-this is one of my dream project to server the uiu student community 
->>>>>>> c5f8001a440110e0cc16ad34ee173f42f7655479
+If you have suggestions, feedback, or would like to report issues, feel free to reach out!
+
+## 💡 Future Plans
+
+- User authentication for personalized experience
+- Course registration reminders
+- Faculty directory
+- Mobile app version
+
+## 📝 License
+
+This project is developed and maintained for the UIU student community. All rights reserved.
+
+## 👨‍💻 Developer
+
+**Sabbir Ahmed**  
+GitHub: [@sabbirOG](https://github.com/sabbirOG)
+
+---
+
+*Made with ভালোবাসা for the UIU student community*

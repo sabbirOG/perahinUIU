@@ -79,6 +79,7 @@ body {
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    padding-top: 66px;  /* Height of fixed navbar to prevent content overlap */
 }
 
 /* Add background wrapper as first child of body */
@@ -233,10 +234,12 @@ body::before {
 }
 
 /* ===== TOP NAVIGATION BAR ===== */
-/* Sticky header that stays at top when scrolling, with glassmorphism effect */
+/* Fixed header that always stays at top when scrolling, with glassmorphism effect */
 .topbar {
-    position: sticky;           /* Stays at top when scrolling */
+    position: fixed;            /* Always stays at top when scrolling */
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;              /* Above all other content */
     display: flex;
     align-items: center;

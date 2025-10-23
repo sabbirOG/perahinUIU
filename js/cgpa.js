@@ -40,6 +40,38 @@
         return Math.round(num * 100) / 100;
     }
 
+    function getMotivationalMessage(gpa) {
+        if (gpa < 2.50) {
+            return {
+                text: 'আর কত ভাই! এইবার জাগেন',
+                emoji: '💪',
+                color: '#F44336',
+                bg: 'rgba(244, 67, 54, 0.1)'
+            };
+        } else if (gpa < 3.00) {
+            return {
+                text: 'আরেকটু চাপ দেন, নয়তো পানিতে পড়বেন',
+                emoji: '😅',
+                color: '#FF9800',
+                bg: 'rgba(255, 152, 0, 0.1)'
+            };
+        } else if (gpa < 3.50) {
+            return {
+                text: 'লাইগা থাকেন, নাহলে নৌকা ডুবতে সময় লাগব না',
+                emoji: '🚣',
+                color: '#2196F3',
+                bg: 'rgba(33, 150, 243, 0.1)'
+            };
+        } else {
+            return {
+                text: 'মাশাল্লাহ! এভাবেই এগিয়ে যান',
+                emoji: '🌟',
+                color: '#4CAF50',
+                bg: 'rgba(76, 175, 80, 0.1)'
+            };
+        }
+    }
+
     function getGradeLetter(select) {
         if (!select?.value) return null;
         const text = select.options[select.selectedIndex]?.text?.trim();
@@ -113,12 +145,38 @@
             const gradePoint = GRADE_POINTS[finalGrade];
             const weighted = gradePoint * course.credits;
             
-            creditsForGpa += course.credits;
-            weightedPoints += weighted;
-            attemptedCredits += course.isRetake ? course.credits * 2 : course.credits;
-            
-            if (gradePoint >= PASSING_GRADE) {
-                completedCredits += course.credits;
+            // For retakes/improvements
+            if (course.isRetake) {
+                const isActualRetake = course.oldGrade === 'F'; // F means retake, otherwise improvement
+                
+                // Credits for GPA calculation
+                if (isActualRetake) {
+                    // Retake: Add new credits
+                    creditsForGpa += course.credits;
+                } else {
+                    // Improvement: Don't add new credits (already counted from first attempt)
+                    creditsForGpa += 0;
+                }
+                
+                // Weighted points always use new grade
+                weightedPoints += weighted;
+                
+                // Attempted credits: Both attempts count for both retake and improvement
+                attemptedCredits += course.credits * 2;
+                
+                // Completed credits: Only if new grade is passing
+                if (gradePoint >= PASSING_GRADE) {
+                    completedCredits += course.credits;
+                }
+            } else {
+                // Regular course
+                creditsForGpa += course.credits;
+                weightedPoints += weighted;
+                attemptedCredits += course.credits;
+                
+                if (gradePoint >= PASSING_GRADE) {
+                    completedCredits += course.credits;
+                }
             }
 
             breakdown.push({
@@ -129,7 +187,8 @@
                 gradePoint,
                 weighted,
                 isPassing: gradePoint >= PASSING_GRADE,
-                isRetake: course.isRetake
+                isRetake: course.isRetake,
+                isImprovement: course.isRetake && course.oldGrade !== 'F'
             });
         });
 
@@ -174,9 +233,12 @@
         const bg = course.isPassing ? 'rgba(76,175,80,0.05)' : 'rgba(244,67,54,0.05)';
         const color = course.isPassing ? '#4CAF50' : '#F44336';
         const status = course.isPassing ? '✓ Pass' : '✗ Fail';
-        const retakeInfo = course.isRetake 
-            ? ` <em style="color:var(--text-secondary);font-size:12px">(${course.oldGrade} → ${course.grade})</em>` 
-            : '';
+        
+        let retakeInfo = '';
+        if (course.isRetake) {
+            const label = course.isImprovement ? 'Improvement' : 'Retake';
+            retakeInfo = ` <em style="color:var(--text-secondary);font-size:12px">(${label}: ${course.oldGrade} → ${course.grade})</em>`;
+        }
 
         return `
             <div style="display:flex;justify-content:space-between;gap:12px;padding:8px;border-bottom:1px solid var(--border-color);background:${bg}">
@@ -198,6 +260,17 @@
 
         const courseList = result.breakdown.map(renderCourseRow).join('');
         const hasPrevious = prevCredits > 0 && prevCgpa > 0;
+        
+        // Get motivational message based on overall CGPA if available, otherwise current GPA
+        const gpaForMotivation = hasPrevious ? overallCgpa : result.gpa;
+        const motivation = getMotivationalMessage(gpaForMotivation);
+        
+        const motivationBox = `
+            <div style="margin-top:16px;padding:16px;background:${motivation.bg};border-left:4px solid ${motivation.color};border-radius:8px;text-align:center">
+                <div style="font-size:24px;margin-bottom:8px">${motivation.emoji}</div>
+                <div style="font-size:16px;font-weight:600;color:${motivation.color}">${motivation.text}</div>
+            </div>
+        `;
         
         const overallSection = hasPrevious ? `
             <div style="margin-top:16px;padding:16px;border-top:2px solid var(--primary-color);background:var(--surface-hover);border-radius:8px">
@@ -224,6 +297,7 @@
                 </div>
             </div>
             ${overallSection}
+            ${motivationBox}
         `;
     }
 
