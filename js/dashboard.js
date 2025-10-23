@@ -1,23 +1,25 @@
-// Dashboard-specific functionality
+'use strict';
+
+/**
+ * DASHBOARD.JS - Dashboard-specific interactions
+ */
+
 (function() {
-    // Add any dashboard-specific interactions here
-    // For example, quick link animations, notification interactions, etc.
-    
-    // Animate quick links on hover
-    document.querySelectorAll('.quick-link').forEach(function(link) {
-        link.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
+    // Animate quick links
+    document.querySelectorAll('.quick-link').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            link.style.transform = 'translateY(-2px)';
         });
         
-        link.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+        link.addEventListener('mouseleave', () => {
+            link.style.transform = 'translateY(0)';
         });
     });
     
-    // Add click handlers for course preview cards
-    document.querySelectorAll('.card h3').forEach(function(courseTitle) {
-        courseTitle.style.cursor = 'pointer';
-        courseTitle.addEventListener('click', function() {
+    // Course title click navigation
+    document.querySelectorAll('.card h3').forEach(title => {
+        title.style.cursor = 'pointer';
+        title.addEventListener('click', () => {
             window.location.href = 'pages/courses.html';
         });
     });

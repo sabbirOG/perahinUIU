@@ -1,0 +1,170 @@
+/* Grade Reference Chart Widget Styles */
+
+/* Grade Reference Chart Widget */
+.grade-reference {
+    margin-top: 24px;
+    background: var(--bg-light);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 111, 0, 0.12);
+    overflow: hidden;
+}
+
+.grade-reference-toggle {
+    width: 100%;
+    padding: 16px 24px;
+    background: var(--surface-hover);
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.grade-reference-toggle:hover {
+    background: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.grade-reference-toggle span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toggle-icon {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.grade-reference-toggle.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.grade-chart-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.grade-chart-content.hidden {
+    max-height: 0;
+}
+
+.grade-chart-content:not(.hidden) {
+    max-height: 600px;
+    padding: 20px 24px;
+}
+
+.grade-chart-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: auto;
+}
+
+.grade-chart-table thead {
+    background: var(--primary-color);
+    color: white;
+}
+
+.grade-chart-table th {
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+    border-bottom: none;
+    background: var(--primary-color);
+    color: white;
+}
+
+.grade-chart-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-light);
+    font-size: 14px;
+}
+
+.grade-chart-table tbody tr:hover td {
+    background: var(--primary-light);
+}
+
+.grade-chart-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Grade row colors */
+.grade-chart-table .grade-a td:first-child,
+.grade-chart-table .grade-a-minus td:first-child {
+    color: #4CAF50;
+}
+
+.grade-chart-table .grade-b-plus td:first-child,
+.grade-chart-table .grade-b td:first-child,
+.grade-chart-table .grade-b-minus td:first-child {
+    color: #2196F3;
+}
+
+.grade-chart-table .grade-c-plus td:first-child,
+.grade-chart-table .grade-c td:first-child,
+.grade-chart-table .grade-c-minus td:first-child {
+    color: #FF9800;
+}
+
+.grade-chart-table .grade-d-plus td:first-child,
+.grade-chart-table .grade-d td:first-child {
+    color: #FF5722;
+}
+
+.grade-chart-table .grade-f td:first-child {
+    color: #F44336;
+    font-weight: 700;
+}
+
+/* Dark mode for grade chart */
+[data-theme="dark"] .grade-reference {
+    background: var(--bg-light);
+    border-color: rgba(255, 111, 0, 0.2);
+}
+
+[data-theme="dark"] .grade-reference-toggle {
+    background: var(--surface-hover);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .grade-reference-toggle:hover {
+    background: var(--primary-light);
+}
+
+[data-theme="dark"] .grade-chart-table th {
+    background: var(--primary-color);
+}
+
+[data-theme="dark"] .grade-chart-table td {
+    background: var(--bg-light);
+    border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .grade-chart-table tbody tr:hover td {
+    background: var(--surface-hover);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .grade-chart-table {
+        font-size: 13px;
+    }
+    
+    .grade-chart-table th,
+    .grade-chart-table td {
+        padding: 10px 12px;
+    }
+    
+    .grade-reference-toggle {
+        padding: 14px 16px;
+        font-size: 15px;
+    }
+}

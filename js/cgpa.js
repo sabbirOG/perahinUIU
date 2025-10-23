@@ -1,213 +1,378 @@
 /**
- * CGPA.JS - Enhanced CGPA Calculator functionality
+ * CGPA CALCULATOR - Optimized for UIU Students
  * 
- * Features:
- * - Dynamic course management
- * - Real-time CGPA calculation
- * - Data persistence
- * - Input validation
- * - Quick course addition
- * - Copy results functionality
+ * Simplified, maintainable code with correct UIU CGPA rules:
+ * - Retakes: Latest grade counts for CGPA, both attempts count for attempted credits
+ * - Completed credits: Only courses with D or higher
+ * - Overall CGPA: Combines previous trimester(s) with current
  */
 
-(function(){
-    // ===== ROW TEMPLATE GENERATOR =====
-    function rowTemplate() {
-        return `
-            <tr>
-                <td class="course-col">
-                    <div class="course-inputs">
-                        <input class="input code-input" type="text" placeholder="Course Code (e.g., CSE101)" required>
-                        <input class="input name-input" type="text" placeholder="Course Name" required>
-                    </div>
-                </td>
-                <td class="credit-col">
-                    <select class="input credit-select" required>
-                        <option value="" disabled selected>Credits</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </td>
-                <td class="grade-col">
-                    <select class="input grade-select" required title="Select grade">
-                        <option value="" disabled selected>Grade</option>
-                        <option value="4.0">A (90-100)</option>
-                        <option value="3.67">A- (86-89)</option>
-                        <option value="3.33">B+ (83-85)</option>
-                        <option value="3.0">B (78-81)</option>
-                        <option value="2.67">B- (74-77)</option>
-                        <option value="2.33">C+ (70-73)</option>
-                        <option value="2.0">C (66-69)</option>
-                        <option value="1.67">C- (62-65)</option>
-                        <option value="1.33">D+ (58-61)</option>
-                        <option value="1.0">D (55-57)</option>
-                        <option value="0.0">F (0-54)</option>
-                    </select>
-                </td>
-                <td class="action-col">
-                    <button class="btn remove-btn" data-remove title="Remove course">×</button>
-                </td>
-            </tr>
-        `;
-    }
+(function() {
+    'use strict';
 
-    // ===== ELEMENT REFERENCES =====
-    const elements = {
-        table: document.getElementById('cgpaTable'),
-        tbody: document.querySelector('#cgpaTable tbody'),
-        calcBtn: document.getElementById('calcCgpa'),
-        resetBtn: document.getElementById('resetRows'),
-        cgpaResult: document.getElementById('cgpaResult'),
+    // ========== CONFIGURATION ==========
+    const GRADE_POINTS = {
+        'A': 4.00, 'A-': 3.67, 'B+': 3.33, 'B': 3.00, 'B-': 2.67,
+        'C+': 2.33, 'C': 2.00, 'C-': 1.67, 'D+': 1.33, 'D': 1.00, 'F': 0.00
+    };
+    const PASSING_GRADE = 1.00; // D minimum
+
+    // ========== DOM REFERENCES ==========
+    const DOM = {
+        currentTable: document.getElementById('currentCoursesTable'),
+        retakeTable: document.getElementById('retakeCoursesTable'),
+        addCourse: document.getElementById('addCourse'),
+        addRetake: document.getElementById('addRetake'),
+        resetAll: document.getElementById('resetAll'),
+        calculate: document.getElementById('calculateCgpa'),
+        trimesterGpa: document.getElementById('currentCgpa'),
+        overallCgpa: document.getElementById('overallCgpa'),
         totalCredits: document.getElementById('totalCredits'),
-        copyBtn: document.getElementById('copyResult'),
-        saveIndicator: document.getElementById('saveIndicator'),
-        quickCreditsButtons: document.querySelectorAll('[data-credits]')
+        previousCgpa: document.getElementById('previousCgpa'),
+        previousCredits: document.getElementById('previousCredits')
     };
 
-    if (!elements.table) return; // Exit if table not found
+    // Exit if required tables don't exist
+    if (!DOM.currentTable || !DOM.retakeTable) return;
 
-    // ===== DATA PERSISTENCE =====
-    function saveData() {
-        const rows = Array.from(elements.tbody.querySelectorAll('tr')).map(row => ({
-            code: row.querySelector('.code-input').value,
-            name: row.querySelector('.name-input').value,
-            credits: row.querySelector('.credit-select').value,
-            grade: row.querySelector('.grade-select').value
-        }));
+    // ========== UTILITY FUNCTIONS ==========
+    function round(num) {
+        return Math.round(num * 100) / 100;
+    }
+
+    function getGradeLetter(select) {
+        if (!select?.value) return null;
+        const text = select.options[select.selectedIndex]?.text?.trim();
+        return GRADE_POINTS.hasOwnProperty(text) ? text : null;
+    }
+
+    function parseCourse(row, isRetake) {
+        const name = row.querySelector('input')?.value?.trim() || '';
+        const credits = parseFloat(row.querySelector('.credit-select')?.value) || 0;
+        const gradeSelects = row.querySelectorAll('.grade-select');
         
-        localStorage.setItem('cgpaData', JSON.stringify(rows));
-        showSaveIndicator('Changes saved');
-    }
-
-    function loadData() {
-        const saved = localStorage.getItem('cgpaData');
-        if (saved) {
-            const rows = JSON.parse(saved);
-            elements.tbody.innerHTML = '';
-            rows.forEach(row => {
-                elements.tbody.insertAdjacentHTML('beforeend', rowTemplate());
-                const newRow = elements.tbody.lastElementChild;
-                newRow.querySelector('.code-input').value = row.code;
-                newRow.querySelector('.name-input').value = row.name;
-                newRow.querySelector('.credit-select').value = row.credits;
-                newRow.querySelector('.grade-select').value = row.grade;
-            });
-            updateResults();
+        if (isRetake) {
+            return {
+                name,
+                credits,
+                oldGrade: getGradeLetter(gradeSelects[0]),
+                newGrade: getGradeLetter(gradeSelects[1]),
+                isRetake: true,
+                row
+            };
         }
-    }
-
-    // ===== CALCULATIONS =====
-    function calculateGPA() {
-        let totalCredits = 0;
-        let totalPoints = 0;
-        let isValid = true;
-
-        Array.from(elements.tbody.querySelectorAll('tr')).forEach(row => {
-            const credits = parseFloat(row.querySelector('.credit-select').value || '0');
-            const grade = parseFloat(row.querySelector('.grade-select').value || '0');
-            const inputs = row.querySelectorAll('input, select');
-
-            // Validate inputs
-            inputs.forEach(input => {
-                if (!input.checkValidity()) {
-                    input.classList.add('invalid');
-                    isValid = false;
-                } else {
-                    input.classList.remove('invalid');
-                }
-            });
-
-            if (credits > 0 && !isNaN(grade)) {
-                totalCredits += credits;
-                totalPoints += credits * grade;
-            }
-        });
-
-        if (!isValid) {
-            showSaveIndicator('Please fill in all required fields');
-            return null;
-        }
-
         return {
-            gpa: totalCredits > 0 ? totalPoints / totalCredits : 0,
-            credits: totalCredits
+            name,
+            credits,
+            grade: getGradeLetter(gradeSelects[0]),
+            isRetake: false,
+            row
         };
     }
 
-    // ===== UI UPDATES =====
-    function updateResults() {
-        const results = calculateGPA();
-        if (results) {
-            elements.cgpaResult.textContent = results.gpa.toFixed(2);
-            elements.totalCredits.textContent = results.credits;
-            saveData();
-        }
+    function validateCourse(course) {
+        const gradeToCheck = course.isRetake ? course.newGrade : course.grade;
+        const isValid = course.credits > 0 && gradeToCheck !== null;
+        
+        // Visual feedback
+        const creditSelect = course.row.querySelector('.credit-select');
+        const gradeSelect = course.row.querySelector('.grade-select:last-of-type');
+        
+        creditSelect?.classList.toggle('invalid', course.credits <= 0);
+        gradeSelect?.classList.toggle('invalid', !gradeToCheck);
+        
+        return isValid;
     }
 
-    function showSaveIndicator(message) {
-        elements.saveIndicator.textContent = message;
-        elements.saveIndicator.classList.add('show');
-        setTimeout(() => {
-            elements.saveIndicator.classList.remove('show');
-        }, 2000);
-    }
-
-    // ===== EVENT HANDLERS =====
-    // Calculate CGPA
-    elements.calcBtn.addEventListener('click', updateResults);
-
-    // Reset form
-    elements.resetBtn.addEventListener('click', () => {
-        if (confirm('Are you sure you want to clear all courses?')) {
-            elements.tbody.innerHTML = rowTemplate();
-            updateResults();
-            showSaveIndicator('All courses cleared');
+    // ========== CALCULATION ENGINE ==========
+    function calculateResults() {
+        // Parse all courses
+        const currentCourses = Array.from(DOM.currentTable.querySelectorAll('tbody tr'))
+            .map(row => parseCourse(row, false));
+        const retakeCourses = Array.from(DOM.retakeTable.querySelectorAll('tbody tr'))
+            .map(row => parseCourse(row, true));
+        
+        const allCourses = [...currentCourses, ...retakeCourses];
+        
+        // Validate all courses
+        const invalidCourses = allCourses.filter(c => !validateCourse(c));
+        if (invalidCourses.length > 0) {
+            alert('Please fill in all credits and grades before calculating.');
+            return null;
         }
-    });
 
-    // Copy result
-    elements.copyBtn.addEventListener('click', () => {
-        const cgpa = elements.cgpaResult.textContent;
-        navigator.clipboard.writeText(cgpa).then(() => {
-            showSaveIndicator('CGPA copied to clipboard');
-        });
-    });
+        // Calculate metrics
+        let creditsForGpa = 0;
+        let weightedPoints = 0;
+        let attemptedCredits = 0;
+        let completedCredits = 0;
+        const breakdown = [];
 
-    // Quick add course with preset credits
-    elements.quickCreditsButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const credits = btn.dataset.credits;
-            elements.tbody.insertAdjacentHTML('beforeend', rowTemplate());
-            const newRow = elements.tbody.lastElementChild;
-            const creditSelect = newRow.querySelector('.credit-select');
-            creditSelect.value = credits;
-            showSaveIndicator(`${credits} credit course added`);
-        });
-    });
-
-    // Remove course row
-    elements.tbody.addEventListener('click', (e) => {
-        if (e.target.closest('[data-remove]')) {
-            const row = e.target.closest('tr');
-            if (elements.tbody.children.length > 1) {
-                row.remove();
-                updateResults();
-            } else {
-                showSaveIndicator('Cannot remove last course');
+        allCourses.forEach(course => {
+            const finalGrade = course.isRetake ? course.newGrade : course.grade;
+            const gradePoint = GRADE_POINTS[finalGrade];
+            const weighted = gradePoint * course.credits;
+            
+            creditsForGpa += course.credits;
+            weightedPoints += weighted;
+            attemptedCredits += course.isRetake ? course.credits * 2 : course.credits;
+            
+            if (gradePoint >= PASSING_GRADE) {
+                completedCredits += course.credits;
             }
+
+            breakdown.push({
+                name: course.name || 'Untitled Course',
+                credits: course.credits,
+                grade: finalGrade,
+                oldGrade: course.oldGrade || null,
+                gradePoint,
+                weighted,
+                isPassing: gradePoint >= PASSING_GRADE,
+                isRetake: course.isRetake
+            });
+        });
+
+        const gpa = creditsForGpa > 0 ? weightedPoints / creditsForGpa : 0;
+
+        return {
+            gpa: round(gpa),
+            creditsForGpa,
+            weightedPoints,
+            attemptedCredits,
+            completedCredits,
+            breakdown
+        };
+    }
+
+    function calculateOverallCgpa(result, prevCgpa, prevCredits) {
+        if (prevCredits <= 0 || prevCgpa <= 0) return result.gpa;
+        
+        const totalGradePoints = (prevCgpa * prevCredits) + result.weightedPoints;
+        const totalCredits = prevCredits + result.creditsForGpa;
+        
+        return totalCredits > 0 ? round(totalGradePoints / totalCredits) : result.gpa;
+    }
+
+    // ========== UI RENDERING ==========
+    function getSummaryContainer() {
+        let container = document.getElementById('cgpaSummary');
+        if (container) return container;
+        
+        container = document.createElement('div');
+        container.id = 'cgpaSummary';
+        container.style.cssText = 'margin-top:16px;padding:16px;border:1px solid var(--border-color);border-radius:8px;background:var(--bg-light)';
+        
+        const controls = document.querySelector('.calculator-controls');
+        if (controls?.parentNode) {
+            controls.parentNode.insertBefore(container, controls.nextSibling);
         }
+        return container;
+    }
+
+    function renderCourseRow(course) {
+        const bg = course.isPassing ? 'rgba(76,175,80,0.05)' : 'rgba(244,67,54,0.05)';
+        const color = course.isPassing ? '#4CAF50' : '#F44336';
+        const status = course.isPassing ? '✓ Pass' : '✗ Fail';
+        const retakeInfo = course.isRetake 
+            ? ` <em style="color:var(--text-secondary);font-size:12px">(${course.oldGrade} → ${course.grade})</em>` 
+            : '';
+
+        return `
+            <div style="display:flex;justify-content:space-between;gap:12px;padding:8px;border-bottom:1px solid var(--border-color);background:${bg}">
+                <span style="flex:2">${course.name}${retakeInfo}</span>
+                <span>Cr: <strong>${course.credits}</strong></span>
+                <span>GP: <strong>${course.gradePoint.toFixed(2)}</strong></span>
+                <span>Wt: <strong>${round(course.weighted).toFixed(2)}</strong></span>
+                <span style="color:${color}">${status}</span>
+            </div>
+        `;
+    }
+
+    function displayResults(result, overallCgpa, prevCgpa, prevCredits) {
+        const container = getSummaryContainer();
+        if (!result) {
+            container.innerHTML = '';
+            return;
+        }
+
+        const courseList = result.breakdown.map(renderCourseRow).join('');
+        const hasPrevious = prevCredits > 0 && prevCgpa > 0;
+        
+        const overallSection = hasPrevious ? `
+            <div style="margin-top:16px;padding:16px;border-top:2px solid var(--primary-color);background:var(--surface-hover);border-radius:8px">
+                <h4 style="margin:0 0 12px;color:var(--primary-color)">Overall CGPA Calculation</h4>
+                <div style="font-size:14px;line-height:1.8">
+                    <div>• Previous: ${prevCgpa.toFixed(2)} × ${prevCredits} credits = ${round(prevCgpa * prevCredits).toFixed(2)} points</div>
+                    <div>• Current: ${result.gpa.toFixed(2)} × ${result.creditsForGpa} credits = ${round(result.weightedPoints).toFixed(2)} points</div>
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border-color);font-size:18px;color:var(--primary-color)">
+                        <strong>Overall CGPA: ${overallCgpa.toFixed(2)}</strong>
+                        <span style="font-size:12px;color:var(--text-secondary);margin-left:8px">(${prevCredits + result.creditsForGpa} total credits)</span>
+                    </div>
+                </div>
+            </div>
+        ` : '';
+
+        container.innerHTML = `
+            <h3 style="margin:0 0 12px;color:var(--text-primary)">This Trimester's Summary</h3>
+            ${courseList || '<em>No courses entered</em>'}
+            <div style="margin-top:16px;padding:12px;background:var(--surface-hover);border-radius:8px;line-height:1.8">
+                <div><strong>Attempted Credits:</strong> ${result.attemptedCredits} <em style="font-size:12px;color:var(--text-secondary)">(includes retakes)</em></div>
+                <div><strong>Completed Credits:</strong> ${result.completedCredits} <em style="font-size:12px;color:var(--text-secondary)">(D or higher)</em></div>
+                <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border-color)">
+                    <strong>This Trimester's GPA:</strong> <span style="font-size:18px;color:var(--primary-color)">${result.gpa.toFixed(2)}</span>
+                </div>
+            </div>
+            ${overallSection}
+        `;
+    }
+
+    // ========== ROW TEMPLATES ==========
+    function createCourseRow() {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><input type="text" class="input" placeholder="e.g., DSA"></td>
+            <td>
+                <select class="input credit-select">
+                    <option value="" disabled selected>Credits</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <select class="input grade-select">
+                    <option value="" disabled selected>Grade</option>
+                    <option value="4.00">A</option>
+                    <option value="3.67">A-</option>
+                    <option value="3.33">B+</option>
+                    <option value="3.00">B</option>
+                    <option value="2.67">B-</option>
+                    <option value="2.33">C+</option>
+                    <option value="2.00">C</option>
+                    <option value="1.67">C-</option>
+                    <option value="1.33">D+</option>
+                    <option value="1.00">D</option>
+                    <option value="0.00">F</option>
+                </select>
+            </td>
+            <td><button class="btn remove-btn">×</button></td>
+        `;
+        return tr;
+    }
+
+    function createRetakeRow() {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><input type="text" class="input" placeholder="e.g., DSA"></td>
+            <td>
+                <select class="input credit-select">
+                    <option value="" disabled selected>Credits</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <select class="input grade-select">
+                    <option value="" disabled selected>Old Grade</option>
+                    <option value="2.67">B-</option>
+                    <option value="2.33">C+</option>
+                    <option value="2.00">C</option>
+                    <option value="1.67">C-</option>
+                    <option value="1.33">D+</option>
+                    <option value="1.00">D</option>
+                    <option value="0.00">F</option>
+                </select>
+            </td>
+            <td>
+                <select class="input grade-select">
+                    <option value="" disabled selected>New Grade</option>
+                    <option value="4.00">A</option>
+                    <option value="3.67">A-</option>
+                    <option value="3.33">B+</option>
+                    <option value="3.00">B</option>
+                    <option value="2.67">B-</option>
+                    <option value="2.33">C+</option>
+                    <option value="2.00">C</option>
+                </select>
+            </td>
+            <td><button class="btn remove-btn">×</button></td>
+        `;
+        return tr;
+    }
+
+    // ========== EVENT HANDLERS ==========
+    
+    // Calculate button
+    DOM.calculate?.addEventListener('click', () => {
+        const result = calculateResults();
+        if (!result) return;
+        
+        // Update display cards
+        DOM.trimesterGpa.textContent = result.gpa.toFixed(2);
+        DOM.totalCredits.textContent = result.attemptedCredits;
+        
+        // Calculate overall CGPA
+        const prevCgpa = parseFloat(DOM.previousCgpa?.value || 0);
+        const prevCredits = parseFloat(DOM.previousCredits?.value || 0);
+        const overallCgpa = calculateOverallCgpa(result, prevCgpa, prevCredits);
+        
+        DOM.overallCgpa.textContent = overallCgpa.toFixed(2);
+        
+        // Display detailed summary
+        displayResults(result, overallCgpa, prevCgpa, prevCredits);
     });
 
-    // Auto-save on input
-    elements.tbody.addEventListener('input', (e) => {
-        if (e.target.matches('input, select')) {
-            updateResults();
-        }
+    // Add course buttons
+    DOM.addCourse?.addEventListener('click', () => {
+        DOM.currentTable.querySelector('tbody').appendChild(createCourseRow());
     });
 
-    // Initialize
-    loadData();
+    DOM.addRetake?.addEventListener('click', () => {
+        DOM.retakeTable.querySelector('tbody').appendChild(createRetakeRow());
+    });
+
+    // Remove row handler (delegated)
+    function setupRemoveHandler(table) {
+        table.addEventListener('click', (e) => {
+            if (!e.target.closest('.remove-btn')) return;
+            
+            const row = e.target.closest('tr');
+            const tbody = table.querySelector('tbody');
+            
+            if (tbody.children.length > 1) {
+                row.remove();
+            } else {
+                // Keep at least one row, just clear it
+                row.querySelector('input').value = '';
+                row.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
+            }
+        });
+    }
+    setupRemoveHandler(DOM.currentTable);
+    setupRemoveHandler(DOM.retakeTable);
+
+    // Reset all button
+    DOM.resetAll?.addEventListener('click', () => {
+        if (!confirm('Reset all data?')) return;
+        
+        // Reset tables
+        DOM.currentTable.querySelector('tbody').innerHTML = '';
+        DOM.currentTable.querySelector('tbody').appendChild(createCourseRow());
+        DOM.retakeTable.querySelector('tbody').innerHTML = '';
+        
+        // Reset inputs and displays
+        DOM.trimesterGpa.textContent = '0.00';
+        DOM.overallCgpa.textContent = '0.00';
+        DOM.totalCredits.textContent = '0';
+        if (DOM.previousCgpa) DOM.previousCgpa.value = '';
+        if (DOM.previousCredits) DOM.previousCredits.value = '';
+        
+        // Clear summary
+        displayResults(null);
+    });
+
 })();
-
-

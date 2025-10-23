@@ -94,11 +94,20 @@
     border-color: var(--accent);
     font-size: 28px;
     font-weight: 700;
+    /* Place Enter/= as a double-height key like a real keyboard */
+    grid-column: 4;
+    grid-row: 4 / span 2;
 }
 
 .calc-equals:hover {
     background: #FF8F40;
     border-color: #FF8F40;
+}
+
+/* Make the + key the same double-height size as Enter, aligned on the right column */
+.calc-plus {
+    grid-column: 4;
+    grid-row: 2 / span 2;
 }
 
 /* Calculator Info */

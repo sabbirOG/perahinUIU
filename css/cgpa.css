@@ -264,6 +264,7 @@ section.card {
 }
 
 /* Academic Standing Section */
+.previous-record,
 .academic-standing {
     margin-bottom: 48px;
     background: var(--bg-light);
@@ -273,6 +274,7 @@ section.card {
     border: 1px solid rgba(255, 111, 0, 0.12);
 }
 
+.previous-record h3,
 .academic-standing h3 {
     font-size: 20px;
     font-weight: 600;
@@ -282,6 +284,7 @@ section.card {
     padding-bottom: 12px;
 }
 
+.previous-record h3::after,
 .academic-standing h3::after {
     content: '';
     position: absolute;
@@ -293,9 +296,34 @@ section.card {
     border-radius: 1px;
 }
 
-.standing-info {
+.section-description {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.previous-record-inputs {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.standing-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
@@ -696,7 +724,15 @@ select.input {
         left: 16px;
         width: auto;
     }
-}
+
+    .previous-record-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .standing-info {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
 
     .standing-info {
         grid-template-columns: 1fr;
@@ -749,6 +785,7 @@ select.input {
 
 
 /* Dark Mode Enhancements */
+[data-theme="dark"] .previous-record,
 [data-theme="dark"] .academic-standing,
 [data-theme="dark"] .current-trimester,
 [data-theme="dark"] .retake-courses,

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/cgpa.css">
     <link rel="stylesheet" href="../css/calculator.css">
+    <link rel="stylesheet" href="../css/grade-chart.css">
     <link rel="icon" href="../logo/perahin-logo.png">
     <meta name="theme-color" content="#FF6F00">
 </head>
@@ -41,13 +42,33 @@
             </div>
             
             <div class="cgpa-container">
+                <!-- Previous Academic Record -->
+                <div class="previous-record">
+                    <h3>Previous Academic Record (Optional)</h3>
+                    <p class="section-description">Enter your previous CGPA to calculate your updated overall CGPA after this trimester</p>
+                    <div class="previous-record-inputs">
+                        <div class="input-group">
+                            <label for="previousCgpa">Previous CGPA</label>
+                            <input type="number" id="previousCgpa" class="input" placeholder="e.g., 3.50" min="0" max="4" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label for="previousCredits">Previous Completed Credits</label>
+                            <input type="number" id="previousCredits" class="input" placeholder="e.g., 90" min="0" step="1">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Current Academic Standing -->
                 <div class="academic-standing">
                     <h3>Current Academic Standing</h3>
                     <div class="standing-info">
                         <div class="info-card">
-                            <h4>Current CGPA</h4>
+                            <h4>This Trimester's GPA</h4>
                             <div id="currentCgpa" class="result-display">0.00</div>
+                        </div>
+                        <div class="info-card">
+                            <h4>Overall CGPA</h4>
+                            <div id="overallCgpa" class="result-display">0.00</div>
                         </div>
                         <div class="info-card">
                             <h4>Total Credits Attempted</h4>
@@ -111,7 +132,7 @@
 
                 <!-- Retake Courses -->
                 <div class="retake-courses">
-                    <h3>Retake Courses</h3>
+                    <h3>Retake Courses (Optional)</h3>
                     <div class="courses-table">
                         <table id="retakeCoursesTable">
                             <thead>
@@ -124,47 +145,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <input type="text" class="input" placeholder="e.g., &quot;DSA&quot;">
-                                    </td>
-                                    <td>
-                                        <select class="input credit-select">
-                                            <option value="" disabled selected>Credits</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select class="input grade-select">
-                                            <option value="" disabled selected>Old Grade</option>
-                                            <option value="2.67">B-</option>
-                                            <option value="2.33">C+</option>
-                                            <option value="2.00">C</option>
-                                            <option value="1.67">C-</option>
-                                            <option value="1.33">D+</option>
-                                            <option value="1.00">D</option>
-                                            <option value="0.00">F</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select class="input grade-select">
-                                            <option value="" disabled selected>New Grade</option>
-                                            <option value="4.00">A</option>
-                                            <option value="3.67">A-</option>
-                                            <option value="3.33">B+</option>
-                                            <option value="3.00">B</option>
-                                            <option value="2.67">B-</option>
-                                            <option value="2.33">C+</option>
-                                            <option value="2.00">C</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <button class="btn remove-btn">×</button>
-                                    </td>
-                                </tr>
+                                <!-- Empty - students add rows only if they have retakes -->
                             </tbody>
                         </table>
                         <button class="btn add-btn" id="addRetake">+ Add Retake Course</button>
@@ -175,6 +156,94 @@
                 <div class="calculator-controls">
                     <button class="btn reset-btn" id="resetAll">Reset All</button>
                     <button class="btn calculate-btn" id="calculateCgpa">Calculate CGPA</button>
+                </div>
+
+                <!-- Grade Reference Chart -->
+                <div class="grade-reference">
+                    <button class="grade-reference-toggle" id="gradeChartToggle">
+                        <span>📊 UIU Grade Chart Reference</span>
+                        <span class="toggle-icon">▼</span>
+                    </button>
+                    <div class="grade-chart-content hidden" id="gradeChartContent">
+                        <table class="grade-chart-table">
+                            <thead>
+                                <tr>
+                                    <th>Letter Grade</th>
+                                    <th>Grade Point</th>
+                                    <th>Marks (%)</th>
+                                    <th>Assessment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="grade-a">
+                                    <td><strong>A</strong></td>
+                                    <td>4.00</td>
+                                    <td>90 – 100</td>
+                                    <td>Outstanding</td>
+                                </tr>
+                                <tr class="grade-a-minus">
+                                    <td><strong>A-</strong></td>
+                                    <td>3.67</td>
+                                    <td>86 – 89</td>
+                                    <td>Excellent</td>
+                                </tr>
+                                <tr class="grade-b-plus">
+                                    <td><strong>B+</strong></td>
+                                    <td>3.33</td>
+                                    <td>82 – 85</td>
+                                    <td>Very Good</td>
+                                </tr>
+                                <tr class="grade-b">
+                                    <td><strong>B</strong></td>
+                                    <td>3.00</td>
+                                    <td>78 – 81</td>
+                                    <td>Good</td>
+                                </tr>
+                                <tr class="grade-b-minus">
+                                    <td><strong>B-</strong></td>
+                                    <td>2.67</td>
+                                    <td>74 – 77</td>
+                                    <td>Above Average</td>
+                                </tr>
+                                <tr class="grade-c-plus">
+                                    <td><strong>C+</strong></td>
+                                    <td>2.33</td>
+                                    <td>70 – 73</td>
+                                    <td>Average</td>
+                                </tr>
+                                <tr class="grade-c">
+                                    <td><strong>C</strong></td>
+                                    <td>2.00</td>
+                                    <td>66 – 69</td>
+                                    <td>Below Average</td>
+                                </tr>
+                                <tr class="grade-c-minus">
+                                    <td><strong>C-</strong></td>
+                                    <td>1.67</td>
+                                    <td>62 – 65</td>
+                                    <td>Poor</td>
+                                </tr>
+                                <tr class="grade-d-plus">
+                                    <td><strong>D+</strong></td>
+                                    <td>1.33</td>
+                                    <td>58 – 61</td>
+                                    <td>Very Poor</td>
+                                </tr>
+                                <tr class="grade-d">
+                                    <td><strong>D</strong></td>
+                                    <td>1.00</td>
+                                    <td>55 – 57</td>
+                                    <td>Pass</td>
+                                </tr>
+                                <tr class="grade-f">
+                                    <td><strong>F</strong></td>
+                                    <td>0.00</td>
+                                    <td>0 – 54</td>
+                                    <td>Fail</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
@@ -206,7 +275,7 @@
                     <button class="calc-btn calc-number">4</button>
                     <button class="calc-btn calc-number">5</button>
                     <button class="calc-btn calc-number">6</button>
-                    <button class="calc-btn calc-equals" style="grid-row: span 2;">=</button>
+                    <button class="calc-btn calc-equals">=</button>
                     
                     <button class="calc-btn calc-number">1</button>
                     <button class="calc-btn calc-number">2</button>
@@ -227,6 +296,7 @@
     <script src="../js/main.js"></script>
     <script src="../js/cgpa.js"></script>
     <script src="../js/calculator.js"></script>
+    <script src="../js/grade-chart.js"></script>
 </body>
 </html>
 
