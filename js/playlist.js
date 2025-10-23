@@ -35,6 +35,8 @@
         'CSE2215': { by: 'Dr. Nurul Huda' },
         'CSE2233': { by: 'Nabila Sabrin Sworna' },
         'CSE3521': { by: 'Imam Hossain' },
+        'CSE3313': { by: 'Shoaib Ahmed Shourov' },
+        'CSE3411': { by: 'Farhanaz Farheen' },
         'MATH1151': { by: 'JAS. Jashodhan Saha' },
         'EEE2113': { by: 'Fahim Hafiz' },
         'EEE2123': { by: 'Abir Hassan' },
