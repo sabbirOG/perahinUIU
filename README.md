@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Perahin UIU
 
 Modern, responsive, frontend-only web application for UIU students.
@@ -34,3 +35,7 @@ perahin-uiu/
 Developed by Sabbir Ahmed (`https://github.com/sabbirOG`) for the UIU student community.
 
 
+=======
+# perahin-uiu
+this is one of my dream project to server the uiu student community 
+>>>>>>> c5f8001a440110e0cc16ad34ee173f42f7655479
