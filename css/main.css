@@ -1,3 +1,6 @@
+/* ===== FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* ===== CSS VARIABLES ===== */
 /* Global color scheme and design tokens for consistent theming across all pages */
 :root {
@@ -315,15 +318,37 @@ body::before {
 }
 .brand-name { 
     font-weight: 500; 
-    font-size: 14px;
+    font-size: 18px;
     color: var(--muted);
     transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
 }
 @media (max-width: 640px) {
     .brand-logo {
         width: 38px;
         height: 38px;
     }
+    .brand-name {
+        font-size: 16px;
+    }
+}
+
+/* Brand text split styling: "Perahin" + "UIU" badge */
+.brand-name {
+    font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.brand-name .brand-text {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.brand-name .brand-uiu {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.02em;
 }
 
 /* ===== NAVIGATION MENU ===== */
