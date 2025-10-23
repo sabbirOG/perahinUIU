@@ -102,6 +102,20 @@
         };
     }
 
+    function isCourseEmpty(course) {
+        if (course.isRetake) {
+            // Empty retake row: nothing entered at all
+            return (
+                !course.name &&
+                course.credits === 0 &&
+                !course.oldGrade &&
+                !course.newGrade
+            );
+        }
+        // Empty current course row: nothing entered at all
+        return (!course.name && course.credits === 0 && !course.grade);
+    }
+
     function validateCourse(course) {
         const gradeToCheck = course.isRetake ? course.newGrade : course.grade;
         const isValid = course.credits > 0 && gradeToCheck !== null;
@@ -124,9 +138,18 @@
         const retakeCourses = Array.from(DOM.retakeTable.querySelectorAll('tbody tr'))
             .map(row => parseCourse(row, true));
         
-        const allCourses = [...currentCourses, ...retakeCourses];
+        // Ignore completely empty rows (especially important for optional retakes)
+        const filteredCurrent = currentCourses.filter(c => !isCourseEmpty(c));
+        const filteredRetake = retakeCourses.filter(c => !isCourseEmpty(c));
+        const allCourses = [...filteredCurrent, ...filteredRetake];
         
-        // Validate all courses
+        // Require at least one non-empty row overall
+        if (allCourses.length === 0) {
+            alert('Please add at least one course (current or retake) before calculating.');
+            return null;
+        }
+        
+        // Validate only non-empty rows
         const invalidCourses = allCourses.filter(c => !validateCourse(c));
         if (invalidCourses.length > 0) {
             alert('Please fill in all credits and grades before calculating.');

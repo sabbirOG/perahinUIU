@@ -414,6 +414,15 @@ table {
     min-width: 800px;
 }
 
+/* Force proper box-sizing for all elements */
+* {
+    box-sizing: border-box;
+}
+
+.courses-table * {
+    max-width: 100%;
+}
+
 th {
     padding: 14px 16px;
     font-weight: 600;
@@ -706,8 +715,34 @@ select.input {
 }
 
 @media (max-width: 768px) {
+    /* Force proper container behavior */
+    body {
+        overflow-x: hidden !important;
+    }
+    
+    .container {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+    
     .cgpa-container {
-        padding: 16px;
+        padding: 12px;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+    
+    section.card {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+    
+    .cgpa-header {
+        margin-bottom: 24px;
+        padding: 16px 0;
+    }
+    
+    .cgpa-header h2 {
+        font-size: 22px;
     }
     
     .floating-calc-btn {
@@ -723,56 +758,191 @@ select.input {
         right: 16px;
         left: 16px;
         width: auto;
+        max-width: calc(100vw - 32px) !important;
     }
 
     .previous-record-inputs {
         grid-template-columns: 1fr;
-    }
-
-    .standing-info {
-        grid-template-columns: 1fr;
         gap: 16px;
     }
 
     .standing-info {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        grid-template-columns: 1fr !important;
+        gap: 10px;
     }
 
     .academic-standing,
     .current-trimester,
     .retake-courses,
-    .calculator-controls {
+    .calculator-controls,
+    .previous-record {
         padding: 16px;
         margin-bottom: 24px;
         border-radius: 8px;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+    
+    .previous-record h3,
+    .academic-standing h3,
+    .current-trimester h3,
+    .retake-courses h3 {
+        font-size: 18px;
+        margin-bottom: 16px;
     }
 
+    /* Transform table into card-based layout on mobile */
     .courses-table {
-        margin: 0 -16px;
-        width: calc(100% + 32px);
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        border: none;
+        max-width: 100% !important;
+        overflow: visible !important;
     }
 
-    table {
-        min-width: 600px;
+    #currentCoursesTable,
+    #retakeCoursesTable {
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        overflow: visible !important;
     }
-
-    th, td {
+    
+    #currentCoursesTable thead,
+    #retakeCoursesTable thead {
+        display: none !important; /* Hide table headers on mobile */
+    }
+    
+    #currentCoursesTable tbody,
+    #retakeCoursesTable tbody {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    #currentCoursesTable tr,
+    #retakeCoursesTable tr {
+        display: block !important;
+        margin-bottom: 12px;
+        background: var(--bg-light);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
         padding: 12px;
-        font-size: 13px;
+        transition: all 0.2s ease;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    #currentCoursesTable tr:hover,
+    #retakeCoursesTable tr:hover {
+        border-color: var(--primary-color);
+        box-shadow: 0 2px 8px rgba(255, 111, 0, 0.1);
+    }
+    
+    #currentCoursesTable td,
+    #retakeCoursesTable td {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 8px 0 !important;
+        border: none !important;
+        text-align: left !important;
+        background: transparent !important;
+        white-space: normal !important;
+    }
+    
+    /* Add labels before each input on mobile */
+    #currentCoursesTable td:nth-child(1)::before,
+    #retakeCoursesTable td:nth-child(1)::before {
+        content: "Course Name";
+        display: block;
+        font-weight: 600;
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-bottom: 6px;
+    }
+    
+    #currentCoursesTable td:nth-child(2)::before,
+    #retakeCoursesTable td:nth-child(2)::before {
+        content: "Credit Hours";
+        display: block;
+        font-weight: 600;
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-bottom: 6px;
+    }
+    
+    #currentCoursesTable td:nth-child(3)::before {
+        content: "Expected Grade";
+        display: block;
+        font-weight: 600;
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-bottom: 6px;
+    }
+    
+    /* For retake table */
+    #retakeCoursesTable td:nth-child(3)::before {
+        content: "Old Grade";
+    }
+    
+    #retakeCoursesTable td:nth-child(4)::before {
+        content: "New Grade";
+    }
+    
+    /* Remove button gets special treatment */
+    #currentCoursesTable td:last-child,
+    #retakeCoursesTable td:last-child {
+        padding-top: 12px !important;
+        display: flex !important;
+        justify-content: flex-end;
+    }
+    
+    #currentCoursesTable td:last-child::before,
+    #retakeCoursesTable td:last-child::before {
+        display: none !important;
+    }
+    
+    /* Adjust input sizes for mobile */
+    .input {
+        font-size: 14px !important;
+        padding: 10px 12px !important;
+        min-height: 44px;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    select.input {
+        background-position: right 12px center;
+        padding-right: 36px !important;
     }
 
     .calculator-controls {
         flex-direction: column;
         gap: 12px;
+        padding: 16px;
     }
 
-    .btn {
-        width: 100%;
-        height: 44px;
+    .calculator-controls .btn {
+        width: 100% !important;
+        height: 48px;
+        font-size: 15px;
+    }
+    
+    .add-btn {
+        font-size: 14px;
+        padding: 14px;
+        border-radius: 8px;
+        width: 100% !important;
+    }
+    
+    .remove-btn {
+        width: 40px !important;
+        height: 40px;
+        font-size: 20px;
+        flex-shrink: 0;
     }
 
     .loading-indicator {
@@ -782,6 +952,91 @@ select.input {
         text-align: center;
         justify-content: center;
     }
+
+    /* revert header and sizes to default mobile adjustments elsewhere */
+    
+    .info-card {
+        padding: 12px 12px;
+    }
+    
+    .info-card h4 {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+    
+    .result-display {
+        font-size: 22px;
+        line-height: 1.1;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .cgpa-container {
+        padding: 8px !important;
+    }
+    
+    .cgpa-header h2 {
+        font-size: 20px;
+    }
+    
+    .previous-record,
+    .academic-standing,
+    .current-trimester,
+    .retake-courses,
+    .calculator-controls {
+        padding: 12px !important;
+        margin-bottom: 16px;
+    }
+    
+    .previous-record h3,
+    .academic-standing h3,
+    .current-trimester h3,
+    .retake-courses h3 {
+        font-size: 16px;
+    }
+    
+    #currentCoursesTable tr,
+    #retakeCoursesTable tr {
+        padding: 10px !important;
+    }
+    
+    #currentCoursesTable td,
+    #retakeCoursesTable td {
+        padding: 6px 0 !important;
+    }
+    
+    .input {
+        font-size: 13px !important;
+        padding: 9px 10px !important;
+        min-height: 42px;
+    }
+    
+    .info-card {
+        padding: 10px 12px;
+    }
+    
+    .result-display {
+        font-size: 20px;
+    }
+    
+    .info-card h4 {
+        font-size: 13px;
+    }
+    
+    select.input {
+        background-position: right 10px center;
+        padding-right: 32px !important;
+    }
+    
+    .remove-btn {
+        width: 38px !important;
+        height: 38px;
+    }
+
+    /* revert to previous compact sizing handled above */
+}
+
 
 
 /* Dark Mode Enhancements */
