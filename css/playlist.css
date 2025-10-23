@@ -1,0 +1,125 @@
+/* Playlist Page Styles */
+
+/* Trimester filter styles */
+.trimester-filter {
+    margin-bottom: 8px;
+    gap: 10px;
+}
+
+.trimester-select {
+    padding: 7px 16px 7px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 15px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.trimester-select:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--surface);
+}
+
+.playlist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    background: var(--surface);
+    transition: background 0.2s ease;
+}
+
+.playlist-item:hover {
+    background: var(--surface-hover);
+}
+
+.playlist-thumbnail {
+    flex-shrink: 0;
+    width: 120px;
+    height: 90px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--muted-bg);
+}
+
+.playlist-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.playlist-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.playlist-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: var(--text);
+}
+
+.playlist-course {
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.playlist-meta {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.playlist-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Hide items beyond the 4th by default */
+.list-item.hidden-initially {
+    display: none;
+}
+
+/* Show All Button - matches courses page style */
+#showAllBtn {
+    margin: 18px auto 0;
+    display: block;
+}
+
+/* When all playlists are shown, remove the hidden state */
+.show-all-playlists .list-item.hidden-initially {
+    display: flex;
+    animation: fadeInSlide 0.4s ease forwards;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .playlist-item {
+        flex-direction: column;
+    }
+    
+    .playlist-thumbnail {
+        width: 100%;
+        height: 180px;
+    }
+}

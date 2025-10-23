@@ -1,0 +1,838 @@
+/* ===== CSS VARIABLES ===== */
+/* Global color scheme and design tokens for consistent theming across all pages */
+:root {
+    /* Light Theme (Default) */
+    --bg: #FFFFFF;              /* Clean white background */
+    --accent: #FF6F00;          /* Primary orange accent color (UIU brand) */
+    --accent-600: #e46300;      /* Darker orange for hover states */
+    --text: #2D3436;            /* Rich dark gray for better contrast */
+    --muted: #6C7A89;           /* Refined secondary text color */
+    --card: #FFFFFF;            /* Pure white for cards */
+    --surface: #F8F9FA;         /* Subtle gray surface for depth */
+    --border: #E9ECEF;          /* Refined border color for better definition */
+    --shadow: 0 6px 18px rgba(0,0,0,0.04); /* Lighter shadow for modern feel */
+    --input-bg: #FFFFFF;        /* Pure white for input clarity */
+    --topbar-bg: rgba(248,249,250,0.95); /* Clean, modern topbar */
+    --focus-ring: 0 0 0 3px rgba(255, 111, 0, 0.12);
+    --danger: #ff4757;
+    --danger-bg: #ff47570a;
+    --danger-border: #ff4757;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg: #121212;              /* Clean dark background */
+    --accent: #FF6F00;          /* Keeping the UIU orange accent */
+    --accent-600: #FFB366;      /* Softer orange for better contrast on dark */
+    --text: #F5F5F5;            /* Pure white text for maximum readability */
+    --muted: #BDBDBD;           /* Lighter muted text for better visibility */
+    --card: #1A1A1A;            /* Subtle elevation */
+    --surface: #242424;         /* Darker surface for depth */
+    --border: #333333;          /* More visible borders for better structure */
+    --shadow: 0 8px 32px rgba(0,0,0,0.35); /* Rich shadows for depth */
+    --input-bg: #212121;        /* Clear input fields */
+    --topbar-bg: rgba(10,10,10,0.98); /* Matching new background */
+    --focus-ring: 0 0 0 3px rgba(255, 111, 0, 0.40);  /* Enhanced focus state */
+    --danger: #FF4444;          /* Vibrant danger for important alerts */
+    --danger-bg: rgba(255,68,68,0.15); /* Refined danger background */
+    --danger-border: #FF4444;   /* Matching danger border */
+}
+
+/* ===== EVENT LISTINGS ===== */
+.event-title {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.event-meta {
+    color: var(--muted);
+    font-size: 14px;
+}
+* { box-sizing: border-box; }  /* Ensures padding/borders don't affect element width */
+html, body { height: 100%; }   /* Full height for proper layout */
+
+/* Theme transition effects */
+html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Transition for all theme-related properties */
+*, *::before, *::after {
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Add background wrapper as first child of body */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+    background: var(--bg);
+}
+
+.background-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    background: 
+        linear-gradient(120deg, rgba(255, 111, 0, 0.08) 0%, transparent 50%),
+        linear-gradient(300deg, rgba(255, 143, 64, 0.08) 25%, transparent 70%),
+        linear-gradient(45deg, rgba(255, 111, 0, 0.05) 0%, transparent 40%),
+        linear-gradient(225deg, rgba(255, 143, 64, 0.05) 25%, transparent 60%);
+}
+
+/* Animated background circles */
+.background-wrapper::before,
+.background-wrapper::after {
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(255, 111, 0, 0.05), transparent 70%);
+    border-radius: 50%;
+    transform-origin: center;
+}
+
+.background-wrapper::before {
+    width: 80vmax;
+    height: 80vmax;
+    top: -20vmax;
+    right: -20vmax;
+    animation: float 30s infinite ease-in-out;
+    opacity: 0.8;
+}
+
+.background-wrapper::after {
+    width: 60vmax;
+    height: 60vmax;
+    bottom: -10vmax;
+    left: -10vmax;
+    animation: float 25s infinite ease-in-out reverse;
+    opacity: 0.6;
+}
+
+/* Dark theme adjustments for background */
+[data-theme="dark"] .background-wrapper {
+    background: 
+        linear-gradient(120deg, rgba(255, 111, 0, 0.05) 0%, transparent 50%),
+        linear-gradient(300deg, rgba(255, 143, 64, 0.05) 25%, transparent 70%),
+        linear-gradient(45deg, rgba(255, 111, 0, 0.03) 0%, transparent 40%),
+        linear-gradient(225deg, rgba(255, 143, 64, 0.03) 25%, transparent 60%);
+}
+
+[data-theme="dark"] .background-wrapper::before,
+[data-theme="dark"] .background-wrapper::after {
+    background: radial-gradient(circle at center, rgba(255, 111, 0, 0.03), transparent 70%);
+}
+
+/* Background wrapper to contain decorative elements */
+.background-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+    background: 
+        linear-gradient(120deg, rgba(255, 111, 0, 0.05) 0%, transparent 40%),
+        linear-gradient(300deg, rgba(255, 143, 64, 0.05) 25%, transparent 60%),
+        radial-gradient(circle at top right, rgba(255, 111, 0, 0.08), transparent 70%);
+}
+
+/* Decorative elements for light theme */
+[data-theme="light"] .background-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(255, 111, 0, 0.03), rgba(255, 143, 64, 0.03));
+    top: -400px;
+    right: -400px;
+    animation: float 20s ease-in-out infinite;
+}
+
+[data-theme="light"] .background-wrapper::after {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(255, 143, 64, 0.03), rgba(255, 111, 0, 0.03));
+    bottom: -300px;
+    left: -300px;
+    animation: float 25s ease-in-out infinite reverse;
+}
+
+/* Decorative elements for dark theme */
+[data-theme="dark"] .background-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 111, 0, 0.03) 0%, transparent 70%);
+    top: -400px;
+    right: -400px;
+    animation: float 20s ease-in-out infinite;
+}
+
+[data-theme="dark"] .background-wrapper::after {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 143, 64, 0.03) 0%, transparent 70%);
+    bottom: -300px;
+    left: -300px;
+    animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translate(2%, -2%) rotate(3deg) scale(1.02);
+    }
+    50% {
+        transform: translate(-1%, 2%) rotate(-2deg) scale(0.98);
+    }
+    75% {
+        transform: translate(-2%, -1%) rotate(1deg) scale(1.01);
+    }
+}
+
+/* ===== TOP NAVIGATION BAR ===== */
+/* Sticky header that stays at top when scrolling, with glassmorphism effect */
+.topbar {
+    position: sticky;           /* Stays at top when scrolling */
+    top: 0;
+    z-index: 1000;              /* Above all other content */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 20px;
+    background: var(--topbar-bg);  /* Theme-aware background */
+    backdrop-filter: saturate(180%) blur(10px);  /* Glassmorphism blur effect */
+    border-bottom: 1px solid var(--border);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    user-select: none;
+}
+
+.theme-toggle:hover {
+    background: var(--surface);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    transition: transform 0.5s ease;
+}
+
+.theme-toggle:hover svg {
+    transform: rotate(15deg);
+}
+
+[data-theme="dark"] .theme-toggle:hover svg {
+    transform: rotate(-15deg);
+}
+
+.theme-text {
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle:hover .theme-text {
+    opacity: 0.8;
+}
+/* ===== BRAND/LOGO SECTION ===== */
+.brand { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    cursor: pointer;
+    text-decoration: none;
+}
+.brand-logo { 
+    width: 42px; 
+    height: 42px; 
+    object-fit: contain;  /* Maintains aspect ratio */
+    transition: transform 0.2s ease;
+}
+.brand:hover .brand-logo {
+    transform: scale(1.05);
+}
+.brand-name { 
+    font-weight: 500; 
+    font-size: 14px;
+    color: var(--muted);
+    transition: opacity 0.2s ease;
+}
+@media (max-width: 640px) {
+    .brand-logo {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* ===== NAVIGATION MENU ===== */
+.nav { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+.nav-link {
+    padding: 8px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    transition: background .2s ease, color .2s ease, transform .1s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+.nav-link:hover { 
+    background: var(--surface);  /* Light gray background on hover */
+}
+.nav-link.accent,
+.nav-link.active { 
+    color: var(--accent);        /* Orange color for active/important links */
+    font-weight: 600; 
+}
+
+.nav-link.active {
+    background: rgba(255, 111, 0, 0.08);
+}
+
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+/* ===== ICON BUTTONS ===== */
+/* Reusable button component for hamburger menu, back button, etc. */
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; 
+    height: 40px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform .08s ease, background .2s ease;
+}
+.icon-btn:active { 
+    transform: scale(0.98);  /* Slight press animation */
+}
+.icon-btn:hover { 
+    background: var(--surface); 
+}
+
+/* ===== HAMBURGER MENU ===== */
+/* Mobile menu toggle button (3 lines) */
+.hamburger { 
+    display: none;           /* Hidden on desktop */
+    flex-direction: column; 
+    gap: 4px; 
+}
+.hamburger span { 
+    display: block; 
+    width: 20px; 
+    height: 2px; 
+    background: var(--text); 
+}
+
+/* ===== BACK BUTTON ===== */
+/* Mobile back button for navigation */
+.back-btn { 
+    visibility: hidden;      /* Hidden by default, shown on inner pages */
+}
+.back-chev { 
+    font-size: 22px; 
+    color: var(--accent);    /* Orange chevron */
+    line-height: 1; 
+}
+
+/* ===== LAYOUT CONTAINERS ===== */
+main {
+    flex: 1 0 auto;          /* Take up remaining space, don't shrink */
+    width: 100%;             /* Full width */
+    position: relative;       /* Create stacking context */
+    z-index: 1;              /* Above background */
+}
+
+.app, .container { 
+    max-width: 1100px;        /* Max width for desktop */
+    margin: 20px auto;        /* Centered with top margin */
+    padding: 0 20px;          /* Side padding only */
+    position: relative;        /* Create stacking context */
+}
+
+/* ===== HERO SECTIONS ===== */
+/* Two-column layout for dashboard and other pages */
+.hero { 
+    display: grid; 
+    grid-template-columns: 1.2fr .8fr;  /* Left column wider than right */
+    gap: 20px; 
+}
+
+/* ===== CARD COMPONENT ===== */
+/* Reusable card component for content sections */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;      /* Rounded corners */
+    box-shadow: var(--shadow); /* Subtle shadow */
+    padding: 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.card h2 { 
+    margin: 0 0 10px; 
+    font-size: 18px; 
+}
+.muted { 
+    color: var(--muted);      /* Secondary text color */
+}
+
+/* ===== GRID LAYOUTS ===== */
+/* Responsive grid system for organizing content */
+.grid { 
+    display: grid; 
+    gap: 16px; 
+}
+.grid.cols-2 { 
+    grid-template-columns: repeat(2, minmax(0, 1fr));  /* 2 equal columns */
+}
+.grid.cols-3 { 
+    grid-template-columns: repeat(3, minmax(0, 1fr));  /* 3 equal columns */
+}
+
+/* ===== QUICK LINKS ===== */
+/* Dashboard navigation tiles with hover animations */
+.quick-links { 
+    display: grid; 
+    gap: 10px; 
+    grid-template-columns: repeat(3, minmax(0, 1fr)); 
+}
+.quick-link {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    padding: 12px; 
+    border: 1px solid var(--border); 
+    border-radius: 12px;
+    text-decoration: none; 
+    color: var(--text); 
+    background: var(--surface);
+    transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 111, 0, 0.1), rgba(255, 143, 64, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.quick-link:hover::after {
+    opacity: 1;
+}
+
+.quick-link:hover { 
+    transform: translateY(-2px);  /* Lift effect on hover */
+    background: var(--card); 
+    box-shadow: 0 8px 20px rgba(255, 111, 0, 0.12); 
+    border-color: rgba(255, 111, 0, 0.2);
+}
+
+/* ===== BUTTON COMPONENTS ===== */
+/* Reusable button styles for actions throughout the app */
+.btn {
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    padding: 10px 14px; 
+    border: 1px solid var(--border); 
+    border-radius: 12px;
+    background: var(--card); 
+    color: var(--text); 
+    cursor: pointer;
+    transition: transform .08s ease, background .2s ease;
+}
+.btn:active { 
+    transform: scale(0.99);  /* Press animation */
+}
+.btn.accent { 
+    border-color: transparent; 
+    background: var(--accent);  /* Orange background */
+    color: #fff; 
+}
+.btn.accent:hover { 
+    background: var(--accent-600);  /* Darker orange on hover */
+}
+
+/* ===== LIST COMPONENTS ===== */
+/* For displaying lists of items (notifications, courses, etc.) */
+.list { 
+    display: grid; 
+    gap: 12px; 
+}
+.list-item { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 12px; 
+    padding: 12px; 
+    border: 1px solid var(--border); 
+    border-radius: 12px; 
+        background: var(--card); 
+}
+
+/* ===== BADGE COMPONENT ===== */
+/* Small colored labels for status, counts, categories */
+.badge { 
+    background: var(--accent); 
+    color: #fff; 
+    font-size: 12px; 
+    padding: 2px 8px; 
+    border-radius: 999px;  /* Pill shape */
+}
+
+/* ===== TABLE COMPONENTS ===== */
+/* For CGPA calculator and other tabular data */
+.table { 
+    width: 100%; 
+    border-collapse: collapse; 
+}
+.table th, .table td { 
+    padding: 10px 12px; 
+    border-bottom: 1px solid var(--border); 
+    text-align: left; 
+}
+.table thead th { 
+    background: var(--surface); 
+    font-weight: 600; 
+}
+
+/* ===== FORM INPUTS ===== */
+/* Input fields for forms and calculators */
+.input { 
+    width: 100%; 
+    padding: 10px 12px; 
+    border: 1px solid var(--border); 
+    border-radius: 10px; 
+    background: var(--input-bg); 
+    color: var(--text);
+    transition: border-color .2s ease, background-color .2s ease;
+}
+
+.input:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+.num-input { 
+    width: 100%; 
+    max-width: 120px;  /* Constrained width for number inputs */
+}
+
+/* Input placeholder color */
+.input::placeholder {
+    color: var(--muted);
+    opacity: 0.7;
+}
+
+/* ===== FOOTER ===== */
+/* Site footer with copyright and credits */
+.footer { 
+    border-top: 1px solid var(--border); 
+    padding: 18px 20px; 
+    text-align: center; 
+    color: var(--muted); 
+    background: var(--surface);
+    margin-top: auto;         /* Push footer to bottom when content is short */
+    position: relative;        /* Create stacking context */
+    z-index: 100;             /* Keep above background but below floating elements */
+    width: 100%;              /* Full width */
+    flex-shrink: 0;           /* Prevent footer from shrinking */
+}
+
+/* ===== CALENDAR COMPONENT ===== */
+/* 7-column grid for monthly calendar view */
+.calendar { 
+    display: grid; 
+    grid-template-columns: repeat(7, 1fr);  /* 7 days per week */
+    gap: 8px; 
+}
+.calendar .day { 
+    padding: 10px; 
+    border: 1px solid var(--border); 
+    border-radius: 8px; 
+    text-align: center; 
+        background: var(--card); 
+}
+.calendar .day.event { 
+    background: rgba(255,111,0,0.07);      /* Light orange for event days */
+    border-color: rgba(255,111,0,0.3); 
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Tablet: 3-column grids become 2-column */
+@media (max-width: 1024px) { 
+    .grid.cols-3 { 
+        grid-template-columns: repeat(2, minmax(0, 1fr)); 
+    } 
+}
+
+/* Mobile: Navigation becomes hamburger menu, layouts stack vertically */
+@media (max-width: 768px) {
+    .nav { 
+        position: fixed; 
+        inset: 60px 16px auto 16px;  /* Positioned below topbar */
+    background: var(--card); 
+        border: 1px solid var(--border); 
+        border-radius: 14px; 
+        box-shadow: var(--shadow); 
+        padding: 10px; 
+        display: none; 
+        flex-direction: column; 
+    }
+    .nav.open { 
+        display: flex;  /* Show when hamburger is clicked */
+    }
+    .hamburger { 
+        display: inline-flex;  /* Show hamburger on mobile */
+    }
+    .quick-links { 
+        grid-template-columns: repeat(2, minmax(0, 1fr));  /* 2 columns on mobile */
+    }
+    .grid.cols-2, .grid.cols-3 { 
+        grid-template-columns: 1fr;  /* Single column on mobile */
+    }
+    .hero { 
+        grid-template-columns: 1fr;  /* Single column hero on mobile */
+    }
+}
+
+/* Small mobile: Single column for quick links */
+@media (max-width: 480px) { 
+    .quick-links { 
+        grid-template-columns: 1fr; 
+        gap: 8px;
+    }
+    .quick-link {
+        min-height: 50px;
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+/* Fade-in animation for page transitions */
+.fade-in { 
+    animation: fadeIn .25s ease; 
+}
+@keyframes fadeIn { 
+    from { 
+        opacity: 0; 
+        transform: translateY(4px);  /* Slide up slightly */
+    } 
+    to { 
+        opacity: 1; 
+        transform: none; 
+    } 
+}
+
+/* ===== RESOURCE STYLES ===== */
+.resource-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.resource-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.resource-category {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.resource-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+/* ===== MESSAGE STYLES ===== */
+.message-sender {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.message-content {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.message-badge {
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 999px;
+}
+
+/* ===== UTILITY CLASSES ===== */
+/* Helper classes for common styling needs */
+.no-underline { 
+    text-decoration: none; 
+    color: inherit; 
+}
+.no-underline:hover { 
+    text-decoration: none;  /* Remove underline on hover too */
+}
+
+/* Margin Utilities */
+.mt-1 { margin-top: 4px; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }
+.mt-5 { margin-top: 20px; }
+
+.mb-1 { margin-bottom: 4px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-5 { margin-bottom: 20px; }
+
+/* Padding Utilities */
+.p-1 { padding: 4px; }
+.p-2 { padding: 8px; }
+.p-3 { padding: 12px; }
+.p-4 { padding: 16px; }
+.p-5 { padding: 20px; }
+
+/* Font Weight Utilities */
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+/* ===== ADDITIONAL COMPONENT STYLES ===== */
+
+/* Notice Cards */
+.notice-card {
+    position: relative;
+    padding-left: 24px !important;
+}
+
+.notice-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: var(--border);
+    border-radius: 3px 0 0 3px;
+}
+
+.notice-card.important::before {
+    background: var(--accent);
+}
+
+.notice-badge {
+    margin-left: 8px;
+}
+
+/* (duplicate calendar, table, and quick-links rules removed to reduce redundancy) */
+
+

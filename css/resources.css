@@ -1,0 +1,81 @@
+/* Resources page styles */
+
+.resource-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 24px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s, color 0.2s, border-color 0.2s;
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+}
+
+.resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), #ff8c42);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.resource-card:hover::before {
+    transform: scaleX(1);
+}
+
+[data-theme="dark"] .resource-card {
+    background: var(--card);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(255, 111, 0, 0.15);
+    border-color: var(--accent);
+}
+
+.resource-title {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+.resource-category {
+    display: inline-block;
+    background: var(--surface);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+}
+
+.resource-actions {
+    margin-top: auto; /* Push actions to the bottom for consistent button alignment */
+    display: flex;
+    gap: 8px;
+}
+
+
+.resource-card .btn {
+    flex: 1;
+    text-align: center;
+    font-weight: 500;
+    padding: 10px 20px;
+}
+
+/* removed unused .download-btn styles */
+
+/* (removed unused .resources-grid responsive rules) */
+

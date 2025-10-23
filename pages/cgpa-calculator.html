@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator · Perahin UIU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/cgpa.css">
+    <link rel="stylesheet" href="../css/calculator.css">
+    <link rel="icon" href="../logo/perahin-logo.png">
+    <meta name="theme-color" content="#FF6F00">
+</head>
+<body>
+    <div class="background-wrapper"></div>
+    <header class="topbar">
+        <button id="backButton" class="icon-btn back-btn" aria-label="Back" title="Back"><span class="back-chev">‹</span></button>
+        <a class="brand no-underline" href="../index.html">
+            <img src="../logo/perahin-logo.png" alt="Perahin UIU" class="brand-logo">
+            <span class="brand-name">Perahin UIU</span>
+        </a>
+        <nav class="nav" id="navMenu">
+            <a href="../index.html" class="nav-link">Dashboard</a>
+            <a href="courses.html" class="nav-link">Courses</a>
+            <a href="notices.html" class="nav-link">Notices</a>
+            <a href="events.html" class="nav-link">Events</a>
+            <a href="messages.html" class="nav-link">Messages</a>
+            <a href="resources.html" class="nav-link">Resources</a>
+            <a href="playlist.html" class="nav-link">PlayList</a>
+            <a href="cgpa-calculator.html" class="nav-link accent active">CGPA</a>
+        </nav>
+        <button id="hamburger" class="icon-btn hamburger" aria-label="Menu" title="Menu"><span></span><span></span><span></span></button>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <div class="cgpa-header">
+                <h2>UIU CGPA Calculator</h2>
+            </div>
+            
+            <div class="cgpa-container">
+                <!-- Current Academic Standing -->
+                <div class="academic-standing">
+                    <h3>Current Academic Standing</h3>
+                    <div class="standing-info">
+                        <div class="info-card">
+                            <h4>Current CGPA</h4>
+                            <div id="currentCgpa" class="result-display">0.00</div>
+                        </div>
+                        <div class="info-card">
+                            <h4>Total Credits Attempted</h4>
+                            <div id="totalCredits" class="result-display">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Trimester Courses -->
+                <div class="current-trimester">
+                    <h3>Current Trimester's Courses</h3>
+                    <div class="courses-table">
+                        <table id="currentCoursesTable">
+                            <thead>
+                                <tr>
+                                    <th>Course Name</th>
+                                    <th>Credit Hours</th>
+                                    <th>Expected Grade</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="input" placeholder="e.g., &quot;DSA&quot;">
+                                    </td>
+                                    <td>
+                                        <select class="input credit-select">
+                                            <option value="" disabled selected>Select Credits</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="input grade-select">
+                                            <option value="" disabled selected>Expected Grade</option>
+                                            <option value="4.00">A</option>
+                                            <option value="3.67">A-</option>
+                                            <option value="3.33">B+</option>
+                                            <option value="3.00">B</option>
+                                            <option value="2.67">B-</option>
+                                            <option value="2.33">C+</option>
+                                            <option value="2.00">C</option>
+                                            <option value="1.67">C-</option>
+                                            <option value="1.33">D+</option>
+                                            <option value="1.00">D</option>
+                                            <option value="0.00">F</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="btn remove-btn">×</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn add-btn" id="addCourse">+ Add Course</button>
+                    </div>
+                </div>
+
+                <!-- Retake Courses -->
+                <div class="retake-courses">
+                    <h3>Retake Courses</h3>
+                    <div class="courses-table">
+                        <table id="retakeCoursesTable">
+                            <thead>
+                                <tr>
+                                    <th>Course Name</th>
+                                    <th>Credits</th>
+                                    <th>Old Grade</th>
+                                    <th>New Grade</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="input" placeholder="e.g., &quot;DSA&quot;">
+                                    </td>
+                                    <td>
+                                        <select class="input credit-select">
+                                            <option value="" disabled selected>Credits</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="input grade-select">
+                                            <option value="" disabled selected>Old Grade</option>
+                                            <option value="2.67">B-</option>
+                                            <option value="2.33">C+</option>
+                                            <option value="2.00">C</option>
+                                            <option value="1.67">C-</option>
+                                            <option value="1.33">D+</option>
+                                            <option value="1.00">D</option>
+                                            <option value="0.00">F</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="input grade-select">
+                                            <option value="" disabled selected>New Grade</option>
+                                            <option value="4.00">A</option>
+                                            <option value="3.67">A-</option>
+                                            <option value="3.33">B+</option>
+                                            <option value="3.00">B</option>
+                                            <option value="2.67">B-</option>
+                                            <option value="2.33">C+</option>
+                                            <option value="2.00">C</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="btn remove-btn">×</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn add-btn" id="addRetake">+ Add Retake Course</button>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="calculator-controls">
+                    <button class="btn reset-btn" id="resetAll">Reset All</button>
+                    <button class="btn calculate-btn" id="calculateCgpa">Calculate CGPA</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Floating Calculator Button -->
+        <button id="openCalcBtn" class="floating-calc-btn" title="Open Calculator">
+            🧮
+        </button>
+
+        <!-- Calculator Widget Popup -->
+        <div id="calcWidget" class="calculator-widget-popup hidden">
+            <div class="calc-widget-header">
+                <h3>Calculator</h3>
+                <button id="closeCalcBtn" class="close-calc-btn">×</button>
+            </div>
+            <div class="calculator">
+                <input type="text" id="calcDisplay" class="calc-display" readonly value="0">
+                <div class="calc-buttons">
+                    <button class="calc-btn calc-clear">C</button>
+                    <button class="calc-btn calc-operator">÷</button>
+                    <button class="calc-btn calc-operator">×</button>
+                    <button class="calc-btn calc-operator">−</button>
+                    
+                    <button class="calc-btn calc-number">7</button>
+                    <button class="calc-btn calc-number">8</button>
+                    <button class="calc-btn calc-number">9</button>
+                    <button class="calc-btn calc-operator calc-plus">+</button>
+                    
+                    <button class="calc-btn calc-number">4</button>
+                    <button class="calc-btn calc-number">5</button>
+                    <button class="calc-btn calc-number">6</button>
+                    <button class="calc-btn calc-equals" style="grid-row: span 2;">=</button>
+                    
+                    <button class="calc-btn calc-number">1</button>
+                    <button class="calc-btn calc-number">2</button>
+                    <button class="calc-btn calc-number">3</button>
+                    
+                    <button class="calc-btn calc-number" style="grid-column: span 2;">0</button>
+                    <button class="calc-btn calc-number">.</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> Perahin UIU · developed by <a class="no-underline" href="https://github.com/sabbirOG" target="_blank" rel="noopener"><strong>Sabbir Ahmed</strong></a> for the UIU student community</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/cgpa.js"></script>
+    <script src="../js/calculator.js"></script>
+</body>
+</html>
+
+

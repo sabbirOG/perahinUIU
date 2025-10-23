@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator · Perahin UIU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/calculator.css">
+    <link rel="icon" href="../logo/perahin-logo.png">
+    <meta name="theme-color" content="#FF6F00">
+</head>
+<body>
+    <div class="background-wrapper"></div>
+    <header class="topbar">
+        <button id="backButton" class="icon-btn back-btn" aria-label="Back" title="Back"><span class="back-chev">‹</span></button>
+        <a class="brand no-underline" href="../index.html">
+            <img src="../logo/perahin-logo.png" alt="Perahin UIU" class="brand-logo">
+            <span class="brand-name">Perahin UIU</span>
+        </a>
+        <nav class="nav" id="navMenu">
+            <a href="../index.html" class="nav-link">Dashboard</a>
+            <a href="courses.html" class="nav-link">Courses</a>
+            <a href="notices.html" class="nav-link">Notices</a>
+            <a href="events.html" class="nav-link">Events</a>
+            <a href="messages.html" class="nav-link">Messages</a>
+            <a href="resources.html" class="nav-link">Resources</a>
+            <a href="playlist.html" class="nav-link">PlayList</a>
+            <a href="cgpa-calculator.html" class="nav-link accent">CGPA</a>
+        </nav>
+        <button id="hamburger" class="icon-btn hamburger" aria-label="Menu" title="Menu"><span></span><span></span><span></span></button>
+    </header>
+
+    <main class="container">
+        <section class="card calculator-page">
+            <h2>Calculator</h2>
+            <div class="calculator">
+                <input type="text" id="calcDisplay" class="calc-display" readonly value="0">
+                <div class="calc-buttons">
+                    <button class="calc-btn calc-clear">C</button>
+                    <button class="calc-btn calc-operator">÷</button>
+                    <button class="calc-btn calc-operator">×</button>
+                    <button class="calc-btn calc-operator">−</button>
+                    
+                    <button class="calc-btn calc-number">7</button>
+                    <button class="calc-btn calc-number">8</button>
+                    <button class="calc-btn calc-number">9</button>
+                    <button class="calc-btn calc-operator calc-plus">+</button>
+                    
+                    <button class="calc-btn calc-number">4</button>
+                    <button class="calc-btn calc-number">5</button>
+                    <button class="calc-btn calc-number">6</button>
+                    <button class="calc-btn calc-equals" style="grid-row: span 2;">=</button>
+                    
+                    <button class="calc-btn calc-number">1</button>
+                    <button class="calc-btn calc-number">2</button>
+                    <button class="calc-btn calc-number">3</button>
+                    
+                    <button class="calc-btn calc-number" style="grid-column: span 2;">0</button>
+                    <button class="calc-btn calc-number">.</button>
+                </div>
+            </div>
+            
+            <div class="calc-info">
+                <h3>Keyboard Shortcuts</h3>
+                <ul>
+                    <li><strong>Numbers:</strong> 0-9</li>
+                    <li><strong>Operators:</strong> + - * /</li>
+                    <li><strong>Enter/=:</strong> Calculate</li>
+                    <li><strong>C/Esc:</strong> Clear</li>
+                    <li><strong>Backspace:</strong> Delete last digit</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> Perahin UIU · developed by <a class="no-underline" href="https://github.com/sabbirOG" target="_blank" rel="noopener"><strong>Sabbir Ahmed</strong></a> for the UIU student community</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/calculator.js"></script>
+</body>
+</html>

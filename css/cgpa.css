@@ -1,0 +1,783 @@
+/* CGPA Calculator Styles */
+:root {
+    --primary-color: #FF6F00;
+    --primary-light: rgba(255, 111, 0, 0.08);
+    --primary-hover: #FF8F40;
+    --card-hover-border: #ff4444; /* default red hover border */
+    --card-hover-alt: var(--primary-color); /* alternate hover border */
+    --border-color: #e0e0e0;
+    --error-color: #ff4444;
+    --error-hover: #ff6666;
+    --bg-light: #ffffff;
+    --text-primary: #2C2C2C;
+    --text-secondary: #666666;
+    --surface-hover: #f8f8f8;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Floating Calculator Button */
+.floating-calc-btn {
+    position: fixed;
+    top: 90px;
+    right: 32px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(255, 111, 0, 0.4);
+    transition: all 0.3s ease;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-calc-btn:hover {
+    background: var(--primary-hover);
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(255, 111, 0, 0.5);
+}
+
+.floating-calc-btn:active {
+    transform: scale(0.95);
+}
+
+/* Calculator Widget Popup */
+.calculator-widget-popup {
+    position: fixed;
+    top: 170px;
+    right: 32px;
+    width: 340px;
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: top right;
+}
+
+.calculator-widget-popup.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8) translateY(-20px);
+}
+
+.calc-widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 2px solid var(--border);
+}
+
+.calc-widget-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.close-calc-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-calc-btn:hover {
+    background: var(--surface);
+    color: var(--error-color);
+}
+
+.calculator-widget-popup .calculator {
+    padding: 20px;
+}
+
+.calculator-widget-popup .calc-display {
+    padding: 16px;
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.calculator-widget-popup .calc-buttons {
+    gap: 8px;
+}
+
+.calculator-widget-popup .calc-btn {
+    padding: 16px;
+    font-size: 16px;
+}
+
+.calculator-widget-popup .calc-equals {
+    font-size: 20px;
+}
+
+/* Dark mode */
+[data-theme="dark"] .floating-calc-btn {
+    background: var(--accent);
+    box-shadow: 0 4px 16px rgba(255, 111, 0, 0.5);
+}
+
+[data-theme="dark"] .calculator-widget-popup {
+    background: var(--card);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .calc-widget-header {
+    border-bottom-color: var(--border);
+}
+
+[data-theme="dark"] {
+    --bg-light: #1E1E1E;
+    --text-primary: #E0E0E0;
+    --text-secondary: #A0A0A0;
+    --border-color: #404040;
+    --card-hover-border: #ff6666; /* slightly lighter red in dark mode */
+    --card-hover-alt: #FF8F40; /* accent in dark mode */
+    --surface-hover: #2A2A2A;
+    --primary-light: rgba(255, 111, 0, 0.15);
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode specific overrides */
+[data-theme="dark"] .info-card {
+    background: var(--card);
+    border-color: var(--accent);
+    color: var(--text);
+    box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .table-container {
+    background: var(--card);
+    box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .input {
+    background: var(--input-bg);
+    border-color: var(--border);
+    color: var(--text);
+}
+
+[data-theme="dark"] .input:hover {
+    border-color: var(--accent);
+    background: var(--surface);
+}
+
+[data-theme="dark"] .input:focus {
+    border-color: var(--accent);
+    box-shadow: var(--focus-ring);
+}
+
+[data-theme="dark"] .grade-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--accent);
+}
+
+[data-theme="dark"] .credit-btn {
+    background: var(--surface);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+[data-theme="dark"] .credit-btn:hover {
+    background: var(--accent);
+    color: #F3F0E8;
+}
+
+[data-theme="dark"] .btn {
+    background: var(--surface);
+    color: var(--accent);
+}
+
+[data-theme="dark"] .btn:hover {
+    background: var(--accent);
+    color: #F3F0E8;
+}
+
+[data-theme="dark"] .btn.primary {
+    background: var(--accent);
+    color: #F3F0E8;
+    border-color: var(--accent);
+}
+
+[data-theme="dark"] .btn.primary:hover {
+    background: var(--accent-600);
+}
+
+[data-theme="dark"] .save-indicator {
+    background: var(--accent);
+    color: #F3F0E8;
+    box-shadow: 0 4px 12px rgba(255, 143, 64, 0.3);
+}
+
+/* Card and Container */
+.cgpa-container {
+    padding: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Add subtle border to main CGPA card */
+.cgpa-container > .card,
+section.card {
+    border: 1px solid rgba(255, 111, 0, 0.15);
+}
+
+.cgpa-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 24px 0;
+    position: relative;
+}
+
+.cgpa-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+.cgpa-header h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Academic Standing Section */
+.academic-standing {
+    margin-bottom: 48px;
+    background: var(--bg-light);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 111, 0, 0.12);
+}
+
+.academic-standing h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.academic-standing h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--primary-color);
+    border-radius: 1px;
+}
+
+.standing-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.info-card {
+    background: var(--bg-light);
+    padding: 24px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: all 0.18s ease;
+}
+
+/* default hover uses configurable variable */
+.info-card:hover {
+    border-color: var(--card-hover-border);
+    box-shadow: var(--shadow);
+}
+
+/* utility classes to switch hover border color */
+.card-hover-red:hover { /* explicit red */
+    border-color: var(--card-hover-border) !important;
+}
+
+.card-hover-accent:hover { /* use primary accent */
+    border-color: var(--card-hover-alt) !important;
+}
+
+.info-card h4 {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin: 0 0 12px 0;
+    font-weight: 500;
+}
+
+.result-display {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+/* Course Sections */
+.current-trimester,
+.retake-courses {
+    background: var(--bg-light);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 48px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 111, 0, 0.12);
+}
+
+.current-trimester h3,
+.retake-courses h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.current-trimester h3::after,
+.retake-courses h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--primary-color);
+    border-radius: 1px;
+}
+
+/* Table Container */
+.courses-table {
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+th {
+    padding: 14px 16px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--border-color);
+    background: var(--surface-hover);
+}
+
+td {
+    padding: 16px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-light);
+    transition: all 0.2s ease;
+}
+
+tr:hover td {
+    background: var(--surface-hover);
+}
+
+[data-theme="dark"] .cgpa-table th {
+    color: var(--accent);
+    border-bottom-color: var(--border);
+}
+
+[data-theme="dark"] .cgpa-table td {
+    background: var(--card);
+}
+
+[data-theme="dark"] .cgpa-table tr:hover td {
+    background: var(--surface);
+}
+
+/* Table Column Widths */
+.course-col { width: 45%; }
+.credit-col { width: 20%; }
+.grade-col { width: 25%; }
+.action-col { width: 10%; text-align: center; }
+
+/* Course Inputs Container */
+.course-inputs {
+    display: grid;
+    gap: 8px;
+}
+
+/* Form Controls */
+.input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    background: var(--bg-light);
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.input:hover {
+    border-color: var(--primary-color);
+    background-color: var(--surface-hover);
+}
+
+.input.invalid {
+    border-color: var(--error-color);
+    background-color: rgba(255, 68, 68, 0.05);
+}
+
+.input.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.15);
+}
+
+/* Select Inputs */
+select.input {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 6L0 0h12z' fill='%23FF6F00'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    color: var(--text);
+}
+
+/* Quick Actions */
+.quick-actions {
+    margin-bottom: 24px;
+}
+
+.quick-credits {
+    background: var(--card-bg);
+    padding: 16px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.quick-credits h4 {
+    margin: 0;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Button Styles */
+.btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    background: var(--bg-light);
+    color: var(--text-primary);
+    cursor: pointer;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: var(--primary-light);
+}
+
+.calculate-btn {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.calculate-btn:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.reset-btn {
+    border-color: var(--error-color);
+    color: var(--error-color);
+}
+
+.reset-btn:hover {
+    background: var(--error-color);
+    color: white;
+}
+
+.add-btn {
+    width: 100%;
+    justify-content: center;
+    background: var(--surface-hover);
+    border: none;
+    border-top: 1px solid var(--border-color);
+    border-radius: 0;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.add-btn:hover {
+    background: var(--primary-light);
+}
+
+.remove-btn {
+    width: 32px;
+    height: 32px;
+    min-width: unset;
+    padding: 0;
+    font-size: 18px;
+    border-radius: 6px;
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    background: transparent;
+}
+
+.remove-btn:hover {
+    background: var(--error-color);
+    color: white;
+}
+
+/* Calculator Controls */
+.calculator-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--bg-light);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 111, 0, 0.12);
+}
+
+.calculator-controls .btn {
+    min-width: 120px;
+    font-weight: 500;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.loading-indicator.show {
+    opacity: 1;
+}
+
+/* Grade Guide */
+.grade-guide {
+    background: var(--card-bg);
+    padding: 20px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    margin-top: 32px;
+}
+
+.grade-guide h3 {
+    margin: 0 0 16px;
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.grade-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+}
+
+.grade-item {
+    background: var(--input-bg);
+    padding: 12px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-primary);
+    border: 1px solid var(--input-border);
+}
+
+.grade-item:hover {
+    border-color: var(--accent);
+}
+
+.grade-item strong {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.grade-item small {
+    color: var(--text-secondary);
+    display: block;
+    margin: 2px 0;
+    font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .cgpa-layout {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cgpa-container {
+        padding: 16px;
+    }
+    
+    .floating-calc-btn {
+        top: 80px;
+        right: 16px;
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
+    }
+    
+    .calculator-widget-popup {
+        top: 145px;
+        right: 16px;
+        left: 16px;
+        width: auto;
+    }
+}
+
+    .standing-info {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .academic-standing,
+    .current-trimester,
+    .retake-courses,
+    .calculator-controls {
+        padding: 16px;
+        margin-bottom: 24px;
+        border-radius: 8px;
+    }
+
+    .courses-table {
+        margin: 0 -16px;
+        width: calc(100% + 32px);
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    th, td {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .calculator-controls {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%;
+        height: 44px;
+    }
+
+    .loading-indicator {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* Dark Mode Enhancements */
+[data-theme="dark"] .academic-standing,
+[data-theme="dark"] .current-trimester,
+[data-theme="dark"] .retake-courses,
+[data-theme="dark"] .calculator-controls {
+    background: var(--bg-light);
+}
+
+[data-theme="dark"] .courses-table {
+    background: var(--bg-light);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] th {
+    background: var(--surface-hover);
+    border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .input {
+    background: var(--bg-light);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .input:hover {
+    background-color: var(--surface-hover);
+}
+
+[data-theme="dark"] .add-btn {
+    background: var(--surface-hover);
+    border-top-color: var(--border-color);
+}
+
+

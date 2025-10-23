@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perahin UIU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="background-wrapper"></div>
+    <header class="topbar">
+        <button id="backButton" class="icon-btn back-btn" aria-label="Back" title="Back">
+            <span class="back-chev">‹</span>
+        </button>
+        <a class="brand no-underline" href="index.html">
+            <img src="logo/perahin-logo.png" alt="Perahin UIU" class="brand-logo">
+            <span class="brand-name">Perahin UIU</span>
+        </a>
+        <nav class="nav" id="navMenu">
+            <a href="index.html" class="nav-link">Dashboard</a>
+            <a href="pages/courses.html" class="nav-link">Courses</a>
+            <a href="pages/notices.html" class="nav-link">Notices</a>
+            <a href="pages/events.html" class="nav-link">Events</a>
+            <a href="pages/messages.html" class="nav-link">Messages</a>
+            <a href="pages/resources.html" class="nav-link">Resources</a>
+            <a href="pages/playlist.html" class="nav-link">PlayList</a>
+            <a href="pages/cgpa-calculator.html" class="nav-link accent">CGPA</a>
+        </nav>
+        <button id="hamburger" class="icon-btn hamburger" aria-label="Menu" title="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <main class="container">
+        <section class="grid cols-2 hero">
+            <div class="card">
+                <h2>Welcome back, UIU Student</h2>
+                <p class="muted">Here are your quick links and updates.</p>
+                <div class="quick-links" style="margin-top:12px;">
+                    <a class="quick-link" href="pages/courses.html">Courses</a>
+                    <a class="quick-link" href="pages/notices.html">Notices</a>
+                    <a class="quick-link" href="pages/events.html">Events</a>
+                    <a class="quick-link" href="pages/messages.html">Messages</a>
+                    <a class="quick-link" href="pages/resources.html">Resources</a>
+                    <a class="quick-link" href="pages/cgpa-calculator.html">CGPA</a>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Notifications</h2>
+                <div class="list">
+                    <div class="list-item"><span>Tuition fee deadline approaching</span><span class="muted">2h ago</span></div>
+                    <div class="list-item"><span>New event: Tech Talk with Alumni</span><span class="muted">1d ago</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Tools Section -->
+        <section style="margin-top:24px;">
+            <h2 style="margin-bottom:16px; font-size:20px;">⚡ Quick Tools</h2>
+            <div class="grid cols-3 stats-grid">
+                <a href="pages/cgpa-calculator.html" class="card stat-card" style="text-decoration:none; cursor:pointer;">
+                    <div class="stat-icon">🧮</div>
+                    <div class="stat-label">CGPA Calculator</div>
+                    <div class="muted" style="font-size:13px; margin-top:4px;">Calculate grades</div>
+                </a>
+                <a href="pages/courses.html" class="card stat-card" style="text-decoration:none; cursor:pointer;">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-label">Course Browser</div>
+                    <div class="muted" style="font-size:13px; margin-top:4px;">View all courses</div>
+                </a>
+                <a href="pages/resources.html" class="card stat-card" style="text-decoration:none; cursor:pointer;">
+                    <div class="stat-icon">💾</div>
+                    <div class="stat-label">Study Resources</div>
+                    <div class="muted" style="font-size:13px; margin-top:4px;">Download materials</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Recent Notices Section -->
+        <section style="margin-top:24px;">
+            <h2 style="margin-bottom:16px; font-size:20px;">📢 Recent Notices</h2>
+            <div class="grid cols-3">
+                <div class="card notice-card">
+                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                        <span style="font-size:20px;">⚠️</span>
+                        <span class="badge" style="background:var(--danger);">Important</span>
+                    </div>
+                    <h3 style="margin:0 0 6px; font-size:15px; color:var(--text);">Exam Schedule Published</h3>
+                    <div class="muted" style="font-size:13px;">Final exams starting next week</div>
+                    <div class="muted" style="font-size:12px; margin-top:8px;">Posted 1 day ago</div>
+                </div>
+                <div class="card notice-card">
+                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                        <span style="font-size:20px;">📝</span>
+                        <span class="badge">General</span>
+                    </div>
+                    <h3 style="margin:0 0 6px; font-size:15px; color:var(--text);">Library Hours Extended</h3>
+                    <div class="muted" style="font-size:13px;">Now open until 10 PM</div>
+                    <div class="muted" style="font-size:12px; margin-top:8px;">Posted 2 days ago</div>
+                </div>
+                <div class="card notice-card">
+                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                        <span style="font-size:20px;">🎓</span>
+                        <span class="badge">Academic</span>
+                    </div>
+                    <h3 style="margin:0 0 6px; font-size:15px; color:var(--text);">Course Registration Open</h3>
+                    <div class="muted" style="font-size:13px;">Register for next trimester</div>
+                    <div class="muted" style="font-size:12px; margin-top:8px;">Posted 3 days ago</div>
+                </div>
+            </div>
+            <a href="pages/notices.html" class="btn" style="margin:16px auto 0; display:block; width:fit-content; text-decoration:none; transition: transform 0.2s ease;">View All Notices</a>
+        </section>
+
+        <!-- Upcoming Events & Important Links -->
+        <section style="margin-top:24px;" class="grid cols-2">
+            <div class="card">
+                <h2 style="margin-bottom:12px;">📅 Upcoming Events</h2>
+                <div class="list event-list">
+                    <div class="list-item event-item">
+                        <div>
+                            <div style="font-weight:600; color:var(--text);">Tech Career Fair</div>
+                            <div class="muted" style="font-size:13px;">Dec 15, 2025 • 10:00 AM</div>
+                        </div>
+                    </div>
+                    <div class="list-item event-item">
+                        <div>
+                            <div style="font-weight:600; color:var(--text);">Project Showcase</div>
+                            <div class="muted" style="font-size:13px;">Dec 20, 2025 • 2:00 PM</div>
+                        </div>
+                    </div>
+                    <div class="list-item event-item">
+                        <div>
+                            <div style="font-weight:600; color:var(--text);">Trimester Break</div>
+                            <div class="muted" style="font-size:13px;">Dec 25 - Jan 5</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="pages/events.html" class="btn accent" style="margin-top:12px; width:100%; text-align:center; display:inline-block; text-decoration:none;">View All Events</a>
+            </div>
+            
+            <div class="card">
+                <h2 style="margin-bottom:12px;">🔗 Important Links</h2>
+                <div class="important-links">
+                    <a href="https://www.uiu.ac.bd/" target="_blank" class="important-link">
+                        <span class="link-icon link-icon-img">
+                            <img src="logo/uiu-logo.svg" alt="UIU" style="width: 24px; height: 24px; object-fit: contain;">
+                        </span>
+                        <span>UIU Official Website</span>
+                    </a>
+                    <a href="https://ucam.uiu.ac.bd/" target="_blank" class="important-link">
+                        <span class="link-icon link-icon-img">
+                            <img src="logo/logo-ucam.jpg" alt="UCAM" style="width: 24px; height: 24px; object-fit: contain;">
+                        </span>
+                        <span>UCAM</span>
+                    </a>
+                    <a href="https://elms.uiu.ac.bd/" target="_blank" class="important-link">
+                        <span class="link-icon link-icon-img">
+                            <img src="logo/logo-eLMS.png" alt="eLMS" style="width: 24px; height: 24px; object-fit: contain;">
+                        </span>
+                        <span>eLMS</span>
+                    </a>
+                    <a href="pages/resources.html" class="important-link">
+                        <span class="link-icon">💾</span>
+                        <span>Study Materials</span>
+                    </a>
+                    <a href="pages/playlist.html" class="important-link">
+                        <span class="link-icon">🎥</span>
+                        <span>Video Playlists</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> Perahin UIU · developed by <a class="no-underline" href="https://github.com/sabbirOG" target="_blank" rel="noopener"><strong>Sabbir Ahmed</strong></a> for the UIU student community</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
+
+
