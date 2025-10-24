@@ -60,5 +60,4 @@ GitHub: [@sabbirOG](https://github.com/sabbirOG)
 
 ---
 
-*Made for the UIU student community*
-*Will announce after the final exam :p *
+*This site will be announed after the final exam*
