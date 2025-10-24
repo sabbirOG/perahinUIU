@@ -1,6 +1,12 @@
 # Perahin UIU
 
-A modern web platform designed to serve the **United International University (UIU)** student community. This project provides essential academic tools and resources all in one place.
+A modern web platform built for **United International University (UIU)** students. All your essential academic tools and resources in one place.
+
+## 📖 About the Project
+
+**Perahin UIU** started as my personal way to keep track of academic stuff. But then I realized a lot of UIU students struggle with the same things - calculating CGPA with retakes, finding course materials, keeping up with campus updates, and more.
+
+So I decided to turn it into something everyone could use. Now it's a full platform with everything a UIU student needs - accurate CGPA calculator that handles retakes and improvements, organized course materials, helpful video playlists, campus event updates, and more. Plus, it has dark mode for those late-night study sessions!
 
 ## ✨ Features
 
@@ -29,9 +35,12 @@ Visit the live site: **[perahin-uiu.github.io](https://sabbirog.github.io/perahi
 
 ## 🤝 Contributing
 
-This project is built specifically for the UIU student community. While the project is freely available for students to use, the source code is not open source and contributions are currently managed by the developer.
+I built this specifically for UIU students. It started as just my personal resource collection, but I wanted to make something that could help everyone. The code is open for anyone to check out and learn from, but I'm handling all the updates myself for now to keep things consistent.
 
-If you have suggestions, feedback, or would like to report issues, feel free to reach out!
+**Got ideas or found a bug?**  
+I'd love to hear from you! Your feedback helps make this better for all of us.
+
+📧 **Email:** iamsabbir460@gmail.com
 
 ## 💡 Future Plans
 
