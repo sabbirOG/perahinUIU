@@ -38,24 +38,41 @@
 
     <main class="container">
         <div class="card" style="margin-bottom: 12px;">
-            <p class="muted" style="margin: 0;">Messages are informal community updates. Official announcements go to Notices; time-bound activities go to Events.</p>
+            <p class="muted" style="margin: 0 0 8px;">Messages are informal community updates.</p>
+            <div class="grid cols-3">
+                <input id="messageSearch" class="input" type="text" placeholder="Search messages..." aria-label="Search messages">
+                <select id="messageCategory" class="input" aria-label="Filter by category">
+                    <option value="all">All categories</option>
+                    <option value="important">Important</option>
+                    <option value="general">General</option>
+                </select>
+                <select id="messageDate" class="input" aria-label="Filter by month">
+                    <option value="all">Any month</option>
+                    <option value="2025-10">Oct 2025</option>
+                    <option value="2025-11">Nov 2025</option>
+                    <option value="2025-12">Dec 2025</option>
+                </select>
+            </div>
         </div>
         <section class="card">
             <h2>Message Board <span class="badge" title="Unread">2</span></h2>
-            <div class="list mt-3">
-                <div class="list-item">
+            <div class="list mt-3" id="messagesList">
+                <div class="list-item important">
                     <div>
                         <div class="message-sender">Dept. Office</div>
-                        <div class="message-content">Your advisor meeting is scheduled for next week.</div>
+                        <div class="message-content">Section selection and registration are tentatively scheduled for the first week of November, following the final exams.</div>
                     </div>
-                    <span class="message-badge">New</span>
+                    <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+                        <span class="message-badge important-badge">Important</span>
+                        <span class="muted" style="font-size: 12px; white-space: nowrap;">Oct 24, 2025</span>
+                    </div>
                 </div>
                 <div class="list-item">
                     <div>
-                        <div class="message-sender">Course Teacher</div>
-                        <div class="message-content">Project proposal feedback has been shared.</div>
+                        <div class="message-sender">Registrar Office</div>
+                        <div class="message-content">Final exams start on 25 Oct 2025.</div>
                     </div>
-                    <span class="message-badge">New</span>
+                    <span class="muted" style="font-size: 12px; white-space: nowrap;">Oct 16, 2025</span>
                 </div>
             </div>
         </section>

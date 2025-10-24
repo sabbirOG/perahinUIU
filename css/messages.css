@@ -43,6 +43,13 @@
     line-height: 1.4;
 }
 
+.message-date {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
 .message-text {
     color: var(--muted);
     font-size: 14px;
@@ -50,20 +57,17 @@
 }
 
 .message-badge {
-    background: linear-gradient(135deg, var(--accent) 0%, #ff8f40 100%);
-    color: white;
-    padding: 3px 8px;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 6px rgba(255, 111, 0, 0.3);
+    /* Match Notice badge style */
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 999px; /* pill */
+    white-space: nowrap;
 }
 
-.important-badge {
-    background: linear-gradient(135deg, #FF6F00 0%, #D84315 100%);
-}
+/* Keep class for compatibility; style same as .badge */
+.important-badge { background: var(--accent); }
 
 .unread-count {
     background: var(--accent);
@@ -85,11 +89,24 @@
     border-radius: 12px;
     background: var(--card);
     transition: all 0.3s ease;
+    border-left: 6px solid #9E9E9E; /* Gray for normal messages */
+}
+
+.list-item.important {
+    border-left: 6px solid #FF6F00; /* Orange for important messages */
 }
 
 .list-item:hover {
     transform: translateX(4px);
     background: linear-gradient(90deg, rgba(255, 111, 0, 0.08) 0%, transparent 100%);
     box-shadow: 0 4px 12px rgba(255, 111, 0, 0.1);
-    border-left: 3px solid var(--accent);
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .list-item {
+    border-left-color: #616161; /* Darker gray for dark theme */
+}
+
+[data-theme="dark"] .list-item.important {
+    border-left-color: #FF6F00; /* Orange for important messages in dark theme */
 }

@@ -11,43 +11,37 @@
  * - content: String (message content)
  * - timestamp: Date (when it was sent)
  * - isImportant: Boolean (marked as important)
- * - isNew: Boolean (unread status)
  */
 const messagesData = [
     {
         sender: 'Dept. Office',
         content: 'Your advisor meeting is scheduled for next week.',
         timestamp: new Date('2025-10-24T10:30:00'),
-        isImportant: true,
-        isNew: true
+        isImportant: true
     },
     {
         sender: 'Course Teacher',
         content: 'Project proposal feedback has been shared.',
         timestamp: new Date('2025-10-24T09:15:00'),
-        isImportant: true,
-        isNew: true
+        isImportant: true
     },
     {
         sender: 'Library',
         content: 'Your book request is ready for pickup.',
         timestamp: new Date('2025-10-23T14:20:00'),
-        isImportant: false,
-        isNew: false
+        isImportant: false
     },
     {
         sender: 'Registrar Office',
         content: 'Course registration deadline: Oct 30th.',
         timestamp: new Date('2025-10-23T11:00:00'),
-        isImportant: true,
-        isNew: false
+        isImportant: true
     },
     {
         sender: 'Student Affairs',
         content: 'Club meeting scheduled for tomorrow.',
         timestamp: new Date('2025-10-22T16:45:00'),
-        isImportant: false,
-        isNew: false
+        isImportant: false
     }
 ];
 
@@ -89,10 +83,8 @@ function loadImportantMessages() {
         .sort((a, b) => b.timestamp - a.timestamp)
         .slice(0, 2); // Get only the 2 most recent
     
-    // Count new messages (from top 2 recent)
-    const newCount = recentMessages.filter(msg => msg.isNew).length;
-    badge.textContent = newCount;
-    badge.style.display = newCount > 0 ? 'inline-block' : 'none';
+    // Hide badge since we're not tracking "new" anymore
+    badge.style.display = 'none';
     
     // Clear loading state
     messagesList.innerHTML = '';
@@ -108,19 +100,22 @@ function loadImportantMessages() {
     
     // Display messages
     recentMessages.forEach(msg => {
-        const timeAgo = getTimeAgo(msg.timestamp);
         const messageItem = document.createElement('div');
         messageItem.className = 'list-item message-item';
+        
+        // Format the date
+        const messageDate = msg.timestamp.toLocaleDateString('en-US', { 
+            day: 'numeric', 
+            month: 'short', 
+            year: 'numeric' 
+        });
         
         messageItem.innerHTML = `
             <div style="flex: 1;">
                 <div class="message-sender">${msg.sender}</div>
                 <div class="message-content">${msg.content}</div>
             </div>
-            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
-                ${msg.isNew ? '<span class="message-badge">New</span>' : ''}
-                <span class="muted" style="font-size: 12px; white-space: nowrap;">${timeAgo}</span>
-            </div>
+            <span class="muted" style="font-size: 12px; white-space: nowrap;">${messageDate}</span>
         `;
         
         messagesList.appendChild(messageItem);
