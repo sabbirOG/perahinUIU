@@ -156,6 +156,62 @@
     box-shadow: 0 4px 12px rgba(255, 111, 0, 0.1);
 }
 
+/* Message Item Specific Styles */
+.message-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+}
+
+.message-sender {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.message-content {
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.message-badge {
+    background: linear-gradient(135deg, var(--accent) 0%, #ff8f40 100%);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(255, 111, 0, 0.3);
+}
+
+/* Badge in header */
+.badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent) 0%, #ff8f40 100%);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+    box-shadow: 0 2px 8px rgba(255, 111, 0, 0.3);
+}
+
+/* Dark theme adjustments for messages */
+[data-theme="dark"] .message-sender {
+    color: var(--accent);
+}
+
+[data-theme="dark"] .message-content {
+    color: var(--text-secondary);
+}
+
 /* Enhanced Course Cards with Individual Colors */
 .grid.cols-3 .card {
     position: relative;
