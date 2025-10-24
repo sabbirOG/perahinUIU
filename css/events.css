@@ -55,6 +55,34 @@
     background: var(--card);
     font-size: 14px;
     color: var(--text);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.15s;
+}
+
+.calendar-day:active {
+    box-shadow: 0 0 0 2px var(--accent, #FF6F00);
+}
+
+/* Click effect animation */
+.calendar-day.clicked {
+    animation: calendarDayClickBetter 0.22s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes calendarDayClickBetter {
+    0% {
+        box-shadow: 0 0 0 2px var(--accent, #FF6F00);
+        background: rgba(255, 111, 0, 0.13);
+    }
+    60% {
+        box-shadow: 0 0 0 4px var(--accent, #FF6F00);
+        background: rgba(255, 111, 0, 0.18);
+    }
+    100% {
+        box-shadow: 0 0 0 0 var(--accent, #FF6F00);
+        background: inherit;
+    }
 }
 
 [data-theme="dark"] .calendar-day {
