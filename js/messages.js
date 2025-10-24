@@ -5,40 +5,7 @@
  * Displays all messages with filtering and sorting capabilities
  */
 
-/**
- * Messages Data Structure
- * Each message has:
- * - sender: String (who sent it)
- * - content: String (message content)
- * - timestamp: Date (when it was sent)
- * - isImportant: Boolean (marked as important)
- */
-const messagesData = [
-    {
-        sender: 'Dept. Office',
-        content: 'Section selection and registration are tentatively scheduled for the first week of November, following the final exams.',
-        timestamp: new Date('2025-10-24T10:30:00'),
-        isImportant: true
-    },
-    {
-        sender: 'Registrar Office',
-        content: 'Course registration deadline: Oct 30th.',
-        timestamp: new Date('2025-10-23T11:00:00'),
-        isImportant: true
-    },
-    {
-        sender: 'UIU',
-        content: "UIU Project Show Summer '25 update: The result ceremony will be on 17 Nov 2025.",
-        timestamp: new Date('2025-10-23T09:00:00'),
-        isImportant: false
-    },
-    {
-        sender: 'Registrar Office',
-        content: 'Final exams start on 25 Oct 2025.',
-        timestamp: new Date('2025-10-16T09:00:00'),
-        isImportant: false
-    }
-];
+// messagesData is now loaded from js/messagesData.js. Ensure this file is included before messages.js in your HTML.
 
 /**
  * Utilities

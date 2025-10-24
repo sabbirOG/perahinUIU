@@ -4,46 +4,7 @@
  * DASHBOARD.JS - Dashboard-specific interactions
  */
 
-/**
- * Messages Data Structure
- * Each message has:
- * - sender: String (who sent it)
- * - content: String (message content)
- * - timestamp: Date (when it was sent)
- * - isImportant: Boolean (marked as important)
- */
-const messagesData = [
-    {
-        sender: 'Dept. Office',
-        content: 'Your advisor meeting is scheduled for next week.',
-        timestamp: new Date('2025-10-24T10:30:00'),
-        isImportant: true
-    },
-    {
-        sender: 'Course Teacher',
-        content: 'Project proposal feedback has been shared.',
-        timestamp: new Date('2025-10-24T09:15:00'),
-        isImportant: true
-    },
-    {
-        sender: 'Library',
-        content: 'Your book request is ready for pickup.',
-        timestamp: new Date('2025-10-23T14:20:00'),
-        isImportant: false
-    },
-    {
-        sender: 'Registrar Office',
-        content: 'Course registration deadline: Oct 30th.',
-        timestamp: new Date('2025-10-23T11:00:00'),
-        isImportant: true
-    },
-    {
-        sender: 'Student Affairs',
-        content: 'Club meeting scheduled for tomorrow.',
-        timestamp: new Date('2025-10-22T16:45:00'),
-        isImportant: false
-    }
-];
+// messagesData is now loaded from js/messagesData.js. Ensure this file is included before dashboard.js in your HTML.
 
 (function() {
     // Animate quick links
