@@ -50,34 +50,28 @@
 		items.forEach((el) => {
 			const text = normalize(el.textContent);
 			const itemTrimester = el.getAttribute('data-trimester');
-			const trimesterMatch = !trimester || trimester === 'all' || itemTrimester === trimester;
+			let isGED = text.includes('ged');
+			// Hide GED courses when a specific trimester is selected
+			let trimesterMatch = !trimester || trimester === 'all' || itemTrimester === trimester;
+			if (trimester !== 'all' && isGED) {
+				trimesterMatch = false;
+			}
 			let match = (!q || text.includes(q)) && trimesterMatch;
-			// If Major filter is active, apply advance filter
+			// If GED filter is active, show only GED courses
+			if (moreSelect && moreSelect.value === 'ged') {
+				match = match && isGED;
+			}
+			// If Lab filter is active, show only lab courses (match 'lab' in title)
+			if (moreSelect && moreSelect.value === 'lab') {
+				match = match && text.includes('lab');
+			}
+			// If Major filter is active, apply advance filter by data-major
 			if (moreSelect && moreSelect.value === 'major' && advanceFilter && advanceFilter.style.display !== 'none' && advanceSelect) {
 				if (advanceSelect.value !== 'all') {
-					// Match by major value in course title
-					switch (advanceSelect.value) {
-						case 'computational-theory':
-							match = match && text.includes('computational') || text.includes('theory');
-							break;
-						case 'network-communications':
-							match = match && text.includes('network') || text.includes('communications');
-							break;
-						case 'data-science':
-							match = match && text.includes('data science');
-							break;
-						case 'systems':
-							match = match && text.includes('systems');
-							break;
-						case 'software-engineering':
-							match = match && text.includes('software engineering');
-							break;
-						case 'ict':
-							match = match && text.includes('information and communication technology') || text.includes('ict');
-							break;
-						default:
-							break;
-					}
+					match = match && el.getAttribute('data-major') === advanceSelect.value;
+				} else {
+					// Show only courses that have a data-major attribute
+					match = match && el.hasAttribute('data-major');
 				}
 			}
 			el.style.display = match ? '' : 'none';
@@ -97,8 +91,17 @@
 		const hasQuery = input && normalize(input.value).length > 0;
 		const limit = (!showingAll && isAll && !hasQuery) ? 4 : 5;
 
+		// If advance search is active and 'All Majors' is selected, only show major courses
+	const isAdvanceMajorAll = moreSelect && moreSelect.value === 'major' && advanceSelect && advanceSelect.value === 'all';
+	const isElective = moreSelect && moreSelect.value === 'elective';
 		if (showingAll) {
-			items.forEach(el => el.style.display = '');
+			items.forEach(el => {
+				if (isAdvanceMajorAll || isElective) {
+					el.style.display = el.hasAttribute('data-major') ? '' : 'none';
+				} else {
+					el.style.display = '';
+				}
+			});
 			if (showAllBtn) {
 				showAllBtn.textContent = 'Show Less';
 				showAllBtn.style.display = 'block';
@@ -123,12 +126,7 @@
 			if (showingAll) {
 				// Toggle back to showing less
 				showingAll = false;
-				filterList(input.value, trimesterSelect ? trimesterSelect.value : 'all', advanceInput ? advanceInput.value : '');
-				// Scroll to top
-				const card = list.closest('.card');
-				if (card) {
-					card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				}
+				updateVisibleCourses();
 			} else {
 				// Show all
 				showingAll = true;
@@ -166,6 +164,20 @@
 		}
 	});
 	if (clearBtn) clearBtn.addEventListener('click', () => { input.value=''; filterList('', trimesterSelect ? trimesterSelect.value : 'all', advanceSelect ? advanceSelect.value : 'all'); input.focus(); });
+
+	// Reset all filters and search
+	const resetBtn = document.getElementById('resetAllSearch');
+	if (resetBtn) {
+		resetBtn.addEventListener('click', () => {
+			input.value = '';
+			if (trimesterSelect) trimesterSelect.value = 'all';
+			if (moreSelect) moreSelect.value = 'all';
+			if (advanceSelect) advanceSelect.value = 'all';
+			if (advanceFilter) advanceFilter.style.display = 'none';
+			filterList('', 'all', 'all');
+			input.focus();
+		});
+	}
 
 	// Initial state
 	filterList('', trimesterSelect ? trimesterSelect.value : 'all', advanceSelect ? advanceSelect.value : 'all');
