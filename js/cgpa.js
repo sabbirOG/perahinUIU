@@ -43,28 +43,28 @@
     function getMotivationalMessage(gpa) {
         if (gpa < 2.50) {
             return {
-                text: 'আর কত ভাই! এইবার জাগেন',
+                text: "Don't give up! Every setback is a setup for a comeback.",
                 emoji: '💪',
                 color: '#F44336',
                 bg: 'rgba(244, 67, 54, 0.1)'
             };
         } else if (gpa < 3.00) {
             return {
-                text: 'আরেকটু চাপ দেন, নয়তো পানিতে পড়বেন',
+                text: "Push a little harder, success is just ahead.",
                 emoji: '😅',
                 color: '#FF9800',
                 bg: 'rgba(255, 152, 0, 0.1)'
             };
         } else if (gpa < 3.50) {
             return {
-                text: 'লাইগা থাকেন, নাহলে নৌকা ডুবতে সময় লাগব না',
+                text: "You're doing well! Stay focused and keep moving forward.",
                 emoji: '🚣',
                 color: '#2196F3',
                 bg: 'rgba(33, 150, 243, 0.1)'
             };
         } else {
             return {
-                text: 'মাশাল্লাহ! এভাবেই এগিয়ে যান',
+                text: "Excellent work! Keep up the great momentum.",
                 emoji: '🌟',
                 color: '#4CAF50',
                 bg: 'rgba(76, 175, 80, 0.1)'
