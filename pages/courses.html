@@ -37,23 +37,49 @@
     <main class="container">
         <section class="card">
             <h2>Courses & Classes</h2>
-            <div class="trimester-filter" style="margin-bottom:10px; display:flex; align-items:center; gap:10px;">
-                <label for="trimesterSelect" style="font-weight:500;">Trimester:</label>
-                <select id="trimesterSelect" class="trimester-select">
-                    <option value="all" selected>All</option>
-                    <option value="1">1st</option>
-                    <option value="2">2nd</option>
-                    <option value="3">3rd</option>
-                    <option value="4">4th</option>
-                    <option value="5">5th</option>
-                    <option value="6">6th</option>
-                    <option value="7">7th</option>
-                    <option value="8">8th</option>
-                    <option value="9">9th</option>
-                    <option value="10">10th</option>
-                    <option value="11">11th</option>
-                    <option value="12">12th</option>
-                </select>
+            <div class="filter-row">
+                    <div style="margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+                        <div class="trimester-filter" style="display:flex; align-items:center; gap:10px;">
+                            <label for="trimesterSelect" style="font-weight:500;">Trimester:</label>
+                            <select id="trimesterSelect" class="trimester-select">
+                                <option value="all" selected>All</option>
+                                <option value="1">1st</option>
+                                <option value="2">2nd</option>
+                                <option value="3">3rd</option>
+                                <option value="4">4th</option>
+                                <option value="5">5th</option>
+                                <option value="6">6th</option>
+                                <option value="7">7th</option>
+                                <option value="8">8th</option>
+                                <option value="9">9th</option>
+                                <option value="10">10th</option>
+                                <option value="11">11th</option>
+                                <option value="12">12th</option>
+                            </select>
+                        </div>
+                        <div class="more-filter" style="display:flex; align-items:center; gap:6px;">
+                            <label for="moreSelect" style="font-weight:500;">More:</label>
+                            <select id="moreSelect" class="more-select">
+                                <option value="all" selected>All</option>
+                                <option value="major">Major</option>
+                                <option value="ged">GED</option>
+                                <option value="elective">Elective</option>
+                                <option value="lab">Lab</option>
+                            </select>
+                        </div>
+                        <div id="advanceFilter" class="advance-filter" style="display:none; align-items:center; gap:6px;">
+                            <label for="advanceSelect" style="font-weight:500;">Advance:</label>
+                            <select id="advanceSelect" class="advance-input">
+                                <option value="all" selected>All Majors</option>
+                                <option value="computational-theory">Major: Computational Theory</option>
+                                <option value="network-communications">Major: Network and communications</option>
+                                <option value="data-science">Major: Data Science</option>
+                                <option value="systems">Major: Systems</option>
+                                <option value="software-engineering">Major: Software Engineering</option>
+                                <option value="ict">Major: Information and Communication Technology</option>
+                            </select>
+                        </div>
+                    </div>
             </div>
             <div class="course-search" style="margin-top:12px;" role="search">
                 <div class="search-field">
@@ -80,751 +106,65 @@
                 </div>
             </div>
             <div class="list" id="coursesList" style="margin-top:10px;">
-                <!-- Only first 7 courses will be shown by default. -->
-                <!-- 1st Trimester -->
-                <div class="list-item" data-trimester="1">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">ENG1011 · English I</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 1</div>
-                        <div class="muted">Exam Slot: T1</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="ENG1011" data-course-title="ENG1011 · English I">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="1">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">BDS1201 · History of the Emergence of Bangladesh</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 6</div>
-                        <div class="muted">Exam Slot: T1</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">2 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="1">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE1110 · Introduction to Computer Systems</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="1">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">MATH1151 · Fundamental Calculus</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 2</div>
-                        <div class="muted">Exam Slot: T2</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <!-- 2nd Trimester -->
-                <div class="list-item" data-trimester="2">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">ENG1013 · English II</div>
-                        <div class="muted">Prerequisite: ENG1011</div>
-                        <div class="muted">Exam Day: Day 1</div>
-                        <div class="muted">Exam Slot: T2</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="2">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE1111 · Structured Programming Language</div>
-                        <div class="muted">Prerequisite: CSE1110</div>
-                        <div class="muted">Exam Day: Day 4</div>
-                        <div class="muted">Exam Slot: T2</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="2">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE1112 · Structured Programming Language Laboratory</div>
-                        <div class="muted">Prerequisite: CSE1110</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="2">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE2213 · Discrete Mathematics</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 3</div>
-                        <div class="muted">Exam Slot: T2</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <!-- 3rd Trimester -->
-                <div class="list-item" data-trimester="3">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">MATH2183 · Calculus and Linear Algebra</div>
-                        <div class="muted">Prerequisite: MATH1151</div>
-                        <div class="muted">Exam Day: Day 1</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="3">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">PHY2105 · Physics</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 7</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="3">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">PHY2106 · Physics Lab</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="3">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE2215 · Data Structure and Algorithms I</div>
-                        <div class="muted">Prerequisite: CSE1111</div>
-                        <div class="muted">Exam Day: Day 4</div>
-                        <div class="muted">Exam Slot: T2</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="3">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE2216 · Data Structure and Algorithms I Laboratory</div>
-                        <div class="muted">Prerequisite: CSE1112</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <!-- 4th Trimester -->
-                <!-- 5th Trimester -->
-                <!-- 6th Trimester -->
-                <!-- 7th Trimester -->
-                <!-- 8th Trimester -->
-                <!-- 9th Trimester -->
-                <!-- 10th Trimester -->
-                <!-- 11th Trimester -->
-                <!-- 12th Trimester -->
-                <div class="list-item" data-trimester="12">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4000C · Final Year Design Project - III</div>
-                        <div class="muted">Prerequisite: CSE4000A & CSE4000B</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">2 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="12">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">EEE4261 · Green Computing</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 5</div>
-                        <div class="muted">Exam Slot: T1</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="12">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4890 · Elective – I - (Machine Learning)</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="12">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4891 · Elective – II - (Data Mining)</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="12">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4892 · Elective – III - (Big Data)</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="12">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4893 · Elective – IV - (Cloud Computing)</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="12">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4894 · Elective – V - (Cyber Security)</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="11">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">GED OPT3 · General Education Optional – III (IPE - 3401)</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="11">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4891 · Elective – II - (Data Mining)</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="11">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4892 · Elective – III - (Big Data)</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="11">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4000B · Final Year Design Project - II</div>
-                        <div class="muted">Prerequisite: CSE4000A</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">2 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="11">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4531 · Computer Security</div>
-                        <div class="muted">Prerequisite: CSE3711</div>
-                        <div class="muted">Exam Day: Day 6</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="10">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">GED OPT2 · General Education Optional-II</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="10">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4000A · Final Year Design Project - I</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">2 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="10">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4890 · Elective – I - (Machine Learning)</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: TBA</div>
-                        <div class="muted">Exam Slot: TBA</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="10">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4509 · Operating Systems</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 1</div>
-                        <div class="muted">Exam Slot: T1</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="10">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4510 · Operating Systems Laboratory</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="9">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE2233 · Theory of Computation</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 7</div>
-                        <div class="muted">Exam Slot: T2</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="9">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">GED OPT1 · General Education Optional – I (ACT 2111)</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="9">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">PMG4101 · Project Management</div>
-                        <div class="muted">Prerequisite: CSE3411</div>
-                        <div class="muted">Exam Day: Day 3</div>
-                        <div class="muted">Exam Slot: T2</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="9">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE3711 · Computer Networks</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 4</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="9">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE3712 · Computer Networks Lab</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="8">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4325 · Microprocessors and Microcontrollers</div>
-                        <div class="muted">Prerequisite: CSE3313</div>
-                        <div class="muted">Exam Day: Day 2</div>
-                        <div class="muted">Exam Slot: T2</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="8">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4326 · Microprocessors and Microcontrollers Lab</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="8">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE3421 · Software Engineering</div>
-                        <div class="muted">Prerequisite: CSE3411</div>
-                        <div class="muted">Exam Day: Day 5</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="8">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE3422 · Software Engineering Lab</div>
-                        <div class="muted">Prerequisite: CSE3412</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="8">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE3811 · Artificial Intelligence</div>
-                        <div class="muted">Prerequisite: MATH2205</div>
-                        <div class="muted">Exam Day: Day 3</div>
-                        <div class="muted">Exam Slot: T1</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="8">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE3812 · Artificial Intelligence Lab</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="7">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE3313 · Computer Architecture</div>
-                        <div class="muted">Prerequisite: CSE1325</div>
-                        <div class="muted">Exam Day: Day 1</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="7">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE2118 · Advanced Object Oriented Programming Lab</div>
-                        <div class="muted">Prerequisite: CSE1116</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="7">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">BIO3105 · Biology for Engineers</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 3</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="7">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE3411 · System Analysis and Design</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 5</div>
-                        <div class="muted">Exam Slot: T1</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="7">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE3412 · System Analysis and Design Lab</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="6">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE3521 · Database Management Systems</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 2</div>
-                        <div class="muted">Exam Slot: T1</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="6">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE3522 · Database Management Systems Lab</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="6">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">EEE2123 · Electronics</div>
-                        <div class="muted">Prerequisite: EEE2113</div>
-                        <div class="muted">Exam Day: Day 6</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="6">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">EEE2124 · Electronics Lab</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="6">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE4165 · Web Programming</div>
-                        <div class="muted">Prerequisite: CSE1115, CSE1116</div>
-                        <div class="muted">Exam Day: Day 7</div>
-                        <div class="muted">Exam Slot: T1</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="5">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">MATH2205 · Probability and Statistics</div>
-                        <div class="muted">Prerequisite: MATH1151</div>
-                        <div class="muted">Exam Day: Day 2</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="5">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">SOC2101 · Society, Technology and Engineering Ethics</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 1</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="5">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE2217 · Data Structure and Algorithms II</div>
-                        <div class="muted">Prerequisite: CSE2215</div>
-                        <div class="muted">Exam Day: Day 5</div>
-                        <div class="muted">Exam Slot: T2</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="5">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE2218 · Data Structure and Algorithms II Laboratory</div>
-                        <div class="muted">Prerequisite: CSE2216</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="5">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">EEE2113 · Electrical Circuits</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 6</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="4">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">MATH2201 · Coordinate Geometry and Vector Analysis</div>
-                        <div class="muted">Prerequisite: MATH1151</div>
-                        <div class="muted">Exam Day: Day 5</div>
-                        <div class="muted">Exam Slot: T1</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="4">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE1325 · Digital Logic Design</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: Day 3</div>
-                        <div class="muted">Exam Slot: T3</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="4">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE1326 · Digital Logic Design Lab</div>
-                        <div class="muted">Prerequisite: None</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="4">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE1115 · Object Oriented Programming</div>
-                        <div class="muted">Prerequisite: CSE2215</div>
-                        <div class="muted">Exam Day: Day 6</div>
-                        <div class="muted">Exam Slot: T2</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">3 cr</span>
-                    </div>
-                </div>
-                <div class="list-item" data-trimester="4">
-                    <div>
-                        <div class="course-title" style="font-weight:600;">CSE1116 · Object Oriented Programming Lab</div>
-                        <div class="muted">Prerequisite: CSE2216</div>
-                        <div class="muted">Exam Day: N/A</div>
-                        <div class="muted">Exam Slot: N/A</div>
-                    </div>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <button class="btn materials-btn" data-course="COURSE_CODE" data-course-title="COURSE_TITLE">Materials</button>
-                        <span class="badge">1 cr</span>
-                    </div>
-                </div>
+                <!-- Restored full course list for all trimesters -->
+                <div class="list-item" data-trimester="1"><div><div class="course-title" style="font-weight:600;">ENG1011 · English I</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="ENG1011" data-course-title="ENG1011 · English I">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="1"><div><div class="course-title" style="font-weight:600;">BDS1201 · History of the Emergence of Bangladesh</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="BDS1201" data-course-title="BDS1201 · History of the Emergence of Bangladesh">Materials</button><span class="badge">2 cr</span></div></div>
+                <div class="list-item" data-trimester="1"><div><div class="course-title" style="font-weight:600;">CSE1110 · Introduction to Computer Systems</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE1110" data-course-title="CSE1110 · Introduction to Computer Systems">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="1"><div><div class="course-title" style="font-weight:600;">MATH1151 · Fundamental Calculus</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="MATH1151" data-course-title="MATH1151 · Fundamental Calculus">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="2"><div><div class="course-title" style="font-weight:600;">ENG1013 · English II</div><div class="muted">Prerequisite: ENG1011</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="ENG1013" data-course-title="ENG1013 · English II">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="2"><div><div class="course-title" style="font-weight:600;">CSE1111 · Structured Programming Language</div><div class="muted">Prerequisite: CSE1110</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE1111" data-course-title="CSE1111 · Structured Programming Language">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="2"><div><div class="course-title" style="font-weight:600;">CSE1112 · Structured Programming Language Laboratory</div><div class="muted">Prerequisite: CSE1110</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE1112" data-course-title="CSE1112 · Structured Programming Language Laboratory">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="2"><div><div class="course-title" style="font-weight:600;">CSE2213 · Discrete Mathematics</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE2213" data-course-title="CSE2213 · Discrete Mathematics">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="3"><div><div class="course-title" style="font-weight:600;">MATH2183 · Calculus and Linear Algebra</div><div class="muted">Prerequisite: MATH1151</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="MATH2183" data-course-title="MATH2183 · Calculus and Linear Algebra">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="3"><div><div class="course-title" style="font-weight:600;">PHY2105 · Physics</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="PHY2105" data-course-title="PHY2105 · Physics">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="3"><div><div class="course-title" style="font-weight:600;">PHY2106 · Physics Lab</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="PHY2106" data-course-title="PHY2106 · Physics Lab">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="3"><div><div class="course-title" style="font-weight:600;">CSE2215 · Data Structure and Algorithms I</div><div class="muted">Prerequisite: CSE1111</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE2215" data-course-title="CSE2215 · Data Structure and Algorithms I">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="3"><div><div class="course-title" style="font-weight:600;">CSE2216 · Data Structure and Algorithms I Laboratory</div><div class="muted">Prerequisite: CSE1112</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE2216" data-course-title="CSE2216 · Data Structure and Algorithms I Laboratory">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="4"><div><div class="course-title" style="font-weight:600;">MATH2201 · Coordinate Geometry and Vector Analysis</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="MATH2201" data-course-title="MATH2201 · Coordinate Geometry and Vector Analysis">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="4"><div><div class="course-title" style="font-weight:600;">CSE1325 · Digital Logic Design</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE1325" data-course-title="CSE1325 · Digital Logic Design">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="4"><div><div class="course-title" style="font-weight:600;">CSE1326 · Digital Logic Design Lab</div><div class="muted">Prerequisite: CSE1325</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE1326" data-course-title="CSE1326 · Digital Logic Design Lab">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="4"><div><div class="course-title" style="font-weight:600;">CSE1115 · Object Oriented Programming</div><div class="muted">Prerequisite: CSE1111</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE1115" data-course-title="CSE1115 · Object Oriented Programming">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="4"><div><div class="course-title" style="font-weight:600;">CSE1116 · Object Oriented Programming Lab</div><div class="muted">Prerequisite: CSE1115</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE1116" data-course-title="CSE1116 · Object Oriented Programming Lab">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="5"><div><div class="course-title" style="font-weight:600;">MATH2205 · Probability and Statistics</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="MATH2205" data-course-title="MATH2205 · Probability and Statistics">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="5"><div><div class="course-title" style="font-weight:600;">SOC2101 · Society, Technology and Engineering Ethics</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="SOC2101" data-course-title="SOC2101 · Society, Technology and Engineering Ethics">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="5"><div><div class="course-title" style="font-weight:600;">CSE2217 · Data Structure and Algorithms II</div><div class="muted">Prerequisite: CSE2215</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE2217" data-course-title="CSE2217 · Data Structure and Algorithms II">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="5"><div><div class="course-title" style="font-weight:600;">CSE2218 · Data Structure and Algorithms II Laboratory</div><div class="muted">Prerequisite: CSE2217</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE2218" data-course-title="CSE2218 · Data Structure and Algorithms II Laboratory">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="5"><div><div class="course-title" style="font-weight:600;">EEE2113 · Electrical Circuits</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="EEE2113" data-course-title="EEE2113 · Electrical Circuits">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="6"><div><div class="course-title" style="font-weight:600;">CSE3521 · Database Management Systems</div><div class="muted">Prerequisite: CSE2217</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE3521" data-course-title="CSE3521 · Database Management Systems">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="6"><div><div class="course-title" style="font-weight:600;">CSE3522 · Database Management Systems Lab</div><div class="muted">Prerequisite: CSE3521</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE3522" data-course-title="CSE3522 · Database Management Systems Lab">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="6"><div><div class="course-title" style="font-weight:600;">EEE2123 · Electronics</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="EEE2123" data-course-title="EEE2123 · Electronics">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="6"><div><div class="course-title" style="font-weight:600;">EEE2124 · Electronics Lab</div><div class="muted">Prerequisite: EEE2123</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="EEE2124" data-course-title="EEE2124 · Electronics Lab">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="6"><div><div class="course-title" style="font-weight:600;">CSE4165 · Web Programming</div><div class="muted">Prerequisite: CSE3521</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE4165" data-course-title="CSE4165 · Web Programming">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="7"><div><div class="course-title" style="font-weight:600;">CSE3313 · Computer Architecture</div><div class="muted">Prerequisite: CSE1325</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE3313" data-course-title="CSE3313 · Computer Architecture">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="7"><div><div class="course-title" style="font-weight:600;">CSE2118 · Advanced Object Oriented Programming Lab</div><div class="muted">Prerequisite: CSE1116</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE2118" data-course-title="CSE2118 · Advanced Object Oriented Programming Lab">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="7"><div><div class="course-title" style="font-weight:600;">BIO3105 · Biology for Engineers</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="BIO3105" data-course-title="BIO3105 · Biology for Engineers">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="7"><div><div class="course-title" style="font-weight:600;">CSE3411 · System Analysis and Design</div><div class="muted">Prerequisite: CSE2217</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE3411" data-course-title="CSE3411 · System Analysis and Design">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="7"><div><div class="course-title" style="font-weight:600;">CSE3412 · System Analysis and Design Lab</div><div class="muted">Prerequisite: CSE3411</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE3412" data-course-title="CSE3412 · System Analysis and Design Lab">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="8"><div><div class="course-title" style="font-weight:600;">CSE4325 · Microprocessors and Microcontrollers</div><div class="muted">Prerequisite: CSE3313</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE4325" data-course-title="CSE4325 · Microprocessors and Microcontrollers">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="8"><div><div class="course-title" style="font-weight:600;">CSE4326 · Microprocessors and Microcontrollers Lab</div><div class="muted">Prerequisite: CSE4325</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE4326" data-course-title="CSE4326 · Microprocessors and Microcontrollers Lab">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="8"><div><div class="course-title" style="font-weight:600;">CSE3421 · Software Engineering</div><div class="muted">Prerequisite: CSE2217</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE3421" data-course-title="CSE3421 · Software Engineering">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="8"><div><div class="course-title" style="font-weight:600;">CSE3422 · Software Engineering Lab</div><div class="muted">Prerequisite: CSE3421</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE3422" data-course-title="CSE3422 · Software Engineering Lab">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="8"><div><div class="course-title" style="font-weight:600;">CSE3811 · Artificial Intelligence</div><div class="muted">Prerequisite: CSE2217</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE3811" data-course-title="CSE3811 · Artificial Intelligence">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="8"><div><div class="course-title" style="font-weight:600;">CSE3812 · Artificial Intelligence Lab</div><div class="muted">Prerequisite: CSE3811</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE3812" data-course-title="CSE3812 · Artificial Intelligence Lab">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="9"><div><div class="course-title" style="font-weight:600;">CSE2233 · Theory of Computation</div><div class="muted">Prerequisite: CSE2213</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE2233" data-course-title="CSE2233 · Theory of Computation">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="9"><div><div class="course-title" style="font-weight:600;">GED OPT1 · General Education Optional – I (ACT 2111)</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="GED OPT1" data-course-title="GED OPT1 · General Education Optional – I (ACT 2111)">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="9"><div><div class="course-title" style="font-weight:600;">PMG4101 · Project Management</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="PMG4101" data-course-title="PMG4101 · Project Management">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="9"><div><div class="course-title" style="font-weight:600;">CSE3711 · Computer Networks</div><div class="muted">Prerequisite: CSE2217</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE3711" data-course-title="CSE3711 · Computer Networks">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="9"><div><div class="course-title" style="font-weight:600;">CSE3712 · Computer Networks Lab</div><div class="muted">Prerequisite: CSE3711</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE3712" data-course-title="CSE3712 · Computer Networks Lab">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="10"><div><div class="course-title" style="font-weight:600;">GED OPT2 · General Education Optional-II</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="GED OPT2" data-course-title="GED OPT2 · General Education Optional-II">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="10"><div><div class="course-title" style="font-weight:600;">CSE4000A · Final Year Design Project - I</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE4000A" data-course-title="CSE4000A · Final Year Design Project - I">Materials</button><span class="badge">2 cr</span></div></div>
+                <div class="list-item" data-trimester="10"><div><div class="course-title" style="font-weight:600;">CSE**** · Elective – I</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE****" data-course-title="CSE**** · Elective – I">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="10"><div><div class="course-title" style="font-weight:600;">CSE4509 · Operating Systems</div><div class="muted">Prerequisite: CSE2217</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE4509" data-course-title="CSE4509 · Operating Systems">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="10"><div><div class="course-title" style="font-weight:600;">CSE4510 · Operating Systems Laboratory</div><div class="muted">Prerequisite: CSE4509</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE4510" data-course-title="CSE4510 · Operating Systems Laboratory">Materials</button><span class="badge">1 cr</span></div></div>
+                <div class="list-item" data-trimester="11"><div><div class="course-title" style="font-weight:600;">GED OPT3 · General Education Optional – III (IPE - 3401)</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="GED OPT3" data-course-title="GED OPT3 · General Education Optional – III (IPE - 3401)">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="11"><div><div class="course-title" style="font-weight:600;">CSE**** · Elective – II</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE****" data-course-title="CSE**** · Elective – II">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="11"><div><div class="course-title" style="font-weight:600;">CSE**** · Elective – III</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE****" data-course-title="CSE**** · Elective – III">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="11"><div><div class="course-title" style="font-weight:600;">CSE4000B · Final Year Design Project - II</div><div class="muted">Prerequisite: CSE4000A</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE4000B" data-course-title="CSE4000B · Final Year Design Project - II">Materials</button><span class="badge">2 cr</span></div></div>
+                <div class="list-item" data-trimester="11"><div><div class="course-title" style="font-weight:600;">CSE4531 · Computer Security</div><div class="muted">Prerequisite: CSE2217</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE4531" data-course-title="CSE4531 · Computer Security">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="12"><div><div class="course-title" style="font-weight:600;">CSE4000C · Final Year Design Project - III</div><div class="muted">Prerequisite: CSE4000A & CSE4000B</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE4000C" data-course-title="CSE4000C · Final Year Design Project - III">Materials</button><span class="badge">2 cr</span></div></div>
+                <div class="list-item" data-trimester="12"><div><div class="course-title" style="font-weight:600;">EEE4261 · Green Computing</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="EEE4261" data-course-title="EEE4261 · Green Computing">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="12"><div><div class="course-title" style="font-weight:600;">CSE**** · Elective – IV</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE****" data-course-title="CSE**** · Elective – IV">Materials</button><span class="badge">3 cr</span></div></div>
+                <div class="list-item" data-trimester="12"><div><div class="course-title" style="font-weight:600;">CSE**** · Elective – V</div><div class="muted">Prerequisite: None</div></div><div style="display:flex; gap:8px; align-items:center;"><button class="btn materials-btn" data-course="CSE****" data-course-title="CSE**** · Elective – V">Materials</button><span class="badge">3 cr</span></div></div>
             </div>
             <div id="noCoursesMsg" class="no-results" hidden>No courses match your search.</div>
             <button id="showAllCoursesBtn" class="btn" style="margin:18px auto 0; display:block;" type="button">Show All Courses</button>

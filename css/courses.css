@@ -1,9 +1,41 @@
-/* Trimester filter styles */
-.trimester-filter {
-    margin-bottom: 8px;
+/* Advance filter styles */
+.advance-filter {
+    display: flex;
+    align-items: center;
     gap: 10px;
 }
-.trimester-select {
+.advance-filter label {
+    font-weight: 500;
+    color: var(--text);
+}
+.advance-input {
+    padding: 7px 16px 7px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 15px;
+    transition: border-color 0.2s, background 0.2s;
+    min-width: 180px;
+}
+.advance-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--surface);
+}
+/* Trimester and More filter styles */
+.filter-row {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.trimester-filter, .more-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.trimester-select, .more-select {
     padding: 7px 16px 7px 10px;
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -12,10 +44,14 @@
     font-size: 15px;
     transition: border-color 0.2s, background 0.2s;
 }
-.trimester-select:focus {
+.trimester-select:focus, .more-select:focus {
     outline: none;
     border-color: var(--accent);
     background: var(--surface);
+}
+.trimester-filter label, .more-filter label {
+    font-weight: 500;
+    color: var(--text);
 }
 /* Courses page styles */
 .courses-list {
