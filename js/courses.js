@@ -61,9 +61,15 @@
 			if (moreSelect && moreSelect.value === 'ged') {
 				match = match && isGED;
 			}
-			// If Lab filter is active, show only lab courses (match 'lab' in title)
+			// If Lab filter is active, show only lab courses (match 'lab' in course title only)
 			if (moreSelect && moreSelect.value === 'lab') {
-				match = match && text.includes('lab');
+				const courseTitle = el.querySelector('.course-title');
+				const titleText = courseTitle ? courseTitle.textContent.toLowerCase() : '';
+				match = match && titleText.includes('lab');
+			}
+			// If FYDP filter is active, show only FYDP courses (match 'fydp' or 'final year design project' in title)
+			if (moreSelect && moreSelect.value === 'fydp') {
+				match = match && (text.includes('fydp') || text.includes('final year design project'));
 			}
 			// If Major filter is active, apply advance filter by data-major
 			if (moreSelect && moreSelect.value === 'major' && advanceFilter && advanceFilter.style.display !== 'none' && advanceSelect) {
