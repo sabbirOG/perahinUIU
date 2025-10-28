@@ -138,24 +138,7 @@
             <div class="card">
                 <h3 style="margin-bottom:12px;">📅 Upcoming Events</h3>
                 <div class="list event-list">
-                    <div class="list-item event-item">
-                        <div>
-                            <div style="font-weight:600; color:var(--text);">Tech Career Fair</div>
-                            <div class="muted" style="font-size:13px;">Dec 15, 2025 • 10:00 AM</div>
-                        </div>
-                    </div>
-                    <div class="list-item event-item">
-                        <div>
-                            <div style="font-weight:600; color:var(--text);">Project Showcase</div>
-                            <div class="muted" style="font-size:13px;">Dec 20, 2025 • 2:00 PM</div>
-                        </div>
-                    </div>
-                    <div class="list-item event-item">
-                        <div>
-                            <div style="font-weight:600; color:var(--text);">Trimester Break</div>
-                            <div class="muted" style="font-size:13px;">Dec 25 - Jan 5</div>
-                        </div>
-                    </div>
+                    <!-- Events will be loaded here by JS -->
                 </div>
                 <a href="pages/events.html" class="btn accent" style="margin-top:12px; width:100%; text-align:center; display:inline-block; text-decoration:none;">View All Events</a>
             </div>
@@ -202,6 +185,27 @@
     </footer>
 
     <script src="js/main.js"></script>
+        <script src="js/eventsData.js"></script>
+        <script>
+        // Dynamically load top 3 events from eventsData.js
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof eventsData !== 'undefined') {
+                const eventList = document.querySelector('.event-list');
+                if (eventList) {
+                    eventList.innerHTML = '';
+                    eventsData.slice(0, 3).forEach(event => {
+                        const item = document.createElement('div');
+                        item.className = 'list-item event-item';
+                        item.innerHTML = `<div>
+                            <div style="font-weight:600; color:var(--text);">${event.title}</div>
+                            <div class="muted" style="font-size:13px;">${event.date}${event.time ? ' • ' + event.time : ''}</div>
+                        </div>`;
+                        eventList.appendChild(item);
+                    });
+                }
+            }
+        });
+        </script>
     <script src="js/messagesData.js"></script>
     <script src="js/dashboard.js"></script>
 </body>
