@@ -49,9 +49,7 @@
                 </select>
                 <select id="eventMonth" class="input" aria-label="Filter by month">
                     <option value="all">Any month</option>
-                    <option value="2025-10">Oct 2025</option>
-                    <option value="2025-11">Nov 2025</option>
-                    <option value="2025-12">Dec 2025</option>
+                    <!-- Month options will be populated by JavaScript -->
                 </select>
             </div>
         </div>
@@ -60,38 +58,7 @@
             <div class="card">
                 <h2>Upcoming Events</h2>
                 <div class="list mt-3" id="eventsList">
-                    <div class="list-item" data-type="festival" data-date="2025-10" data-location="UIU Multipurpose Hall">
-                        <div>
-                            <div class="event-title">UIU Autumn Festival 1432</div>
-                            <div class="event-meta"><span style="background:#f3f3f3;color:#444;border-radius:12px;padding:2px 10px 2px 10px;font-size:95%;margin-right:8px;display:inline-block;min-width:120px;text-align:center;">Sat Oct 18, 2025</span>· 3:30 PM · UIU Multipurpose Hall</div>
-                            <div class="event-details" style="margin-top:6px; font-size:13px; color:var(--muted);">
-                                A celebration of clouds, kash flowers, and melodies!<br>
-                                Musical & dance performances, poetry, quiz, ramp show.<br>
-                                <span style="font-size:12px; color:#b48b00;">মেঘ, কাশফুল আর সুরের মেলায় — ইউ আই ইউ শরতের উৎসব ১৪৩২</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-item" data-type="seminar" data-date="2025-10" data-location="Online">
-                        <div>
-                            <div class="event-title">Grameenphone Academy · Skill Sprint · Session 01</div>
-                            <div class="event-meta"><span style="background:#f3f3f3;color:#444;border-radius:12px;padding:2px 10px 2px 10px;font-size:95%;margin-right:8px;display:inline-block;min-width:120px;text-align:center;">Wed Oct 22, 2025</span>· 8:00–10:00 PM · Online · <a class="no-underline" style="color: var(--accent);" href="https://forms.gle/YnB6DMwdspBw88sD6" target="_blank" rel="noopener">Register</a></div>
-                        </div>
-                    </div>
-                    <div class="list-item" data-type="seminar" data-date="2025-10" data-location="Online">
-                        <div>
-                            <div class="event-title">Grameenphone Academy · Skill Sprint · Session 02</div>
-                            <div class="event-meta"><span style="background:#f3f3f3;color:#444;border-radius:12px;padding:2px 10px 2px 10px;font-size:95%;margin-right:8px;display:inline-block;min-width:120px;text-align:center;">Sat Oct 25, 2025</span>· 8:00–10:00 PM · Online · <a class="no-underline" style="color: var(--accent);" href="https://forms.gle/YnB6DMwdspBw88sD6" target="_blank" rel="noopener">Register</a></div>
-                        </div>
-                    </div>
-                    <div class="list-item" data-type="career" data-date="2025-10" data-location="UIU Campus">
-                        <div>
-                            <div class="event-title">Ismartu Technology BD Ltd · On-Campus Recruitment</div>
-                            <div class="event-meta"><span style="background:#f3f3f3;color:#444;border-radius:12px;padding:2px 10px 2px 10px;font-size:95%;margin-right:8px;display:inline-block;min-width:120px;text-align:center;">Mon Oct 20, 2025</span>· UIU Campus</div>
-                            <div class="event-details" style="margin-top:6px; font-size:13px; color:var(--muted);">
-                                On-campus recruitment for Interns · 20 UIU students interviewed by Ismartu Technology BD Ltd HR team · Career talk by Ms. Jingle Cai
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Events will be loaded here by JS -->
                 </div>
             </div>
             <div class="card">
@@ -112,6 +79,156 @@
     </footer>
 
     <script src="../js/main.js"></script>
+        <script src="../js/eventsPageData.js"></script>
+        <script>
+let activeDay = null;
+
+function parseEventDateObj(event) {
+  if (!event.date) return null;
+  const rangeMatch = event.date.match(/([A-Za-z]{3}) (\d{1,2}) - ([A-Za-z]{3})? ?(\d{1,2}), (\d{4})/);
+  if (rangeMatch) {
+    return new Date(`${rangeMatch[1]} ${rangeMatch[2]}, ${rangeMatch[5]}`);
+  }
+  const singleMatch = event.date.match(/([A-Za-z]{3}) (\d{1,2}), (\d{4})/);
+  if (singleMatch) {
+    return new Date(`${singleMatch[1]} ${singleMatch[2]}, ${singleMatch[3]}`);
+  }
+  return null;
+}
+
+function renderEvents(events) {
+  const eventList = document.getElementById('eventsList');
+  eventList.innerHTML = '';
+  if (events.length === 0) {
+    eventList.innerHTML = `<div class='list-item muted' style='text-align:center; padding:24px; color:#FF6F00;'>No event yet</div>`;
+    return;
+  }
+  // Render all events in a single list (no featured/more split)
+  events.forEach(event => {
+    const item = document.createElement('div');
+    item.className = 'list-item';
+    item.innerHTML = `<div>
+      <div class='event-title'>${event.title}</div>
+      <div class='event-meta'>${event.date}${event.time ? ' · ' + event.time : ''}${event.location ? ' · ' + event.location : ''}</div>
+      ${event.details ? `<div class='event-details' style='margin-top:6px; font-size:13px; color:var(--muted);'>${event.details}</div>` : ''}
+    </div>`;
+    eventList.appendChild(item);
+  });
+}
+
+// Dynamically generate month options (Jan-Dec)
+(function() {
+  const monthSelect = document.getElementById('eventMonth');
+  if (monthSelect) {
+    monthSelect.innerHTML = '<option value="all">Any month</option>';
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    for (let i = 0; i < 12; i++) {
+      monthSelect.innerHTML += `<option value="${i+1}">${monthNames[i]}</option>`;
+    }
+  }
+})();
+
+function filterAndSortEvents(dayFilter = null) {
+  let filtered = eventsPageData.slice();
+  // Search
+  const q = document.getElementById('eventSearch').value.toLowerCase();
+  if (q) {
+    filtered = filtered.filter(e => e.title.toLowerCase().includes(q) || (e.details && e.details.toLowerCase().includes(q)));
+  }
+  // Type
+  const type = document.getElementById('eventType').value;
+  if (type !== 'all') {
+    filtered = filtered.filter(e => e.type === type);
+  }
+  // Month (filter by month only, ignore year)
+  const month = document.getElementById('eventMonth').value;
+  let monthNum = (month === 'all') ? null : parseInt(month);
+  if (monthNum) {
+    filtered = filtered.filter(e => {
+      const dateObj = parseEventDateObj(e);
+      if (!dateObj) return false;
+      return (dateObj.getMonth()+1) == monthNum;
+    });
+  }
+  // Day filter (from calendar click)
+  if (dayFilter && monthNum) {
+    filtered = filtered.filter(e => {
+      const dateObj = parseEventDateObj(e);
+      return dateObj && dateObj.getDate() === dayFilter && (dateObj.getMonth()+1) === monthNum;
+    });
+  }
+  // Sort by date descending (most recent/top)
+  filtered.sort((a, b) => {
+    const da = parseEventDateObj(a);
+    const db = parseEventDateObj(b);
+    if (!da && !db) return 0;
+    if (!da) return 1;
+    if (!db) return -1;
+    return db - da;
+  });
+  renderEvents(filtered);
+  highlightCalendar(eventsPageData, dayFilter, monthNum);
+}
+
+function highlightCalendar(events, selectedDay = null, selectedMonth = null) {
+  const calendar = document.querySelector('.event-calendar');
+  if (!calendar) return;
+  // Remove all highlights first
+  calendar.querySelectorAll('.calendar-day').forEach(dayEl => {
+    dayEl.classList.remove('event');
+    dayEl.classList.remove('selected');
+  });
+  // Use selected month, or current month if not set
+  let monthNum = selectedMonth || (new Date().getMonth()+1);
+  // Collect event days for the selected month
+  const eventDays = new Set();
+  events.forEach(event => {
+    const dateObj = parseEventDateObj(event);
+    if (dateObj && (dateObj.getMonth()+1) === monthNum) {
+      eventDays.add(dateObj.getDate());
+    }
+  });
+  calendar.querySelectorAll('.calendar-day').forEach(dayEl => {
+    const dayNum = parseInt(dayEl.textContent, 10);
+    if (eventDays.has(dayNum)) {
+      dayEl.classList.add('event');
+    }
+    if (selectedDay && dayNum === selectedDay) {
+      dayEl.classList.add('selected');
+    }
+  });
+}
+
+// Event listeners for filters
+['eventSearch','eventType','eventMonth'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => filterAndSortEvents(activeDay));
+  document.getElementById(id).addEventListener('change', () => filterAndSortEvents(activeDay));
+});
+
+// Calendar day click
+const calendar = document.querySelector('.event-calendar');
+if (calendar) {
+  calendar.querySelectorAll('.calendar-day').forEach(dayEl => {
+    dayEl.style.cursor = 'pointer';
+    dayEl.addEventListener('click', function() {
+      const dayNum = parseInt(this.textContent, 10);
+      // Get selected month
+      const month = document.getElementById('eventMonth').value;
+      let monthNum = (month === 'all') ? null : parseInt(month);
+      if (activeDay === dayNum) {
+        activeDay = null;
+        filterAndSortEvents();
+      } else {
+        activeDay = dayNum;
+        filterAndSortEvents(dayNum);
+      }
+    });
+  });
+}
+
+// Initial render
+filterAndSortEvents();
+</script>
     <script src="../js/events.js"></script>
 </body>
 </html>
