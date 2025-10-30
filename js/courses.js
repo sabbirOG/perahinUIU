@@ -4,7 +4,7 @@
 	const showAllBtn = document.getElementById('showAllCoursesBtn');
 	let showingAll = false;
 
-	const input = document.getElementById('courseSearch');
+	const input = document.getElementById('courseSearchInput');
 	const clearBtn = document.getElementById('courseSearchClear');
 	const countEl = document.getElementById('courseSearchCount');
 	const list = document.getElementById('coursesList');
@@ -51,35 +51,40 @@
 			const text = normalize(el.textContent);
 			const itemTrimester = el.getAttribute('data-trimester');
 			let isGED = text.includes('ged');
-			// Hide GED courses when a specific trimester is selected
+			let match = true;
+
+			// First, apply filters
 			let trimesterMatch = !trimester || trimester === 'all' || itemTrimester === trimester;
 			if (trimester !== 'all' && isGED) {
 				trimesterMatch = false;
 			}
-			let match = (!q || text.includes(q)) && trimesterMatch;
-			// If GED filter is active, show only GED courses
-			if (moreSelect && moreSelect.value === 'ged') {
-				match = match && isGED;
-			}
-			// If Lab filter is active, show only lab courses (match 'lab' in course title only)
-			if (moreSelect && moreSelect.value === 'lab') {
-				const courseTitle = el.querySelector('.course-title');
-				const titleText = courseTitle ? courseTitle.textContent.toLowerCase() : '';
-				match = match && titleText.includes('lab');
-			}
-			// If FYDP filter is active, show only FYDP courses (match 'fydp' or 'final year design project' in title)
-			if (moreSelect && moreSelect.value === 'fydp') {
-				match = match && (text.includes('fydp') || text.includes('final year design project'));
-			}
-			// If Major filter is active, apply advance filter by data-major
-			if (moreSelect && moreSelect.value === 'major' && advanceFilter && advanceFilter.style.display !== 'none' && advanceSelect) {
-				if (advanceSelect.value !== 'all') {
-					match = match && el.getAttribute('data-major') === advanceSelect.value;
-				} else {
-					// Show only courses that have a data-major attribute
+			match = trimesterMatch;
+			if (moreSelect) {
+				if (moreSelect.value === 'ged') {
+					match = match && isGED;
+				}
+				if (moreSelect.value === 'lab') {
+					const courseTitle = el.querySelector('.course-title');
+					const titleText = courseTitle ? courseTitle.textContent.toLowerCase() : '';
+					match = match && titleText.includes('lab');
+				}
+				if (moreSelect.value === 'fydp') {
+					match = match && (text.includes('fydp') || text.includes('final year design project'));
+				}
+				if (moreSelect.value === 'major') {
 					match = match && el.hasAttribute('data-major');
+					// If advanceSelect is visible and not 'all', further filter by value
+					if (advanceFilter && advanceFilter.style.display !== 'none' && advanceSelect && advanceSelect.value !== 'all') {
+						match = match && el.getAttribute('data-major') === advanceSelect.value;
+					}
 				}
 			}
+
+			// Then, apply search only to filtered courses
+			if (match && q) {
+				match = text.includes(q);
+			}
+
 			el.style.display = match ? '' : 'none';
 			highlight(el, q);
 			if (match) visible++;
