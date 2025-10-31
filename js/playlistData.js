@@ -336,5 +336,12 @@ window.playlists = [
 		trimester: 2,
 		url: 'https://www.youtube.com/live/w7kYR1P48a8?si=LarYg0s3o2TTcd-o',
 		by: 'MID QS Solve'
+	},
+	{
+		code: 'CSE 3421',
+		name: 'Software Engineering(SWE)',
+		trimester: 8,
+		url: 'https://www.youtube.com/playlist?list=PLkO3e8HCh8uL8zOsHGuWiL68mSy9qSSjv',
+		by: 'Samin Sharaf Shomik'
 	}
 ];
