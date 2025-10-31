@@ -88,10 +88,11 @@
         let matchingBeforeLimit = 0;
         const INITIAL_VISIBLE_COUNT = 4;
         items.forEach((el) => {
-            const text = normalize(el.textContent);
+            const code = normalize(el.getAttribute('data-course'));
+            const name = normalize(el.querySelector('.course-title')?.textContent || '');
             const itemTrimester = el.getAttribute('data-trimester');
             const trimesterMatch = !trimester || trimester === 'all' || itemTrimester === trimester;
-            const searchMatch = !q || text.includes(q);
+            const searchMatch = !q || code.includes(q) || name.includes(q);
             const match = searchMatch && trimesterMatch;
             if (q || (trimester && trimester !== 'all')) {
                 el.style.display = match ? 'flex' : 'none';
@@ -104,7 +105,18 @@
                     el.style.display = match ? 'flex' : 'none';
                 }
             }
-            highlight(el, q);
+            // Highlight search term in code and name
+            const title = el.querySelector('.course-title');
+            if (title) {
+                if (!title.dataset.orig) title.dataset.orig = title.textContent;
+                const base = title.dataset.orig;
+                if (!q) {
+                    title.innerHTML = base;
+                } else {
+                    const re = new RegExp(`(${escapeRegExp(q)})`, 'ig');
+                    title.innerHTML = base.replace(re, '<mark>$1</mark>');
+                }
+            }
             if (match && el.style.display !== 'none') {
                 visible++;
             }
@@ -165,6 +177,17 @@
     if (clearBtn) clearBtn.addEventListener('click', () => {
         input.value = '';
         filterList('', trimesterSelect ? trimesterSelect.value : 'all');
+        input.focus();
+    });
+    // RESET button logic
+    const resetBtn = document.getElementById('playlistSearchReset');
+    if (resetBtn) resetBtn.addEventListener('click', () => {
+        input.value = '';
+        if (trimesterSelect) trimesterSelect.value = 'all';
+        list.classList.remove('show-all-playlists');
+        const showAllBtn = document.getElementById('showAllBtn');
+        if (showAllBtn) showAllBtn.textContent = 'Show All Playlists';
+        filterList('', 'all');
         input.focus();
     });
     document.addEventListener('click', function(e) {
