@@ -1,6 +1,6 @@
 // Dynamic playlist data for Perahin UIU (simplified)
 // Add a new object to the playlists array for each course playlist
-export const playlists = [
+window.playlists = [
 	{
 		code: 'ENG1011',
 		name: 'English I',
