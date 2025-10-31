@@ -71,7 +71,7 @@ const coursesData = [
     examSlot: "T3"
   },
   {
-    code: "ENG1011",
+    code: "ENG 1011",
     title: "ENG 1011 · English I",
     prerequisite: "None",
     credits: 3,
@@ -81,7 +81,7 @@ const coursesData = [
     examSlot: "T1"
   },
   {
-    code: "BDS1201",
+    code: "BDS 1201",
     title: "BDS 1201 · History of the Emergence of Bangladesh",
     prerequisite: "None",
     credits: 2,
