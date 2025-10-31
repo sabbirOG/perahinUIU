@@ -91,7 +91,12 @@
             const code = normalize(el.getAttribute('data-course'));
             const name = normalize(el.querySelector('.course-title')?.textContent || '');
             const itemTrimester = el.getAttribute('data-trimester');
-            const trimesterMatch = !trimester || trimester === 'all' || itemTrimester === trimester;
+            let trimesterMatch;
+            if (trimester === 'major') {
+                trimesterMatch = itemTrimester === '0';
+            } else {
+                trimesterMatch = !trimester || trimester === 'all' || itemTrimester === trimester;
+            }
             const searchMatch = !q || code.includes(q) || name.includes(q);
             const match = searchMatch && trimesterMatch;
             if (q || (trimester && trimester !== 'all')) {
