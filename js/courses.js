@@ -67,16 +67,19 @@ function renderCourses(filteredCourses = null, searchTerm = '') {
     displayCourses = courses.filter(course => validMajors.includes(course.major));
     if (showBtn) showBtn.style.display = 'none';
     if (seeLessBtn) seeLessBtn.style.display = '';
-  } else if (!showAllCourses && !searchTerm) {
-    // Show one course from 1st, two from 4th, one from 7th, one from 9th trimester by default
-    const first = courses.find(course => course.trimester === '1');
-    const fourth = courses.filter(course => course.trimester === '4').slice(0,2);
-    const seventh = courses.find(course => course.trimester === '7');
-    const ninth = courses.find(course => course.trimester === '9');
-    displayCourses = [first, ...fourth, seventh, ninth].filter(Boolean);
+  } else if (!searchTerm && !showAllCourses) {
+    // Default: show only first 5 courses, hide rest under button
+    displayCourses = courses.slice(0, 5);
     if (showBtn) showBtn.style.display = '';
     if (seeLessBtn) seeLessBtn.style.display = 'none';
+  } else if (!searchTerm && showAllCourses) {
+    // Show all courses when button is pressed
+    displayCourses = courses;
+    if (showBtn) showBtn.style.display = 'none';
+    if (seeLessBtn) seeLessBtn.style.display = '';
   } else {
+    // Searching or filtering: show all filtered courses
+    displayCourses = courses;
     if (showBtn) showBtn.style.display = 'none';
     if (seeLessBtn && !searchTerm) seeLessBtn.style.display = '';
   }
@@ -164,20 +167,24 @@ function filterCourses() {
         match = match && course.major === major;
       }
     } else {
-      // Normal filtering logic
+      // Always apply search term filter if present
       if (term) {
-        match = (
+        match = match && (
           course.title.toLowerCase().includes(term) ||
           (course.prerequisite && course.prerequisite.toLowerCase().includes(term)) ||
           (course.examDay && course.examDay.toLowerCase().includes(term)) ||
           (course.examSlot && course.examSlot.toLowerCase().includes(term))
         );
-      } else {
-        if (trimester !== 'all') match = match && course.trimester === trimester;
-  if (more === 'lab') match = match && course.title.toLowerCase().includes('lab');
-  if (more === 'ged') match = match && course.major === 'GED' && course.trimester === 'GED';
-  if (more === 'fydp') match = match && (course.title.toLowerCase().includes('fydp') || course.title.toLowerCase().includes('final year design project'));
       }
+      // Always apply trimester filter if not 'all'
+      if (trimester !== 'all') {
+        const courseTrimester = String(course.trimester).trim();
+        const selectedTrimester = String(trimester).trim();
+        match = match && courseTrimester === selectedTrimester;
+      }
+      if (more === 'lab') match = match && course.title.toLowerCase().includes('lab');
+      if (more === 'ged') match = match && course.major === 'GED' && String(course.trimester).toLowerCase() === 'ged';
+      if (more === 'fydp') match = match && (course.title.toLowerCase().includes('fydp') || course.title.toLowerCase().includes('final year design project'));
     }
     return match;
   });
