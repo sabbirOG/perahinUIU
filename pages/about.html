@@ -46,19 +46,29 @@
         <div class="about-hero">
             <h1>About the Developer</h1>
             <p>Meet the person behind Perahin UIU</p>
+            <div style="margin-top: 18px; display: flex; justify-content: center;">
+                <blockquote style="border-left: 4px solid #FF6F00; background: #fff; color: #444; font-size: 1.08em; font-style: italic; padding: 14px 22px; margin: 0; max-width: 420px;">
+                    <span style="color: #FF6F00; font-size: 1.18em; font-weight: bold;">“</span>So be patient. Indeed, the promise of Allah is truth.<span style="color: #FF6F00; font-size: 1.18em; font-weight: bold;">”</span><br>
+                    <span style="font-size: 0.95em; color: #FF6F00;">(Quran 30:60)</span>
+                </blockquote>
+            </div>
         </div>
 
         <!-- Profile Card (original layout) -->
         <div class="card">
             <div class="developer-section">
-                <div class="developer-avatar">
-                    <img src="../logo/dp-about.png" alt="Sabbir Ahmed" loading="lazy">
+                <div class="developer-quote-card">
+                    <div style="display: flex; justify-content: center; align-items: center; margin: 24px 0;">
+                        <img src="../logo/logo-perahin-uiu-main.png" alt="UIU Logo" style="width: 120px; height: 120px; border-radius: 18px;">
+                    </div>
                 </div>
                 <div class="developer-info">
                     <h2>Sabbir Ahmed</h2>
                     <div class="role">Frontend Developer & UIU Student</div>
                     <p style="color: var(--muted); line-height: 1.6; margin-bottom: 16px;">
-                        A passionate frontend developer currently studying at United International University. I love building web applications that solve real problems and make life easier for students. Always learning, always building.
+                        I’m a passionate <b>frontend developer</b> in my final year at <b>UIU</b>.<br>
+                        I enjoy creating clean, user-friendly web experiences that turn ideas into something real and useful.<br>
+                        I’m always curious about how things work and love finding new, better ways to build them.
                     </p>
                     <div class="social-links">
                         <a href="https://github.com/sabbirOG" target="_blank" rel="noopener" class="social-link">
@@ -69,9 +79,10 @@
                             <span>💼</span>
                             <span>LinkedIn</span>
                         </a>
-                        <a href="mailto:perahinuiu@gmail.com" class="social-link">
+                        <a href="mailto:iamsabbir460@gmail.com" id="profile-email-link" class="social-link" style="position: relative;">
                             <span>📧</span>
                             <span>Email</span>
+                            <span id="profile-email-address" style="display:none; margin-left:10px; color:#FF6F00; font-weight:500; background:#fff; border-radius:6px; padding:2px 10px; border:1px solid #eee; position:absolute; right:-180px; top:50%; transform:translateY(-50%); white-space:nowrap;">iamsabbir460@gmail.com</span>
                         </a>
                     </div>
                 </div>
@@ -82,11 +93,35 @@
         <div class="card" style="margin-top: 24px;">
             <h2 style="margin-bottom: 16px;">📖 Project Story</h2>
             <p style="color: var(--muted); line-height: 1.8; margin: 0;">
-                Perahin UIU began as a simple collection of my personal notes and resources. As a UIU student, I struggled to find organized academic materials and tools in one place. So I built this platform - starting with a CGPA calculator that actually follows UIU's grading system, then adding course playlists, study materials, and more. Today, it serves the entire UIU student community, and I continue to improve it based on student feedback.
+                Perahin UIU started as a personal project to organize my own notes and resources. As a UIU student, I often found it challenging to access academic materials and tools all in one place. That’s why I decided to build this platform.<br><br>
+                It began with a CGPA calculator that accurately follows UIU’s grading system, and over time added course playlists, study materials, and more. Today, Perahin UIU supports the entire student community, and I continue to enhance it based on feedback and real student needs.
             </p>
         </div>
 
         <!-- Feedback Section -->
+        <!-- FAQ Section -->
+
+        <div class="card" style="margin-top: 24px;">
+            <h2 style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;"><img src="../logo/icon-question.png" alt="FAQ" style="height: 1.3em; vertical-align: middle;"> FAQ</h2>
+            <div class="faq-list" style="color: var(--muted); line-height: 1.7;">
+                <div style="margin-bottom: 16px;">
+                    <strong>How do I access course materials or playlists?</strong><br>
+                    You can find course materials and playlists in the navigation menu. Just click on "Course Materials" or "PlayList" to explore resources for your subjects.
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <strong>Can I contribute resources or feedback?</strong><br>
+                    Yes! Student contributions are highly encouraged. Share your resources, ideas, or feedback using the contact options on this page to help make Perahin UIU better for everyone.
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <strong>Who developed Perahin UIU?</strong><br>
+                    Perahin UIU was created by a UIU student to help fellow students access resources and tools more easily. <span style="color: var(--muted); font-size: 0.98em;">Follow the <a href="https://github.com/sabbirOG" target="_blank" style="color: #FF6F00; text-decoration: underline;">GitHub</a> for more updates.</span>
+                </div>
+                <div>
+                    <strong>How do I stay updated with new features?</strong><br>
+                    Check the platform regularly for updates and new features. Major changes are announced on the dashboard or via notices.
+                </div>
+            </div>
+        </div>
         <div class="card" style="margin-top: 24px; text-align: center; background: linear-gradient(135deg, rgba(255, 111, 0, 0.05), rgba(255, 143, 64, 0.05));">
             <h2 style="margin-bottom: 12px;">💬 Get in Touch</h2>
             <p style="color: var(--muted); margin-bottom: 20px;">
@@ -94,9 +129,66 @@
                 I'd love to hear from you!
             </p>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <a href="mailto:perahinuiu@gmail.com" class="btn accent" style="text-decoration: none;">
+                <a href="mailto:perahinuiu@gmail.com" id="contact-email-link" class="btn accent" style="text-decoration: none; position:relative;">
                     Send Email
+                    <span id="contact-email-address" style="display:none; margin-right:10px; color:#FF6F00; font-weight:500; background:#fff; border-radius:6px; padding:2px 10px; border:1px solid #eee; position:absolute; left:-190px; top:50%; transform:translateY(-50%); white-space:nowrap;">perahinuiu@gmail.com</span>
                 </a>
+    <style>
+        .email-popup-card {
+            position: absolute;
+            background: #fff;
+            color: #222;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 8px 16px;
+            font-size: 1rem;
+            z-index: 1000;
+            min-width: 180px;
+            text-align: center;
+            transition: opacity 0.2s;
+        }
+    </style>
+    <script>
+        function isDesktop() {
+            return window.innerWidth >= 1024;
+        }
+        document.getElementById('profile-email-link').addEventListener('click', function(e) {
+            if (!isDesktop()) return;
+            e.preventDefault();
+            var addr = document.getElementById('profile-email-address');
+            addr.style.display = addr.style.display === 'none' ? 'inline-block' : 'none';
+        });
+        document.getElementById('contact-email-link').addEventListener('click', function(e) {
+            if (!isDesktop()) return;
+            e.preventDefault();
+            var addr = document.getElementById('contact-email-address');
+            addr.style.display = addr.style.display === 'none' ? 'inline-block' : 'none';
+        });
+        function hideEmailAddresses() {
+            var profileAddr = document.getElementById('profile-email-address');
+            var contactAddr = document.getElementById('contact-email-address');
+            profileAddr.style.display = 'none';
+            contactAddr.style.display = 'none';
+        }
+        document.addEventListener('click', function(e) {
+            if (!isDesktop()) return;
+            if (!e.target.closest('#profile-email-link')) {
+                document.getElementById('profile-email-address').style.display = 'none';
+            }
+            if (!e.target.closest('#contact-email-link')) {
+                document.getElementById('contact-email-address').style.display = 'none';
+            }
+        });
+        window.addEventListener('scroll', function() {
+            if (!isDesktop()) return;
+            hideEmailAddresses();
+        });
+        window.addEventListener('resize', function() {
+            if (!isDesktop()) return;
+            hideEmailAddresses();
+        });
+    </script>
                 <a href="https://github.com/sabbirOG/perahin-uiu" target="_blank" rel="noopener" class="btn" style="text-decoration: none;">
                     View on GitHub
                 </a>
