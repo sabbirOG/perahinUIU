@@ -36,5 +36,12 @@ const noticesData = [
     date: "2025-09-27",
     category: "general",
     details: "Starts Oct 4. Key stops: EWU Gate, Lohar Bridge, Bottola, UIU. Timings: Morning 06:50–13:10, Afternoon 14:00–18:00. <a href='https://www.uiu.ac.bd/notice/timings-for-new-shuttle-service-uiu-ewu-uiu/' target='_blank' rel='noopener' style='color: var(--accent); text-decoration: underline;'>Details</a>"
+  },
+  {
+    id: 6,
+    title: "Gymnasium Membership and Practice Schedule for Fall 2025",
+    date: "2025-11-02",
+    category: "general",
+    details: "UIU gym registration for Fall 2025: Nov 8–17. Fees: TK. 1,500/trimester, TK. 2,200/semester. Female: 8:30am–12pm, Male: 12:30pm–8pm. UIU & Gym ID required. <a href='https://www.uiu.ac.bd/notice/gymnasium-membership-and-practice-schedule-for-fall-2025/' target='_blank' rel='noopener' style='color: var(--accent); text-decoration: underline;'>Details</a>"
   }
 ];
