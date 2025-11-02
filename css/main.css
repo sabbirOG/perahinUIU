@@ -1,3 +1,37 @@
+/* Always orange CGPA navbar link */
+.nav-link.cgpa-orange {
+    color: #FF6F00 !important;
+    font-weight: 700;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.2s, color 0.2s;
+}
+/* Match other nav-link hover/focus styles */
+.nav-link.cgpa-orange:hover,
+.nav-link.cgpa-orange:focus {
+    background: rgba(255, 111, 0, 0.08);
+    color: #FF6F00 !important;
+}
+.nav-link.cgpa-orange::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: #FF6F00;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+.nav-link.cgpa-orange:hover::after,
+.nav-link.cgpa-orange:focus::after {
+    transform: scaleX(1);
+}
 .search-reset.btn {
     margin-left: 8px;
     padding: 8px 18px;
