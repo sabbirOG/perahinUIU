@@ -55,7 +55,7 @@ const resourcesData = [
   {
     id: 6,
     title: "Sabbir's Secret Stash",
-    description: "A mysterious treasure trove of resources — handpicked by the guy who built this site (yes, that's me 😎)",
+    description: "A mysterious treasure trove of resources — handpicked by the guy who built this site (yes, that's me 😎)LOL",
     link: "https://drive.google.com/drive/u/2/folders/1cBkwHYVwhl9CVTuoDnKGvt1X4Ni9XT0N",
     button: "Open",
     icon: "🗝️",
