@@ -387,6 +387,10 @@
             <td>
                 <select class="input grade-select">
                     <option value="" disabled selected>Old Grade</option>
+                    <option value="4.00">A</option>
+                    <option value="3.67">A-</option>
+                    <option value="3.33">B+</option>
+                    <option value="3.00">B</option>
                     <option value="2.67">B-</option>
                     <option value="2.33">C+</option>
                     <option value="2.00">C</option>
@@ -406,6 +410,10 @@
                     <option value="2.67">B-</option>
                     <option value="2.33">C+</option>
                     <option value="2.00">C</option>
+                    <option value="1.67">C-</option>
+                    <option value="1.33">D+</option>
+                    <option value="1.00">D</option>
+                    <option value="0.00">F</option>
                 </select>
             </td>
             <td><button class="btn remove-btn">×</button></td>
