@@ -76,7 +76,7 @@ const materialsData = {
     },
     'CSE 3411': {
         links: {
-            all: 'https://drive.google.com/drive/u/2/folders/1IASbQyNBjDMm0wJrYFboe8sq66ZqsRbV',
+            all: 'https://drive.google.com/drive/u/2/folders/1sb9l-zKKrdqL70rOO1AX3ztoMS6Oa1sw',
             mid: 'https://drive.google.com/drive/u/2/folders/1sqHdVB4dFUgu207l8AUGdtC-e-9yB9Dw',
             final: 'https://drive.google.com/drive/u/2/folders/1xlOLypDy492L9_Cb8d6Obf7UcnNWfKJ_'
         }

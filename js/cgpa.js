@@ -163,40 +163,38 @@
         let completedCredits = 0;
         const breakdown = [];
 
+        // Use a map to ensure each course is counted only once (by name)
+        const courseMap = new Map();
         allCourses.forEach(course => {
+            const courseKey = course.name?.trim().toLowerCase() || 'untitled';
+            // For retake, always prefer the latest grade
+            if (!courseMap.has(courseKey) || course.isRetake) {
+                courseMap.set(courseKey, course);
+            }
+        });
+
+        // Now process only unique courses (latest grade for retakes)
+        Array.from(courseMap.values()).forEach(course => {
             const finalGrade = course.isRetake ? course.newGrade : course.grade;
             const gradePoint = GRADE_POINTS[finalGrade];
             const weighted = gradePoint * course.credits;
-            
-            // For retakes/improvements
+
+            creditsForGpa += course.credits;
+            weightedPoints += weighted;
+            attemptedCredits += course.credits;
+
+            // Completed credits logic:
             if (course.isRetake) {
-                const isActualRetake = course.oldGrade === 'F'; // F means retake, otherwise improvement
-                
-                // Credits for GPA calculation
-                if (isActualRetake) {
-                    // Retake: Add new credits
-                    creditsForGpa += course.credits;
+                if (course.oldGrade === 'F') {
+                    // Retake after F: only add if new grade is passing
+                    if (gradePoint >= PASSING_GRADE) {
+                        completedCredits += course.credits;
+                    }
                 } else {
-                    // Improvement: Don't add new credits (already counted from first attempt)
-                    creditsForGpa += 0;
-                }
-                
-                // Weighted points always use new grade
-                weightedPoints += weighted;
-                
-                // Attempted credits: Both attempts count for both retake and improvement
-                attemptedCredits += course.credits * 2;
-                
-                // Completed credits: Only if new grade is passing
-                if (gradePoint >= PASSING_GRADE) {
-                    completedCredits += course.credits;
+                    // Improvement: do NOT add credits again (already completed)
                 }
             } else {
-                // Regular course
-                creditsForGpa += course.credits;
-                weightedPoints += weighted;
-                attemptedCredits += course.credits;
-                
+                // Regular course: add if passing
                 if (gradePoint >= PASSING_GRADE) {
                     completedCredits += course.credits;
                 }
@@ -215,7 +213,9 @@
             });
         });
 
-        const gpa = creditsForGpa > 0 ? weightedPoints / creditsForGpa : 0;
+        // Cap GPA at 4.0
+        let gpa = creditsForGpa > 0 ? weightedPoints / creditsForGpa : 0;
+        if (gpa > 4.0) gpa = 4.0;
 
         return {
             gpa: round(gpa),
@@ -229,10 +229,22 @@
 
     function calculateOverallCgpa(result, prevCgpa, prevCredits) {
         if (prevCredits <= 0 || prevCgpa <= 0) return result.gpa;
-        
-        const totalGradePoints = (prevCgpa * prevCredits) + result.weightedPoints;
-        const totalCredits = prevCredits + result.creditsForGpa;
-        
+
+        // To avoid double-counting improvement retake credits, subtract credits for improvement retakes from previous credits
+        // Find improvement retake credits
+        let improvementRetakeCredits = 0;
+        if (result.breakdown && Array.isArray(result.breakdown)) {
+            result.breakdown.forEach(course => {
+                if (course.isRetake && course.isImprovement) {
+                    improvementRetakeCredits += course.credits;
+                }
+            });
+        }
+
+        const adjustedPrevCredits = prevCredits - improvementRetakeCredits;
+        const totalGradePoints = (prevCgpa * adjustedPrevCredits) + result.weightedPoints;
+        const totalCredits = adjustedPrevCredits + result.creditsForGpa;
+
         return totalCredits > 0 ? round(totalGradePoints / totalCredits) : result.gpa;
     }
 
