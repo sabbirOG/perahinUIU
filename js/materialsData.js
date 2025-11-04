@@ -105,9 +105,14 @@ const materialsData = {
             final:'https://drive.google.com/drive/u/2/folders/109kBnqeDzw4xLZI-Kx8L8ufiB7x9Glzf',
         }
     },
-    'CSE 3522': {
+    'ECO 4101': {
         links: {
             all: 'https://drive.google.com/drive/u/2/folders/1m6wctbdJjX-EhC_pPhH2CjW0_sG7u_AM'
+        }
+    },
+    'ECN 4101': {
+        links: {
+            all: 'https://drive.google.com/drive/u/2/folders/1XzPa99uZN-8c0LVOzTMWT54LVrbfGycM'
         }
     }
     // Add more courses here as needed

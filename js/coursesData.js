@@ -22,7 +22,7 @@ const coursesData = [
   },
   {
     code: "CSE4621",
-    title: "CSE 4621 · Computer Graphics",
+    title: "CSE 4621 · Computer Graphics(CG)",
     prerequisite: "MATH 2201, MATH 2183",
     credits: 3,
       major: "computational-theory",
@@ -32,7 +32,7 @@ const coursesData = [
   },
   {
     code: "CSE4889",
-    title: "CSE 4889 · Machine Learning",
+    title: "CSE 4889 · Machine Learning(ML)",
     prerequisite: "CSE 3811",
     credits: 3,
     major: "data-science",
@@ -52,7 +52,7 @@ const coursesData = [
   },
   {
     code: "CSE4883",
-    title: "CSE 4883 · Digital Image Processing",
+    title: "CSE 4883 · Digital Image Processing(DIP)",
     prerequisite: "CSE 3811",
     credits: 3,
     major: "data-science",
@@ -82,7 +82,7 @@ const coursesData = [
   },
   {
     code: "BDS 1201",
-    title: "BDS 1201 · History of the Emergence of Bangladesh",
+    title: "BDS 1201 · History of the Emergence of Bangladesh(BDS)",
     prerequisite: "None",
     credits: 2,
     major: "",
@@ -92,7 +92,7 @@ const coursesData = [
   },
   {
     code: "CSE1110",
-  title: "CSE 1110 · Introduction to Computer Systems Lab",
+  title: "CSE 1110 · Introduction to Computer Systems Lab(ICS)",
     prerequisite: "None",
     credits: 1,
     major: "",
@@ -122,7 +122,7 @@ const coursesData = [
   },
   {
     code: "CSE1111",
-    title: "CSE 1111 · Structured Programming Language",
+    title: "CSE 1111 · Structured Programming Language(SPL)",
     prerequisite: "CSE 1110",
     credits: 3,
     major: "",
@@ -132,7 +132,7 @@ const coursesData = [
   },
   {
     code: "CSE1112",
-    title: "CSE 1112 · Structured Programming Language Laboratory",
+    title: "CSE 1112 · Structured Programming Language Laboratory(SPL Lab)",
     prerequisite: "CSE 1110",
     credits: 1,
     major: "",
@@ -142,7 +142,7 @@ const coursesData = [
   },
   {
     code: "CSE2213",
-    title: "CSE 2213 · Discrete Mathematics",
+    title: "CSE 2213 · Discrete Mathematics(DM)",
     prerequisite: "None",
     credits: 3,
     major: "",
@@ -182,7 +182,7 @@ const coursesData = [
   },
   {
     code: "CSE2215",
-    title: "CSE 2215 · Data Structure and Algorithms I",
+    title: "CSE 2215 · Data Structure and Algorithms I(DSA I)",
     prerequisite: "CSE 1111",
     credits: 3,
     major: "",
@@ -192,7 +192,7 @@ const coursesData = [
   },
   {
     code: "CSE2216",
-    title: "CSE 2216 · Data Structure and Algorithms I Laboratory",
+    title: "CSE 2216 · Data Structure and Algorithms I Laboratory(DSA I Lab)",
     prerequisite: "CSE 1112",
     credits: 1,
     major: "",
@@ -202,7 +202,7 @@ const coursesData = [
   },
   {
     code: "MATH2201",
-    title: "MATH 2201 · Coordinate Geometry and Vector Analysis",
+    title: "MATH 2201 · Coordinate Geometry and Vector Analysis(VECTOR)",
     prerequisite: "MATH 1151",
     credits: 3,
     major: "",
@@ -212,7 +212,7 @@ const coursesData = [
   },
   {
     code: "CSE1325",
-    title: "CSE 1325 · Digital Logic Design",
+    title: "CSE 1325 · Digital Logic Design(DLD)",
     prerequisite: "None",
     credits: 3,
     major: "",
@@ -222,7 +222,7 @@ const coursesData = [
   },
   {
     code: "CSE1326",
-    title: "CSE 1326 · Digital Logic Design Lab",
+    title: "CSE 1326 · Digital Logic Design Lab(DLD Lab)",
     prerequisite: "None",
     credits: 1,
     major: "",
@@ -232,7 +232,7 @@ const coursesData = [
   },
   {
     code: "CSE1115",
-    title: "CSE 1115 · Object Oriented Programming",
+    title: "CSE 1115 · Object Oriented Programming(OOP)",
     prerequisite: "CSE 2215",
     credits: 3,
     major: "",
@@ -242,7 +242,7 @@ const coursesData = [
   },
   {
     code: "CSE1116",
-    title: "CSE 1116 · Object Oriented Programming Lab",
+    title: "CSE 1116 · Object Oriented Programming Lab(OOP Lab)",
     prerequisite: "CSE 2216",
     credits: 1,
     major: "",
@@ -252,7 +252,7 @@ const coursesData = [
   },
   {
     code: "MATH2205",
-    title: "MATH 2205 · Probability and Statistics",
+    title: "MATH 2205 · Probability and Statistics(STATS)",
     prerequisite: "MATH 1151",
     credits: 3,
     major: "",
@@ -262,7 +262,7 @@ const coursesData = [
   },
   {
     code: "SOC2101",
-    title: "SOC 2101 · Society, Technology and Engineering Ethics",
+    title: "SOC 2101 · Society, Technology and Engineering Ethics(SOC)",
     prerequisite: "None",
     credits: 3,
     major: "",
@@ -272,7 +272,7 @@ const coursesData = [
   },
   {
     code: "CSE2217",
-    title: "CSE 2217 · Data Structure and Algorithms II",
+    title: "CSE 2217 · Data Structure and Algorithms II(DSA II)",
     prerequisite: "CSE 2215",
     credits: 3,
     major: "",
@@ -282,7 +282,7 @@ const coursesData = [
   },
   {
     code: "CSE2218",
-    title: "CSE 2218 · Data Structure and Algorithms II Laboratory",
+    title: "CSE 2218 · Data Structure and Algorithms II Laboratory(DSA II Lab)",
     prerequisite: "CSE 2216",
     credits: 1,
     major: "",
@@ -292,7 +292,7 @@ const coursesData = [
   },
   {
     code: "EEE2113",
-    title: "EEE 2113 · Electrical Circuits",
+    title: "EEE 2113 · Electrical Circuits(EC)",
     prerequisite: "None",
     credits: 3,
     major: "",
@@ -303,7 +303,7 @@ const coursesData = [
   // Trimester 6
   {
     code: "CSE3521",
-    title: "CSE 3521 · Database Management Systems",
+    title: "CSE 3521 · Database Management Systems(DBMS)",
     prerequisite: "None",
     credits: 3,
     major: "",
@@ -313,7 +313,7 @@ const coursesData = [
   },
   {
     code: "CSE3522",
-    title: "CSE 3522 · Database Management Systems Lab",
+    title: "CSE 3522 · Database Management Systems Lab(DBMS Lab)",
     prerequisite: "None",
     credits: 1,
     major: "",
@@ -343,7 +343,7 @@ const coursesData = [
   },
   {
     code: "CSE4165",
-    title: "CSE 4165 · Web Programming",
+    title: "CSE 4165 · Web Programming(Web)",
     prerequisite: "CSE 1115, CSE 1116",
     credits: 3,
     major: "",
@@ -354,7 +354,7 @@ const coursesData = [
   // Trimester 7
   {
     code: "CSE3313",
-    title: "CSE 3313 · Computer Architecture",
+    title: "CSE 3313 · Computer Architecture(CA)",
     prerequisite: "CSE 1325",
     credits: 3,
     major: "",
@@ -364,7 +364,7 @@ const coursesData = [
   },
   {
     code: "CSE2118",
-    title: "CSE 2118 · Advanced Object Oriented Programming Lab",
+    title: "CSE 2118 · Advanced Object Oriented Programming Lab(AOOP)",
     prerequisite: "CSE 1116",
     credits: 1,
     major: "",
@@ -374,7 +374,7 @@ const coursesData = [
   },
   {
     code: "BIO3105",
-    title: "BIO 3105 · Biology for Engineers",
+    title: "BIO 3105 · Biology for Engineers(BIO)",
     prerequisite: "None",
     credits: 3,
     major: "",
@@ -384,7 +384,7 @@ const coursesData = [
   },
   {
     code: "CSE3411",
-    title: "CSE 3411 · System Analysis and Design",
+    title: "CSE 3411 · System Analysis and Design(SAD)",
     prerequisite: "None",
     credits: 3,
     major: "",
@@ -394,7 +394,7 @@ const coursesData = [
   },
   {
     code: "CSE3412",
-    title: "CSE 3412 · System Analysis and Design Lab",
+    title: "CSE 3412 · System Analysis and Design Lab(SAD Lab)",
     prerequisite: "None",
     credits: 1,
     major: "",
@@ -405,7 +405,7 @@ const coursesData = [
   // Trimester 8
   {
     code: "CSE4325",
-    title: "CSE 4325 · Microprocessors and Microcontrollers",
+    title: "CSE 4325 · Microprocessors and Microcontrollers(Micro)",
     prerequisite: "CSE 3313",
     credits: 3,
     major: "",
@@ -415,7 +415,7 @@ const coursesData = [
   },
   {
     code: "CSE4326",
-    title: "CSE 4326 · Microprocessors and Microcontrollers Lab.",
+    title: "CSE 4326 · Microprocessors and Microcontrollers Lab(Micro Lab)",
     prerequisite: "None",
     credits: 1,
     major: "",
@@ -425,7 +425,7 @@ const coursesData = [
   },
   {
     code: "CSE3421",
-    title: "CSE 3421 · Software Engineering",
+    title: "CSE 3421 · Software Engineering(SWE)",
     prerequisite: "CSE 3411",
     credits: 3,
     major: "",
@@ -435,7 +435,7 @@ const coursesData = [
   },
   {
     code: "CSE3422",
-    title: "CSE 3422 · Software Engineering Lab",
+    title: "CSE 3422 · Software Engineering Lab(SWE Lab)",
     prerequisite: "CSE 3412",
     credits: 1,
     major: "",
@@ -445,7 +445,7 @@ const coursesData = [
   },
   {
     code: "CSE3811",
-    title: "CSE 3811 · Artificial Intelligence",
+    title: "CSE 3811 · Artificial Intelligence(AI)",
     prerequisite: "MATH 2205",
     credits: 3,
     major: "",
@@ -455,7 +455,7 @@ const coursesData = [
   },
   {
     code: "CSE3812",
-    title: "CSE 3812 · Artificial Intelligence Lab",
+    title: "CSE 3812 · Artificial Intelligence Lab(AI Lab)",
     prerequisite: "None",
     credits: 1,
     major: "",
@@ -466,7 +466,7 @@ const coursesData = [
   // Trimester 9
   {
     code: "CSE2233",
-    title: "CSE 2233 · Theory of Computation",
+    title: "CSE 2233 · Theory of Computation(TOC)",
     prerequisite: "None",
     credits: 3,
     major: "",
@@ -486,7 +486,7 @@ const coursesData = [
   },
   {
     code: "PMG4101",
-    title: "PMG 4101 · Project Management",
+    title: "PMG 4101 · Project Management(PMG)",
     prerequisite: "CSE 3411",
     credits: 3,
     major: "",
@@ -496,7 +496,7 @@ const coursesData = [
   },
   {
     code: "CSE3711",
-    title: "CSE 3711 · Computer Networks",
+    title: "CSE 3711 · Computer Networks(CN)",
     prerequisite: "None",
     credits: 3,
     major: "",
@@ -506,7 +506,7 @@ const coursesData = [
   },
   {
     code: "CSE3712",
-    title: "CSE 3712 · Computer Networks Lab",
+    title: "CSE 3712 · Computer Networks Lab(CN Lab)",
     prerequisite: "None",
     credits: 1,
     major: "",
@@ -547,7 +547,7 @@ const coursesData = [
   },
   {
     code: "CSE4509",
-    title: "CSE 4509 · Operating Systems",
+    title: "CSE 4509 · Operating Systems(OS)",
     prerequisite: "None",
     credits: 3,
     major: "",
@@ -557,7 +557,7 @@ const coursesData = [
   },
   {
     code: "CSE4510",
-    title: "CSE 4510 · Operating Systems Laboratory",
+    title: "CSE 4510 · Operating Systems Laboratory(OS Lab)",
     prerequisite: "None",
     credits: 1,
     major: "",
@@ -680,7 +680,7 @@ const coursesData = [
   },
   {
     code: "IPE3401",
-    title: "IPE 3401 · Industrial and Operational Management",
+    title: "IPE 3401 · Industrial and Operational Management(IPE)",
     prerequisite: "None",
     credits: 3,
     major: "GED",
@@ -720,7 +720,7 @@ const coursesData = [
   },
   {
     code: "CSE4451",
-    title: "CSE 4451 · Human Computer Interaction",
+    title: "CSE 4451 · Human Computer Interaction(HCI)",
     prerequisite: "None",
     credits: 3,
     major: "software",
@@ -730,7 +730,7 @@ const coursesData = [
   },
   {
     code: "CSE4435",
-    title: "CSE 4435 · Software Architecture",
+    title: "CSE 4435 · Software Architecture(SA)",
     prerequisite: "None",
     credits: 3,
     major: "software",
@@ -750,7 +750,7 @@ const coursesData = [
   },
   {
     code: "CSE4495",
-    title: "CSE 4495 · Software Testing and Quality Assurance",
+    title: "CSE 4495 · Software Testing and Quality Assurance(SQA)",
     prerequisite: "CSE 3421",
     credits: 3,
     major: "software",
@@ -770,7 +770,7 @@ const coursesData = [
   },
   {
     code: "CSE4495",
-    title: "CSE 4495 · Software Testing and Quality Assurance",
+    title: "CSE 4495 · Software Testing and Quality Assurance(SQA)",
     prerequisite: "CSE 3421",
     credits: 3,
     major: "ict",

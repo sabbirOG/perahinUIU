@@ -289,6 +289,13 @@ window.playlists = [
 		by: 'Shoumik Saha'
 	},
 	{
+		code: 'CSE 2213',
+		name: 'Discrete Mathematics(DM)',
+		trimester: 2,
+		url: 'https://youtube.com/playlist?list=PLPKuptha2cLmcncrJCIC5nMy0GiczS9e0&si=9LKQSBaB6Z0aDgKW ',
+		by: 'Student'
+	},
+	{
 		code: 'CSE 4509',
 		name: 'Operating System(OS) - MID',
 		trimester: 10,
@@ -343,5 +350,12 @@ window.playlists = [
 		trimester: 8,
 		url: 'https://www.youtube.com/playlist?list=PLkO3e8HCh8uL8zOsHGuWiL68mSy9qSSjv',
 		by: 'Samin Sharaf Shomik'
+	},
+	{
+		code: 'BDS 1201',
+		name: 'History of the Emergence of Bangladesh(BDS)',
+		trimester: 1,
+		url: 'https://youtube.com/playlist?list=PLPKuptha2cLnhGaO4IqR38ftLWTW7wuR-&si=43PlLASAerutOpqw',
+		by: 'Student'
 	}
 ];
