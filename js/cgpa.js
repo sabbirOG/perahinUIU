@@ -276,8 +276,6 @@
         const totalGradePoints = (prevCgpa * adjustedPrevCredits) + result.weightedPoints;
         const totalCredits = adjustedPrevCredits + result.creditsForGpa;
 
-        // Patch: If improvement retake credits exist, show correct total credits in summary
-        // This ensures only original attempt counts for improvement retakes
         return totalCredits > 0 ? round(totalGradePoints / totalCredits) : result.gpa;
     }
 
@@ -340,27 +338,15 @@
             </div>
         `;
         
-        // Calculate adjusted previous credits for display
-        let improvementRetakeCredits = 0;
-        if (result.breakdown && Array.isArray(result.breakdown)) {
-            result.breakdown.forEach(course => {
-                if (course.isRetake && course.isImprovement) {
-                    improvementRetakeCredits += course.credits;
-                }
-            });
-        }
-        const adjustedPrevCredits = prevCredits - improvementRetakeCredits;
-        const totalCredits = adjustedPrevCredits + result.creditsForGpa;
-
         const overallSection = hasPrevious ? `
             <div style="margin-top:16px;padding:16px;border-top:2px solid var(--primary-color);background:var(--surface-hover);border-radius:8px">
                 <h4 style="margin:0 0 12px;color:var(--primary-color)">Overall CGPA Calculation</h4>
                 <div style="font-size:14px;line-height:1.8">
-                    <div>• Previous: ${prevCgpa.toFixed(2)} × ${adjustedPrevCredits} credits = ${round(prevCgpa * adjustedPrevCredits).toFixed(2)} points</div>
+                    <div>• Previous: ${prevCgpa.toFixed(2)} × ${prevCredits} credits = ${round(prevCgpa * prevCredits).toFixed(2)} points</div>
                     <div>• Current: ${result.gpa.toFixed(2)} × ${result.creditsForGpa} credits = ${round(result.weightedPoints).toFixed(2)} points</div>
                     <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border-color);font-size:18px;color:var(--primary-color)">
                         <strong>Overall CGPA: ${overallCgpa.toFixed(2)}</strong>
-                        <span style="font-size:12px;color:var(--text-secondary);margin-left:8px">(${totalCredits} total credits)</span>
+                        <span style="font-size:12px;color:var(--text-secondary);margin-left:8px">(${prevCredits + result.creditsForGpa} total credits)</span>
                     </div>
                 </div>
             </div>
