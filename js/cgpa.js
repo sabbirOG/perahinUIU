@@ -156,6 +156,7 @@
             return null;
         }
 
+
         // Calculate metrics
         let creditsForGpa = 0;
         let weightedPoints = 0;
@@ -163,25 +164,55 @@
         let completedCredits = 0;
         const breakdown = [];
 
-        // Use a map to ensure each course is counted only once (by name)
-        const courseMap = new Map();
+        // Map for latest attempt per course
+        const latestCourseMap = new Map();
+        // For attempted credits, keep a list of all attempts for F grades
+        const attemptedCreditList = [];
+
+        // First, collect latest attempt for each course
         allCourses.forEach(course => {
             const courseKey = course.name?.trim().toLowerCase() || 'untitled';
-            // For retake, always prefer the latest grade
-            if (!courseMap.has(courseKey) || course.isRetake) {
-                courseMap.set(courseKey, course);
+            if (!latestCourseMap.has(courseKey) || course.isRetake) {
+                latestCourseMap.set(courseKey, course);
             }
         });
 
+        // For attempted credits: count all attempts for F grades, only latest for D or higher
+        allCourses.forEach(course => {
+            const courseKey = course.name?.trim().toLowerCase() || 'untitled';
+            if (course.isRetake && course.oldGrade === 'F') {
+                // Retake after F: count both original and retake
+                attemptedCreditList.push({ credits: course.credits }); // retake attempt
+                // Find the original attempt (currentCourses)
+                const orig = filteredCurrent.find(c => (c.name?.trim().toLowerCase() || 'untitled') === courseKey);
+                if (orig) {
+                    attemptedCreditList.push({ credits: orig.credits }); // original attempt
+                }
+            } else if (course.isRetake && course.oldGrade !== 'F') {
+                // Improvement: only count latest
+                attemptedCreditList.push({ credits: course.credits });
+            } else if (!course.isRetake) {
+                // Regular course: only count latest
+                // If this course is not retaken, count it
+                const isRetaken = filteredRetake.some(r => (r.name?.trim().toLowerCase() || 'untitled') === courseKey);
+                if (!isRetaken) {
+                    attemptedCreditList.push({ credits: course.credits });
+                }
+            }
+        });
+
+        // Remove duplicate credits for original attempt if already counted
+        // (If a course is retaken after F, both attempts are counted)
+        attemptedCredits = attemptedCreditList.reduce((sum, c) => sum + c.credits, 0);
+
         // Now process only unique courses (latest grade for retakes)
-        Array.from(courseMap.values()).forEach(course => {
+        Array.from(latestCourseMap.values()).forEach(course => {
             const finalGrade = course.isRetake ? course.newGrade : course.grade;
             const gradePoint = GRADE_POINTS[finalGrade];
             const weighted = gradePoint * course.credits;
 
             creditsForGpa += course.credits;
             weightedPoints += weighted;
-            attemptedCredits += course.credits;
 
             // Completed credits logic:
             if (course.isRetake) {
