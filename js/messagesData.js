@@ -20,8 +20,14 @@ const messagesData = [
     },
     {
         sender: 'Dept. CSE',
-        content: 'Registration & advising open 8 Nov, 9AM via Ucam Cloud.(SECTION Selection) <a href="../attachment/pdfs/Course Offerings Fall 2025 (BSCSE & BSDS).pdf" target="_blank">[Faculty Lists]</a>',
+        content: 'Registration & advising open 8 Nov, 9AM via Ucam Cloud.(SECTION Selection) <a href="../attachment/pdfs/Course Offerings Fall 2025 (BSCSE & BSDS).pdf" target="_blank">[faculty lists]</a>',
         timestamp: new Date('2025-11-05T09:00:00'),
         isImportant: true
+    },
+    {
+        sender: 'Dept. CSE',
+        content: 'Schedule of FYDP II-III: Summer 2025, Monday, 17th November 2025, 9.30 AM <a href="../attachment/pdfs/SCHEDULE FOR FINAL DEFENSE OF FYDP.pdf" target="_blank">[schedule]</a>',
+        timestamp: new Date('2025-11-09T09:00:00'),
+        isImportant: false
     }
 ];
