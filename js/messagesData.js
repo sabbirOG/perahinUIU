@@ -20,7 +20,7 @@ const messagesData = [
     },
     {
         sender: 'Dept. CSE',
-        content: 'Registration & advising open 8 Nov, 9AM via Ucam Cloud.(SECTION Selection)',
+        content: 'Registration & advising open 8 Nov, 9AM via Ucam Cloud.(SECTION Selection) <a href="../attachment/pdfs/Course Offerings Fall 2025 (BSCSE & BSDS).pdf" target="_blank">[Faculty Lists]</a>',
         timestamp: new Date('2025-11-05T09:00:00'),
         isImportant: true
     }
