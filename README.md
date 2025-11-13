@@ -1,4 +1,4 @@
-# Perahin UIU
+# UIU Resource Hub
 
 A modern web platform built for **United International University (UIU)** students. All your essential academic tools and resources in one place.
 
