@@ -20,16 +20,15 @@ So I decided to turn it into something everyone could use. Now it's a full platf
 
 ## 🚀 Quick Start
 
-Visit the live site: **[perahin-uiu.github.io](https://sabbirog.github.io/perahin-uiu/)**
+Visit the live site: **(https://perahinuiu.sabbirahmed.me)**
 
 ```
 
 ## 🛠️ Tech Stack
 
-- **HTML5** - Semantic markup
+- **HTML5**
 - **CSS3** - Modern styling with CSS variables
 - **JavaScript** - Vanilla JS for interactivity
-- **GitHub Pages** - Free hosting
 
 ```
 
@@ -45,9 +44,8 @@ I'd love to hear from you! Your feedback helps make this better for all of us.
 ## 💡 Future Plans
 
 - User authentication for personalized experience
-- Course registration reminders
+- Full-Stack
 - Faculty directory
-- Mobile app version
 
 ## 📝 License
 
@@ -59,5 +57,3 @@ This project is developed and maintained for the UIU student community. All righ
 GitHub: [@sabbirOG](https://github.com/sabbirOG)
 
 ---
-
-*This site will be announed after the final exam*
